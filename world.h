@@ -25,7 +25,6 @@ typedef struct sprite_s sprite_t;
 
 /**
  * \brief Représentation du monde du jeu
- * \param vy Vitessse vy de la ligne d'arrivée
  * \param gameover Champ indiquant si l'on est à la fin du jeu
 */
 
@@ -33,7 +32,6 @@ typedef struct sprite_s sprite_t;
 struct world_s{
 	sprite_t* sprite;	/*!<sprite devient un pointeur de sprite_t */
 	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
-	int vy;
     int gameover;
 };
 

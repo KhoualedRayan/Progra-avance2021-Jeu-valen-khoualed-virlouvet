@@ -9,7 +9,6 @@ void init_data(world_t * world){
     //on n'est pas à la fin du jeu
 	world->gameover = 0;
 	//Initialisation de valeurs 
-	world->vy = INITIAL_SPEED;
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
 	world->projectile = (sprite_t*)malloc(sizeof(sprite_t));

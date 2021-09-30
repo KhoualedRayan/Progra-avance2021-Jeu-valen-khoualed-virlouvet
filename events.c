@@ -33,10 +33,10 @@ void handle_events(SDL_Event *event,world_t *world){
                 world->sprite->x = world->sprite->x - MOVING_STEP;
             }
 			if(event->key.keysym.sym == SDLK_DOWN){ //si la touche appuyée est 'flèche vers le bas'
-                world->vy = world->vy - 1;
+
             }
 			if(event->key.keysym.sym == SDLK_UP){ //si la touche appuyée est 'flèche vers le haut'
-                world->vy = world->vy + 1;
+                
             }
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
 				world->gameover = 1;
