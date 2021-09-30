@@ -1,20 +1,49 @@
-/**
- * \file constante.h
- * \brief en-tête qui permet de rassembler toutes les constantes.
- * \author Khoualed Rayan, Valen Thomas, Virlouvet Evann
- * \version 1.0
- * \date 23 septembre 2021
-*/
-
 #ifndef __CONSTANTE__H__
 #define __CONSTANTE__H__
 
 /**
  * \brief Largeur de l'écran de jeu
  */
-#define SCREEN_WIDTH 1920
+#define SCREEN_WIDTH 1600
 
 /**
  * \brief Hauteur de l'écran de jeu
  */
-#define SCREEN_HEIGHT 1080
+#define SCREEN_HEIGHT 900
+
+
+/**
+ * \brief Taille d'un perso
+ */
+
+#define VERTICAL_SIZE 361
+
+/**
+ * \brief Taille d'un perso
+ */
+
+#define HORIZONTAL_SIZE 220
+
+
+/**
+ * \brief Taille d'un projectile
+ */
+
+#define PROJECTILE_SIZE 64
+
+
+/**
+ * \brief Pas de déplacement horizontal 
+*/
+
+#define MOVING_STEP 6
+
+
+/**
+  * \brief Vitesse initiale de déplacement vertical des éléments du jeu 
+*/
+
+#define INITIAL_SPEED 3
+
+
+#endif
