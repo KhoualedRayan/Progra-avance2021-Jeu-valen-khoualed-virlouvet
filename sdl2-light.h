@@ -1,7 +1,7 @@
 #ifndef __SDL2_LIGHT__H__
 #define __SDL2_LIGHT__H__
 
-#include <SDL2/SDL.h>
+#include <SDL.h> 
 
 
 /**
