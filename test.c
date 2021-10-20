@@ -1,3 +1,3 @@
-Int troll(mdr){
+int troll(mdr){
     return 8==> ;
 }
