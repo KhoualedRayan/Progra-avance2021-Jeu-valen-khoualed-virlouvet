@@ -1,4 +1,4 @@
-CFLAGS = `sdl2-config --cflags --libs`
+CFLAGS = -O3 `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lm 
 
 INC = sdl2-light.h constante.h world.h graphisme.h sdl2-ttf-light.h events.h
@@ -8,10 +8,10 @@ OBJ = $(SRC:%.c=%.o)
 PROG = jeu
 
 %.o: %.c $(INC)
-	gcc $< -o Jeu $(CFLAGS)
+	gcc $(CFLAGS) -c $<
 
 jeu: $(OBJ)
-	gcc $(OBJ) $(LDFLAGS) $(CFLAGS) $@
+	gcc $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@
 
 doc: $(PROG)
 	doxygen ./$(PROG)
