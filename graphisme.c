@@ -19,7 +19,8 @@ void clean_textures(textures_t *textures){
 void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->background = load_image( "ressources/harbor.bmp",renderer);
 	textures->charac = load_image( "ressources/ryu.bmp",renderer); 
-	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  	 			
+	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
+    textures->hadouken = load_image( "ressources/ryu_hadoken_pose.bmp",renderer);  			
 	textures->font = load_font("times.ttf", 69);
 }
 
@@ -43,7 +44,15 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 	
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
-    apply_sprite(renderer, textures->charac,world->sprite);
+    if(world->mouvement == 0){
+        apply_sprite(renderer, textures->charac,world->sprite);
+    }
+    if (world->mouvement == 6){
+        apply_sprite(renderer,textures->tir, world->sprite);
+    }
+    if(world->mouvement ==5){
+        apply_sprite(renderer, textures->hadouken,world->sprite);
+    }
 	apply_sprite(renderer, textures->tir, world->projectile);
 	
 

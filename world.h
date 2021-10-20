@@ -33,6 +33,7 @@ struct world_s{
 	sprite_t* sprite;	/*!<sprite devient un pointeur de sprite_t */
 	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
     int gameover;
+	int mouvement;
 };
 
 /**
