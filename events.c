@@ -28,9 +28,11 @@ void handle_events(SDL_Event *event,world_t *world){
              //si la touche appuyée est 'flèche vers la droite'
             if(event->key.keysym.sym == SDLK_RIGHT){
 				world->sprite->x = world->sprite->x + MOVING_STEP;
+                world->mouvement = 6;
             }
 			if(event->key.keysym.sym == SDLK_LEFT){ //si la touche appuyée est 'flèche vers la gauche'
                 world->sprite->x = world->sprite->x - MOVING_STEP;
+                world->mouvement = 4;
             }
 			if(event->key.keysym.sym == SDLK_DOWN){ //si la touche appuyée est 'flèche vers le bas'
 
@@ -40,11 +42,15 @@ void handle_events(SDL_Event *event,world_t *world){
             }
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
 				world->gameover = 1;
+                
             }
 			if(event->key.keysym.sym == SDLK_SPACE){ //si la touche appuyée est 'Espace'
 				init_sprite(world->projectile,world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
+                world->mouvement = 5;
             }
 			 
+         }else{
+             world->mouvement =0;
          }
 	   
     }
