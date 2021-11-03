@@ -34,6 +34,14 @@ void handle_events(SDL_Event *event,world_t *world){
                 world->sprite->x = world->sprite->x - MOVING_STEP;
                 world->mouvement = 4;
             }
+            if(event->key.keysym.sym == SDLK_RIGHT){
+				world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP;
+                world->mouvement = 6;
+            }
+			if(event->key.keysym.sym == SDLK_LEFT){ //si la touche appuyée est 'flèche vers la gauche'
+                world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
+                world->mouvement = 4;
+            }
 			if(event->key.keysym.sym == SDLK_s){ //si la touche appuyée est 'flèche vers le bas'
 
             }

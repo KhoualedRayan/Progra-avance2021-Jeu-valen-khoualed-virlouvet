@@ -20,7 +20,7 @@ void clean_textures(textures_t *textures){
 void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->background = load_image( "ressources/harbor.bmp",renderer);
 	textures->charac = load_image( "ressources/ryu.bmp",renderer); 
-    textures->characTwo = load_image( "ressources/Ken.bmp",renderer);
+    textures->characTwo = load_image( "ressources/ken.bmp",renderer);
 	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			
 	textures->font = load_font("times.ttf", 69);

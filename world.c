@@ -30,6 +30,38 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 	sprite->h = h;
 }
 
+int sprites_collide(sprite_t *sp1, sprite_t *sp2)
+{
+    int w1 = sp1->w;
+    int w2 = sp2->w;
+    int h1 = sp1->h;
+    int h2 = sp2->h;
+    int x1 = sp1->x + w1 / 2;
+    int x2 = sp2->x + w2 / 2;
+    int y1 = sp1->y + h1 / 2;
+    int y2 = sp2->y + h2 / 2;
+
+    return (abs(x1 - x2) <= (w1 + w2) / 2) && (abs(y1 - y2) <= (h1 + h2) / 2);
+}
+
+void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
+{
+    int collision = sprites_collide(sp1, sp2);
+    if (collision == 1)
+    {
+        sp1->x = sp1->x - 6;
+        sp2->x =sp2->x + 6;
+    }
+}
+
+void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *world){
+	int hadoken = sprites_collide(sp1, sp2);
+	if (hadoken == 1)
+    {
+        sp1->x = 1000000000;
+    } 
+}
+
 
 
 void clean_data(world_t *world){
@@ -47,7 +79,8 @@ int is_game_over(world_t *world){
 void update_data(world_t *world){
 	limite(world);
 	world->projectile->x = world->projectile->x + INITIAL_SPEED;
-
+	handle_sprites_collision(world->sprite, world->spriteTwo,world);
+	handle_sprites_collision_hadoken(world->spriteTwo, world->projectile,world);
 }
 
 
