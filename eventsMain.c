@@ -26,18 +26,18 @@ void handle_events(SDL_Event *event,world_t *world){
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
              //si la touche appuyée est 'flèche vers la droite'
-            if(event->key.keysym.sym == SDLK_RIGHT){
+            if(event->key.keysym.sym == SDLK_d){
 				world->sprite->x = world->sprite->x + MOVING_STEP;
                 world->mouvement = 6;
             }
-			if(event->key.keysym.sym == SDLK_LEFT){ //si la touche appuyée est 'flèche vers la gauche'
+			if(event->key.keysym.sym == SDLK_q){ //si la touche appuyée est 'flèche vers la gauche'
                 world->sprite->x = world->sprite->x - MOVING_STEP;
                 world->mouvement = 4;
             }
-			if(event->key.keysym.sym == SDLK_DOWN){ //si la touche appuyée est 'flèche vers le bas'
+			if(event->key.keysym.sym == SDLK_s){ //si la touche appuyée est 'flèche vers le bas'
 
             }
-			if(event->key.keysym.sym == SDLK_UP){ //si la touche appuyée est 'flèche vers le haut'
+			if(event->key.keysym.sym == SDLK_z){ //si la touche appuyée est 'flèche vers le haut'
                 
             }
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
