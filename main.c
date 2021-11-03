@@ -3,6 +3,7 @@
 #include "graphisme.h"
 #include "constante.h"
 #include "eventsMain.h"
+#include "animations.h"
 
 
 

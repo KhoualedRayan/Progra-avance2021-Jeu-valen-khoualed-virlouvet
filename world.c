@@ -9,6 +9,7 @@ void init_data(world_t * world){
     //on n'est pas à la fin du jeu
 	world->gameover = 0;
 	world->mouvement = 0;
+	world->defeat_or_win = 0;
 	//Initialisation de valeurs 
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
@@ -19,6 +20,7 @@ void init_data(world_t * world){
 	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+
 
 
 

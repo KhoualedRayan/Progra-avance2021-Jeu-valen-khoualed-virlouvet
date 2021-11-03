@@ -10,7 +10,10 @@
 
 struct textures_s{
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
-    SDL_Texture* charac; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_idle; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_idle1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_idle2; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_idle3; /*!<Texture liée à l'image du perso. */
     SDL_Texture* characTwo ;
 	SDL_Texture* tir; /*!<Texture liée à l'image d'un tir de projectile' */
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */

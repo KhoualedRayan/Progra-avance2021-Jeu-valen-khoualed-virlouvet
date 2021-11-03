@@ -35,6 +35,7 @@ struct world_s{
 	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
     int gameover;
+	int defeat_or_win;
 	int mouvement;
 };
 
