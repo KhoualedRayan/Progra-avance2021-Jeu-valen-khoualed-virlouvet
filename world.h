@@ -31,6 +31,7 @@ typedef struct sprite_s sprite_t;
 
 struct world_s{
 	sprite_t* sprite;	/*!<sprite devient un pointeur de sprite_t */
+	sprite_t* spriteTwo;
 	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
     int gameover;

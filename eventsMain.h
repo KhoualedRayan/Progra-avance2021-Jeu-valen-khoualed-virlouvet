@@ -1,5 +1,5 @@
-#ifndef __EVENTS__H__
-#define __EVENTS__H__
+#ifndef __EVENTSMAIN__H__
+#define __EVENTSMAIN__H__
 #include "world.h"
 #include "graphisme.h"
 #include "sdl2-light.h"

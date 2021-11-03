@@ -12,11 +12,15 @@ void init_data(world_t * world){
 	//Initialisation de valeurs 
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
+	world->spriteTwo = (sprite_t*)malloc(sizeof(sprite_t));
 	world->projectile = (sprite_t*)malloc(sizeof(sprite_t));
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	//initialisation des sprites
 	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
+	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+
+
 
 }
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
@@ -31,6 +35,7 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 void clean_data(world_t *world){
     /* utile uniquement si vous avez fait de l'allocation dynamique (malloc); la fonction ici doit permettre de libérer la mémoire (free) */
     free(world->sprite);
+	free(world->spriteTwo);
     free(world->projectile);
 }
 
@@ -54,4 +59,12 @@ void limite(world_t* world) {
 	if (world->sprite->x > SCREEN_WIDTH - HORIZONTAL_SIZE) {
 		world->sprite->x = SCREEN_WIDTH - HORIZONTAL_SIZE;
 	}
+	//pour le deuxieme personnage
+	if (world->spriteTwo->x < 0) {
+		world->spriteTwo->x = 0;
+	}
+	if (world->spriteTwo->x > SCREEN_WIDTH - HORIZONTAL_SIZE) {
+		world->spriteTwo->x = SCREEN_WIDTH - HORIZONTAL_SIZE;
+	}
+
 }
