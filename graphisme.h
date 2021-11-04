@@ -10,11 +10,30 @@
 
 struct textures_s{
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
+
+    //Ryu_idle
     SDL_Texture* ryu_idle; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_idle1; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_idle2; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_idle3; /*!<Texture liée à l'image du perso. */
+
+    //Ryu_walking
+    SDL_Texture* ryu_walking; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_walking1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_walking2; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_walking3; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_walking4; /*!<Texture liée à l'image du perso. */
+
+    //Ryu blocking
+    SDL_Texture* ryu_blocking; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_blocking1; /*!<Texture liée à l'image du perso. */
+
+    //Ryu crouching
+    SDL_Texture* ryu_crouching; /*!<Texture liée à l'image du perso. */
+
+    //Ken
     SDL_Texture* characTwo ;
+
 	SDL_Texture* tir; /*!<Texture liée à l'image d'un tir de projectile' */
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
