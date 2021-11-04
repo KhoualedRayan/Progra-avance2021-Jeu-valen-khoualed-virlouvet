@@ -37,6 +37,7 @@ struct world_s{
     int gameover;
 	int defeat_or_win;
 	int mouvement;
+	int test;
 };
 
 /**
