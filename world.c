@@ -18,8 +18,8 @@ void init_data(world_t * world){
 	world->projectile = (sprite_t*)malloc(sizeof(sprite_t));
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	//initialisation des sprites
-	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
-	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
+	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
