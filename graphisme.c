@@ -58,6 +58,13 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     //Ryu crouching
     textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer); 
 
+    //Ryu walking
+    textures->ryu_hadouken = load_image( "ressources/ryu_hadouken/f1.bmp",renderer); 
+    textures->ryu_hadouken1 = load_image( "ressources/ryu_hadouken/f2.bmp",renderer);
+    textures->ryu_hadouken2 = load_image( "ressources/ryu_hadouken/f3.bmp",renderer);
+    textures->ryu_hadouken3 = load_image( "ressources/ryu_hadouken/f4.bmp",renderer);
+    textures->ryu_hadouken4 = load_image( "ressources/ryu_hadouken/f5.bmp",renderer);
+
     //Ken
     textures->characTwo = load_image( "ressources/Ken.bmp",renderer);
 

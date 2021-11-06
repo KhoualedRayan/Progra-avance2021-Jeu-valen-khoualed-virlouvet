@@ -6,6 +6,8 @@ void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_blocking(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+
 
 
 

@@ -31,6 +31,13 @@ struct textures_s{
     //Ryu crouching
     SDL_Texture* ryu_crouching; /*!<Texture liée à l'image du perso. */
 
+    //Ryu_hadouken
+    SDL_Texture* ryu_hadouken; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken2; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken3; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken4; /*!<Texture liée à l'image du perso. */
+
     //Ken
     SDL_Texture* characTwo ;
 
