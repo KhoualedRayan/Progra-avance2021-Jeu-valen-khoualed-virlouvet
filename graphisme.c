@@ -83,6 +83,8 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
 }
 
 
+
+
 void apply_background(SDL_Renderer *renderer, SDL_Texture *texture){
     if(texture != NULL){
       apply_texture(texture, renderer, 0, 0);
