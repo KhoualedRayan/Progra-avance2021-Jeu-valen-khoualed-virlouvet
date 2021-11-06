@@ -28,8 +28,12 @@ void clean_textures(textures_t *textures){
 
     //Ryu crouching
     clean_texture(textures->ryu_crouching);
+    //ken_idle
+    clean_texture(textures->ken_idle);
+    clean_texture(textures->ken_idle1);
+    clean_texture(textures->ken_idle2);
+    clean_texture(textures->ken_idle3);
 
-    clean_texture(textures->characTwo);
 	clean_texture(textures->tir);
 	clean_font(textures->font);
 
@@ -58,8 +62,11 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     //Ryu crouching
     textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer); 
 
-    //Ken
-    textures->characTwo = load_image( "ressources/Ken.bmp",renderer);
+    //Ken_idle
+    textures->ken_idle = load_image( "ressources/ken_idle/ken_idle.bmp",renderer);
+    textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
+    textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
+    textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
 
 	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			
@@ -87,7 +94,6 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 	
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
-    apply_sprite(renderer, textures->characTwo, world->spriteTwo );
     apply_sprite(renderer, textures->tir, world->projectile);
     //apply_sprite(renderer, textures->menu_1,world->menu);
     refresh_animations(world,renderer,textures);
