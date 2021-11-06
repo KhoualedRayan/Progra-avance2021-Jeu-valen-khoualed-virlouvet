@@ -77,6 +77,7 @@ int is_game_over(world_t *world){
 
 
 void update_data(world_t *world){
+	
 	limite(world);
 	world->projectile->x = world->projectile->x + INITIAL_SPEED;
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
