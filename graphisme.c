@@ -28,6 +28,14 @@ void clean_textures(textures_t *textures){
 
     //Ryu crouching
     clean_texture(textures->ryu_crouching);
+
+    //Ryu hadouken
+    clean_texture(textures->ryu_hadouken);
+    clean_texture(textures->ryu_hadouken1);
+    clean_texture(textures->ryu_hadouken2);
+    clean_texture(textures->ryu_hadouken3);
+    clean_texture(textures->ryu_hadouken4);
+
     //ken_idle
     clean_texture(textures->ken_idle);
     clean_texture(textures->ken_idle1);
