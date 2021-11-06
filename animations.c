@@ -118,7 +118,7 @@ void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
-    if(world->mouvement == 0){
+    if(world->mouvement2 == 0){
         if((int)(compteur*4) %4 ==0){
             apply_sprite(renderer, textures->ken_idle,world->spriteTwo);
         }else if((int)(compteur*4) %4 ==1){

@@ -73,15 +73,18 @@ void handle_events_ken(SDL_Event *event,world_t *world){
             //SDL_Log("+key");
             if(keystates[SDL_SCANCODE_D]){ 
 				world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
+                world->mouvement2 = 1;
                 walk2 = 1;
                 
             }
 			if(keystates[SDL_SCANCODE_A]){ //si la touche appuyée est 'flèche vers la gauche'
                 world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
+                world->mouvement2 = 2;
                 walk2=1;
                 
             }
 			if(keystates[SDL_SCANCODE_S] && walk2 == 0){ //si la touche appuyée est 'flèche vers le bas'
+                world->mouvement2 = 3;
 
             }
 			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'flèche vers le haut'
@@ -124,6 +127,7 @@ void handle_events(SDL_Event *event,world_t *world){
 			 
          }else{
             world->mouvement =0;
+            world->mouvement2 = 0;
 
          }
 	   
