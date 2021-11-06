@@ -4,7 +4,8 @@
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
 
-
+int walk = 0;
+int walk2 = 0;
 
 
 void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, world_t * world){ 
@@ -15,36 +16,41 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, w
 }
 
 void handle_events_ryu(SDL_Event *event,world_t *world){
-    Uint8 *keystates;
+    const Uint8 *keystates = SDL_GetKeyboardState(NULL);
         switch (event->type)
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if (event->key.keysym.scancode == SDL_SCANCODE_RIGHT){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+            if (keystates[SDL_SCANCODE_RIGHT]){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
                 //SDL_Log("Scancode fleche droite"); // Affiche un message
                 world->sprite->x = world->sprite->x + MOVING_STEP;
                 world->mouvement = 1;
+                walk = 1;
             }
 
-            if (event->key.keysym.sym == SDLK_LEFT){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
+            if (keystates[SDL_SCANCODE_LEFT]){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
                 //SDL_Log("Keycode fleche gauche"); // Affiche un message
                 world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 2;
+                walk=1;
 
             }
 
-            if (event->key.keysym.sym == SDLK_DOWN){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+            if (keystates[SDL_SCANCODE_DOWN]&& walk ==0){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->mouvement = 3;
             }
-            if(event->key.keysym.sym == SDLK_RCTRL){ //si la touche appuyée est 'flèche vers la gauche'
+            if(keystates[SDL_SCANCODE_RCTRL] && walk==0){ //si la touche appuyée est 'flèche vers la gauche'
                 //world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 5;
                 
             }
-            if(event->key.keysym.sym == SDLK_SPACE){ //si la touche appuyée est 'Espace'
+            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0){
+                world->mouvement = 8;
+            }
+            if(keystates[SDL_SCANCODE_SPACE] && walk ==0){ //si la touche appuyée est 'Espace'
                 world->mouvement = 4;
-				//init_sprite(world->projectile,world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
+				init_sprite(world->projectile,world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
             }
 
 
@@ -52,6 +58,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
         
         case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
+            walk = 0;
             break;
         
         
@@ -59,23 +66,25 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
 
 }
 void handle_events_ken(SDL_Event *event,world_t *world){
-    Uint8 *keystates;
+    const Uint8 *keystates = SDL_GetKeyboardState(NULL);
         switch (event->type)
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if(event->key.keysym.sym == SDLK_d){ 
+            if(keystates[SDL_SCANCODE_D]){ 
 				world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
+                walk2 = 1;
                 
             }
-			if(event->key.keysym.sym == SDLK_q){ //si la touche appuyée est 'flèche vers la gauche'
+			if(keystates[SDL_SCANCODE_A]){ //si la touche appuyée est 'flèche vers la gauche'
                 world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
+                walk2=1;
                 
             }
-			if(event->key.keysym.sym == SDLK_s){ //si la touche appuyée est 'flèche vers le bas'
+			if(keystates[SDL_SCANCODE_S] && walk2 == 0){ //si la touche appuyée est 'flèche vers le bas'
 
             }
-			if(event->key.keysym.sym == SDLK_z){ //si la touche appuyée est 'flèche vers le haut'
+			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'flèche vers le haut'
                 
             }
 
@@ -84,6 +93,7 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         
         case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
+            walk2 = 0;
             break;
         
         
