@@ -67,6 +67,15 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
     textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
     textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
+    //Ryu walking
+    textures->ryu_hadouken = load_image( "ressources/ryu_hadouken/f1.bmp",renderer); 
+    textures->ryu_hadouken1 = load_image( "ressources/ryu_hadouken/f2.bmp",renderer);
+    textures->ryu_hadouken2 = load_image( "ressources/ryu_hadouken/f3.bmp",renderer);
+    textures->ryu_hadouken3 = load_image( "ressources/ryu_hadouken/f4.bmp",renderer);
+    textures->ryu_hadouken4 = load_image( "ressources/ryu_hadouken/f5.bmp",renderer);
+
+    //Ken
+    textures->characTwo = load_image( "ressources/Ken.bmp",renderer);
 
 	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			

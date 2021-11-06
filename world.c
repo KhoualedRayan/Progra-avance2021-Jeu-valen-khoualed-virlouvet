@@ -22,9 +22,6 @@ void init_data(world_t * world){
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
-
-
-
 }
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 	sprite->x = x;

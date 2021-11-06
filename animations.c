@@ -45,7 +45,7 @@ void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     }
 }
 void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
-    //Animations
+    //WALK RIGHT    
     if(world->mouvement == 1){
         if((int)(compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_walking,world->sprite);
@@ -61,6 +61,8 @@ void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
             apply_sprite(renderer, textures->ryu_walking4,world->sprite) ;
         }
     }
+
+    //WALK LEFT
 	if(world->mouvement == 2){
         if((int)(compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_walking,world->sprite);
@@ -89,6 +91,30 @@ void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->mouvement == 3){
         apply_sprite(renderer, textures->ryu_crouching,world->sprite);
     }
+    if(world->mouvement == 8){
+        apply_sprite(renderer,textures->ryu_blocking1,world->sprite);
+    }
+}
+
+void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    //Hadouken
+    while(world->mouvement == 4){
+        if((int)(compteur*5) %5 ==0){
+            apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
+        }else if((int)(compteur*5) %5 ==1){
+            apply_sprite(renderer,textures->ryu_hadouken1,world->sprite);
+        }
+        else if((int)(compteur*5) %5 ==2){
+            apply_sprite(renderer,textures->ryu_hadouken2,world->sprite);
+        }else if((int)(compteur*5) %5 ==3){
+            apply_sprite(renderer, textures->ryu_hadouken3,world->sprite) ;
+        }
+		else if((int)(compteur*5) %5 ==4){
+            apply_sprite(renderer, textures->ryu_hadouken4,world->sprite) ;
+        }
+        break;
+    }
+
 }
 
 void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
@@ -114,6 +140,8 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
 	ryu_blocking(renderer,world,textures);
 	ryu_crouching(renderer,world,textures);
     ken_hidle(renderer,world,textures);
+    ryu_hadouken(renderer,world,textures);
+
 
 
 

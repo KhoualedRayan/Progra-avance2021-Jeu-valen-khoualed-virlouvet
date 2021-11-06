@@ -36,6 +36,15 @@ struct textures_s{
     SDL_Texture* ken_idle1 ;
     SDL_Texture* ken_idle2 ;
     SDL_Texture* ken_idle3 ;
+    //Ryu_hadouken
+    SDL_Texture* ryu_hadouken; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken2; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken3; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_hadouken4; /*!<Texture liée à l'image du perso. */
+
+    //Ken
+    SDL_Texture* characTwo ;
 
 	SDL_Texture* tir; /*!<Texture liée à l'image d'un tir de projectile' */
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
