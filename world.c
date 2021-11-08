@@ -29,6 +29,10 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 	sprite->y = y;
 	sprite->w = w;
 	sprite->h = h;
+	sprite->timerlastshoot = SDL_GetTicks()/1000;
+	sprite->firerate = 2;
+	sprite->nbr_hadouken = 0;
+
 }
 
 int sprites_collide(sprite_t *sp1, sprite_t *sp2)
@@ -57,10 +61,6 @@ void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
 
 void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *world){
 	int hadoken = sprites_collide(sp1, sp2);
-	if (hadoken == 1)
-    {
-        sp1->x = 1000000000;
-    } 
 }
 
 
@@ -76,13 +76,24 @@ int is_game_over(world_t *world){
     return world->gameover;
 }
 
+void update_hadouken(sprite_t *hadouken, world_t *world){
+	hadouken->x = hadouken->x + INITIAL_SPEED ;
+}
 
 void update_data(world_t *world){
 	
 	limite(world);
-	world->projectile->x = world->projectile->x + INITIAL_SPEED;
+	for (int i =0 ; i < 100 ; i++){
+		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+			world->mouvement2 = 10;
+		}
+	}
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
-	handle_sprites_collision_hadoken(world->spriteTwo, world->projectile,world);
+	for (int i = 0; i <100; i++)
+	{
+		update_hadouken(&(world->hadouken[i]), world);
+		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
+	}
 }
 
 

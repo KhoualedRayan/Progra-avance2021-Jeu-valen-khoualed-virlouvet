@@ -15,6 +15,9 @@ struct sprite_s {
 	int y;	/*!<Ordonnée du sprite */	
 	int h;	/*!<Hauteur du sprite */	
 	int w;	/*!<Largeur du sprite */
+	int nbr_hadouken; 
+	int timerlastshoot ; //temps depuis le dernier hadouken 
+	int firerate ; //temps entre chaque hadouken
 };
 /**
 * \brief Type qui correspond aux textures du sprite.
@@ -34,11 +37,13 @@ struct world_s{
 	sprite_t* spriteTwo;
 	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
-    int gameover;
+	int gameover;
 	int defeat_or_win;
 	int mouvement;
 	int mouvement2;
 	int test;
+
+	sprite_t hadouken[100] ;
 };
 
 /**
@@ -79,6 +84,11 @@ int is_game_over(world_t *world);
 
 void update_data(world_t *world);
 
+void update_hadouken(sprite_t *hadouken, world_t *world);
+
+int sprites_collide(sprite_t *sp1, sprite_t *sp2);
+
+void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *world);
 
 /**
  * \brief Fonction qui empêche le perso de sortir de l'écran

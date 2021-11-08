@@ -31,17 +31,32 @@ struct textures_s{
     //Ryu crouching
     SDL_Texture* ryu_crouching; /*!<Texture liée à l'image du perso. */
 
-    //Ken_idle
-    SDL_Texture* ken_idle ;
-    SDL_Texture* ken_idle1 ;
-    SDL_Texture* ken_idle2 ;
-    SDL_Texture* ken_idle3 ;
     //Ryu_hadouken
     SDL_Texture* ryu_hadouken; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_hadouken1; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_hadouken2; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_hadouken3; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_hadouken4; /*!<Texture liée à l'image du perso. */
+
+    //Ken_idle
+    SDL_Texture* ken_idle ;
+    SDL_Texture* ken_idle1 ;
+    SDL_Texture* ken_idle2 ;
+    SDL_Texture* ken_idle3 ;
+    
+    //ken_walking
+    SDL_Texture* ken_walking;
+    SDL_Texture* ken_walking1;
+    SDL_Texture* ken_walking2;
+    SDL_Texture* ken_walking3;
+    SDL_Texture* ken_walking4;
+
+    //ken_hit
+    SDL_Texture* ken_hit;
+    SDL_Texture* ken_hit1;
+    SDL_Texture* ken_hit2;
+    SDL_Texture* ken_hit3;
+
 
     //Ken
     SDL_Texture* characTwo ;
@@ -73,6 +88,10 @@ void clean_textures(textures_t *textures);
 */
 
 void init_textures(SDL_Renderer *renderer, textures_t *textures);
+
+void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures);
+
+void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures);
 
 /**
  * \brief La fonction applique la texture du fond sur le renderer lié à l'écran de jeu

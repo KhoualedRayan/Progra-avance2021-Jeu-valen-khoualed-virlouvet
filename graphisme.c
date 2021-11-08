@@ -42,6 +42,13 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ken_idle2);
     clean_texture(textures->ken_idle3);
 
+    //ken_walking
+    clean_texture(textures->ken_walking);
+    clean_texture(textures->ken_walking1);
+    clean_texture(textures->ken_walking2);
+    clean_texture(textures->ken_walking3);
+    clean_texture(textures->ken_walking4);
+
 	clean_texture(textures->tir);
 	clean_font(textures->font);
 
@@ -50,6 +57,18 @@ void clean_textures(textures_t *textures){
 
 void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->background = load_image( "ressources/harbor.bmp",renderer);
+    //Ryu
+	init_textures_ryu(renderer,textures);
+
+    //Ken
+    init_textures_ken(renderer, textures);
+
+	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
+	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			
+	textures->font = load_font("times.ttf", 69);
+}
+
+void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     //Ryu_idle
 	textures->ryu_idle = load_image( "ressources/ryu_idle/f1.bmp",renderer); 
     textures->ryu_idle1 = load_image( "ressources/ryu_idle/f2.bmp",renderer); 
@@ -68,29 +87,33 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->ryu_blocking1 = load_image( "ressources/ryu_blocking/f2.bmp",renderer);
 
     //Ryu crouching
-    textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer); 
+    textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer);
 
-    //Ken_idle
-    textures->ken_idle = load_image( "ressources/ken_idle/ken_idle.bmp",renderer);
-    textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
-    textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
-    textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
     //Ryu walking
     textures->ryu_hadouken = load_image( "ressources/ryu_hadouken/f1.bmp",renderer); 
     textures->ryu_hadouken1 = load_image( "ressources/ryu_hadouken/f2.bmp",renderer);
     textures->ryu_hadouken2 = load_image( "ressources/ryu_hadouken/f3.bmp",renderer);
     textures->ryu_hadouken3 = load_image( "ressources/ryu_hadouken/f4.bmp",renderer);
-    textures->ryu_hadouken4 = load_image( "ressources/ryu_hadouken/f5.bmp",renderer);
-
-    //Ken
-    textures->characTwo = load_image( "ressources/Ken.bmp",renderer);
-
-	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
-	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			
-	textures->font = load_font("times.ttf", 69);
+    textures->ryu_hadouken4 = load_image( "ressources/ryu_hadouken/f5.bmp",renderer); 
 }
 
-
+void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
+    textures->ken_idle = load_image( "ressources/ken_idle/ken_idle.bmp",renderer);
+    textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
+    textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
+    textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
+    //ken_walking
+    textures->ken_walking = load_image( "ressources/ken_walking/ken_walking1.bmp", renderer);
+    textures->ken_walking1 = load_image( "ressources/ken_walking/ken_walking2.bmp", renderer);
+    textures->ken_walking2 = load_image( "ressources/ken_walking/ken_walking3.bmp", renderer);
+    textures->ken_walking3 = load_image( "ressources/ken_walking/ken_walking4.bmp", renderer);
+    textures->ken_walking4 = load_image( "ressources/ken_walking/ken_walking5.bmp", renderer);
+    //ken_hit
+    textures->ken_hit = load_image( "ressources/ken_hit/ken_hit.bmp", renderer);
+    textures->ken_hit1 = load_image( "ressources/ken_hit/ken_hit1.bmp", renderer);
+    textures->ken_hit2 = load_image( "ressources/ken_hit/ken_hit2.bmp", renderer);
+    textures->ken_hit3 = load_image( "ressources/ken_hit/ken_hit3.bmp", renderer);
+}
 
 
 void apply_background(SDL_Renderer *renderer, SDL_Texture *texture){
@@ -113,6 +136,10 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 	
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
+    //pour le hadouken
+    for(int i = 0; i<100 ; i++){
+        apply_sprite(renderer,textures->tir,&(world->hadouken[i]));
+    }
     apply_sprite(renderer, textures->tir, world->projectile);
     //apply_sprite(renderer, textures->menu_1,world->menu);
     refresh_animations(world,renderer,textures);
