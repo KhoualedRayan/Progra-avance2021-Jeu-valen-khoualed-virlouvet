@@ -44,6 +44,8 @@ struct world_s{
 	int test;
 
 	sprite_t hadouken[100] ;
+	int vy;
+	int state;
 };
 
 /**
@@ -75,6 +77,8 @@ void clean_data(world_t *world);
  */
 
 int is_game_over(world_t *world);
+void gravity(world_t *world);
+
 
 
 /**

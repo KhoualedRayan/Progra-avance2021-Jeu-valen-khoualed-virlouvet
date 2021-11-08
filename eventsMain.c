@@ -21,14 +21,14 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if (keystates[SDL_SCANCODE_RIGHT]){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+            if (keystates[SDL_SCANCODE_RIGHT] && world->state == REST){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
                 //SDL_Log("Scancode fleche droite"); // Affiche un message
                 world->sprite->x = world->sprite->x + MOVING_STEP;
                 world->mouvement = 1;
                 walk = 1;
             }
 
-            if (keystates[SDL_SCANCODE_LEFT]){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
+            if (keystates[SDL_SCANCODE_LEFT]&& world->state == REST){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
                 //SDL_Log("Keycode fleche gauche"); // Affiche un message
                 world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 2;
@@ -36,16 +36,20 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
 
             }
 
-            if (keystates[SDL_SCANCODE_DOWN]&& walk ==0){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+            if (keystates[SDL_SCANCODE_DOWN]&& walk ==0 &&world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->mouvement = 3;
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && walk==0){ //si la touche appuyée est 'flèche vers la gauche'
+            if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->state = JUMP;
+            }
+            if(keystates[SDL_SCANCODE_RCTRL] && walk==0 &&world->state == REST){ //si la touche appuyée est 'flèche vers la gauche'
                 //world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 5;
                 
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0){
+            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 &&world->state == REST){
                 world->mouvement = 8;
             }
             if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->sprite->timerlastshoot + world->sprite->firerate < SDL_GetTicks()/1000){
@@ -61,9 +65,8 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                         world->mouvement2 = 10;
                     }
                 }
+
             }
-
-
             break;
         
         case SDL_KEYUP:// Un événement de type touche relâchée
@@ -75,6 +78,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
     }
 
 }
+
 void handle_events_ken(SDL_Event *event,world_t *world){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
         switch (event->type)
@@ -111,12 +115,12 @@ void handle_events_ken(SDL_Event *event,world_t *world){
             break;
         
         
-    }
+    } 
 
 }
 
 void handle_events(SDL_Event *event,world_t *world){
-    Uint8 *keystates;
+    const Uint8 *keystates;
 
     
     while( SDL_PollEvent( event ) ) {
@@ -124,7 +128,7 @@ void handle_events(SDL_Event *event,world_t *world){
         handle_events_ken(event,world);
 
         
-        //Si l'utilisateur a cliqué sur le X de la fenêtre
+        //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu
             world->gameover = 1; 

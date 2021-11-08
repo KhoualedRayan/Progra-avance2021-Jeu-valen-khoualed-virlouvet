@@ -12,6 +12,8 @@ void init_data(world_t * world){
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
 	world->test =0;
+	world->vy = INITIAL_SPEED;
+	world->state = REST;
 	//Initialisation de valeurs 
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
@@ -70,6 +72,7 @@ void clean_data(world_t *world){
     free(world->sprite);
 	free(world->spriteTwo);
     free(world->projectile);
+	free(world->menu);
 }
 
 int is_game_over(world_t *world){
@@ -79,15 +82,46 @@ int is_game_over(world_t *world){
 void update_hadouken(sprite_t *hadouken, world_t *world){
 	hadouken->x = hadouken->x + INITIAL_SPEED ;
 }
+void gravity(world_t *world){
+	if(world->state == JUMP){
+		world->vy = -INITIAL_SPEED - 2;
+	}
+	if(world->sprite->y == 179){
+		pause(10);
+		world->state = FALL;
+
+	}
+	if(world->state == FALL){
+		world->vy = INITIAL_SPEED+2;
+	}
+
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP){
+				pause(10);
+		world->state = REST;
+	}
+	if(world->state == REST){
+		world->vy =0;
+	}
+
+	/*if(world->state == FALL){
+		world->vy = INITIAL_SPEED;
+	}
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120)){
+		world->state = REST;
+	}*/
+	world->sprite->y = world->sprite-> y + world->vy; 
+
+}
+
 
 void update_data(world_t *world){
-	
 	limite(world);
 	for (int i =0 ; i < 100 ; i++){
 		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->mouvement2 = 10;
 		}
 	}
+	gravity(world);
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
 	for (int i = 0; i <100; i++)
 	{

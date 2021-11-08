@@ -56,6 +56,16 @@ struct textures_s{
     SDL_Texture* ken_hit1;
     SDL_Texture* ken_hit2;
     SDL_Texture* ken_hit3;
+    //Ryu_jumping
+    SDL_Texture* ryu_jumping; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_jumping1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_jumping2; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_jumping3; /*!<Texture liée à l'image du perso. */
+
+    //Ryu_falling
+    SDL_Texture* ryu_falling; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_falling1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_falling2; /*!<Texture liée à l'image du perso. */
 
 
     //Ken

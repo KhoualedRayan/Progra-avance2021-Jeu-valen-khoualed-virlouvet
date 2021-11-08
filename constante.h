@@ -45,5 +45,11 @@
 
 #define INITIAL_SPEED 3
 
+#define REST 0
+
+#define FALL 1
+#define JUMP 2
+#define HADOUKEN 3
+
 
 #endif
