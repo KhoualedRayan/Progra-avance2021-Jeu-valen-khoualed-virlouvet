@@ -21,14 +21,14 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if (keystates[SDL_SCANCODE_RIGHT]){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+            if (keystates[SDL_SCANCODE_RIGHT] && world->state == REST){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
                 //SDL_Log("Scancode fleche droite"); // Affiche un message
                 world->sprite->x = world->sprite->x + MOVING_STEP;
                 world->mouvement = 1;
                 walk = 1;
             }
 
-            if (keystates[SDL_SCANCODE_LEFT]){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
+            if (keystates[SDL_SCANCODE_LEFT]&& world->state == REST){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
                 //SDL_Log("Keycode fleche gauche"); // Affiche un message
                 world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 2;
@@ -36,20 +36,25 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
 
             }
 
-            if (keystates[SDL_SCANCODE_DOWN]&& walk ==0){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+            if (keystates[SDL_SCANCODE_DOWN]&& walk ==0 &&world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->mouvement = 3;
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && walk==0){ //si la touche appuyée est 'flèche vers la gauche'
+            if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->state = JUMP;
+            }
+            if(keystates[SDL_SCANCODE_RCTRL] && walk==0 &&world->state == REST){ //si la touche appuyée est 'flèche vers la gauche'
                 //world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 5;
                 
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0){
+            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 &&world->state == REST){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_SPACE] && walk ==0){ //si la touche appuyée est 'Espace'
+            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->state == REST){ //si la touche appuyée est 'Espace'
                 world->mouvement = 4;
+                //world->state = HADOUKEN;
 				init_sprite(world->projectile,world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
             }
 

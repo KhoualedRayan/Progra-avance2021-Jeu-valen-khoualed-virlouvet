@@ -12,6 +12,8 @@ void init_data(world_t * world){
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
 	world->test =0;
+	world->vy = INITIAL_SPEED;
+	world->state = REST;
 	//Initialisation de valeurs 
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
@@ -70,16 +72,48 @@ void clean_data(world_t *world){
     free(world->sprite);
 	free(world->spriteTwo);
     free(world->projectile);
+	free(world->menu);
 }
 
 int is_game_over(world_t *world){
     return world->gameover;
 }
 
+void gravity(world_t *world){
+	if(world->state == JUMP){
+		world->vy = -INITIAL_SPEED - 2;
+	}
+	if(world->sprite->y == 179){
+		pause(10);
+		world->state = FALL;
+
+	}
+	if(world->state == FALL){
+		world->vy = INITIAL_SPEED+2;
+	}
+
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP){
+				pause(10);
+		world->state = REST;
+	}
+	if(world->state == REST){
+		world->vy =0;
+	}
+
+	/*if(world->state == FALL){
+		world->vy = INITIAL_SPEED;
+	}
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120)){
+		world->state = REST;
+	}*/
+	world->sprite->y = world->sprite-> y + world->vy; 
+
+}
+
 
 void update_data(world_t *world){
-	
 	limite(world);
+	gravity(world);
 	world->projectile->x = world->projectile->x + INITIAL_SPEED;
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
 	handle_sprites_collision_hadoken(world->spriteTwo, world->projectile,world);

@@ -36,6 +36,17 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ryu_hadouken3);
     clean_texture(textures->ryu_hadouken4);
 
+    //Ryu jumping
+    clean_texture(textures->ryu_jumping);
+    clean_texture(textures->ryu_jumping1);
+    clean_texture(textures->ryu_jumping2);
+    clean_texture(textures->ryu_jumping3);
+
+    //Ryu jumping
+    clean_texture(textures->ryu_falling);
+    clean_texture(textures->ryu_falling1);
+    clean_texture(textures->ryu_falling2);
+
     //ken_idle
     clean_texture(textures->ken_idle);
     clean_texture(textures->ken_idle1);
@@ -70,11 +81,6 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     //Ryu crouching
     textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer); 
 
-    //Ken_idle
-    textures->ken_idle = load_image( "ressources/ken_idle/ken_idle.bmp",renderer);
-    textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
-    textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
-    textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
     //Ryu walking
     textures->ryu_hadouken = load_image( "ressources/ryu_hadouken/f1.bmp",renderer); 
     textures->ryu_hadouken1 = load_image( "ressources/ryu_hadouken/f2.bmp",renderer);
@@ -82,8 +88,25 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->ryu_hadouken3 = load_image( "ressources/ryu_hadouken/f4.bmp",renderer);
     textures->ryu_hadouken4 = load_image( "ressources/ryu_hadouken/f5.bmp",renderer);
 
+    //Ryu falling
+    textures->ryu_falling = load_image( "ressources/ryu_falling/f1.bmp",renderer); 
+    textures->ryu_falling1 = load_image( "ressources/ryu_falling/f2.bmp",renderer);
+    textures->ryu_falling2 = load_image( "ressources/ryu_falling/f3.bmp",renderer);
+
+    //Ryu jumping
+    textures->ryu_jumping = load_image( "ressources/ryu_jumping/f1.bmp",renderer); 
+    textures->ryu_jumping1 = load_image( "ressources/ryu_jumping/f2.bmp",renderer);
+    textures->ryu_jumping2 = load_image( "ressources/ryu_jumping/f3.bmp",renderer);
+    textures->ryu_jumping3 = load_image( "ressources/ryu_jumping/f4.bmp",renderer);
+
     //Ken
     textures->characTwo = load_image( "ressources/Ken.bmp",renderer);
+
+    //Ken_idle
+    textures->ken_idle = load_image( "ressources/ken_idle/ken_idle.bmp",renderer);
+    textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
+    textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
+    textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
 
 	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			

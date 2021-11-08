@@ -39,6 +39,8 @@ struct world_s{
 	int mouvement;
 	int mouvement2;
 	int test;
+	int vy;
+	int state;
 };
 
 /**
@@ -70,6 +72,8 @@ void clean_data(world_t *world);
  */
 
 int is_game_over(world_t *world);
+void gravity(world_t *world);
+
 
 
 /**
