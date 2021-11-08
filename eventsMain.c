@@ -53,8 +53,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->mouvement = 8;
             }
             if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->state == REST){ //si la touche appuyée est 'Espace'
-                world->mouvement = 4;
-                //world->state = HADOUKEN;
+                world->state = HADOUKEN;
 				init_sprite(world->projectile,world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
             }
 

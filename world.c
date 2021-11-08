@@ -4,6 +4,7 @@
 #include "sdl2-light.h"
 
 
+
 void init_data(world_t * world){
     
     //on n'est pas à la fin du jeu
@@ -91,21 +92,13 @@ void gravity(world_t *world){
 	if(world->state == FALL){
 		world->vy = INITIAL_SPEED+2;
 	}
-
 	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP){
-				pause(10);
+		pause(10);
 		world->state = REST;
 	}
 	if(world->state == REST){
 		world->vy =0;
 	}
-
-	/*if(world->state == FALL){
-		world->vy = INITIAL_SPEED;
-	}
-	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120)){
-		world->state = REST;
-	}*/
 	world->sprite->y = world->sprite-> y + world->vy; 
 
 }
