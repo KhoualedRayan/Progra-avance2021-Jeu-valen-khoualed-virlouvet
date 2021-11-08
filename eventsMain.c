@@ -52,12 +52,21 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 &&world->state == REST){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->state == REST){ //si la touche appuyée est 'Espace'
-                world->state = HADOUKEN;
-				init_sprite(world->projectile,world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
+            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->sprite->timerlastshoot + world->sprite->firerate < SDL_GetTicks()/1000){
+                init_sprite(&(world->hadouken[world->sprite->nbr_hadouken]), world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
+                world->sprite->nbr_hadouken = world->sprite->nbr_hadouken + 1;
+                world->sprite->timerlastshoot = SDL_GetTicks()/1000;
+                if (world->sprite->nbr_hadouken == 100){
+                    world->sprite->nbr_hadouken = 0;
+                }
+                world->mouvement = 4;
+                for (int i =0 ; i < 100 ; i++){
+                    if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+                        world->mouvement2 = 10;
+                    }
+                }
+
             }
-
-
             break;
         
         case SDL_KEYUP:// Un événement de type touche relâchée
@@ -69,6 +78,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
     }
 
 }
+
 void handle_events_ken(SDL_Event *event,world_t *world){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
         switch (event->type)
@@ -76,8 +86,9 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         case SDL_KEYDOWN:
             //SDL_Log("+key");
             if(keystates[SDL_SCANCODE_D]){ 
-				world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
-                world->mouvement2 = 1;
+
+                world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
+                world->mouvement2 = 1; 
                 walk2 = 1;
                 
             }
@@ -104,12 +115,12 @@ void handle_events_ken(SDL_Event *event,world_t *world){
             break;
         
         
-    }
+    } 
 
 }
 
 void handle_events(SDL_Event *event,world_t *world){
-    Uint8 *keystates;
+    const Uint8 *keystates;
 
     
     while( SDL_PollEvent( event ) ) {
@@ -117,7 +128,7 @@ void handle_events(SDL_Event *event,world_t *world){
         handle_events_ken(event,world);
 
         
-        //Si l'utilisateur a cliqué sur le X de la fenêtre
+        //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu
             world->gameover = 1; 
