@@ -60,6 +60,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                     world->sprite->nbr_hadouken = 0;
                 }
                 world->mouvement = 4;
+                world->test = HADOUKEN;
                 for (int i =0 ; i < 100 ; i++){
                     if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
                         world->mouvement2 = 10;
@@ -72,6 +73,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
         case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
             walk = 0;
+            world->mouvement =0;
             break;
         
         
@@ -112,6 +114,7 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
             walk2 = 0;
+            world->mouvement2 =0;
             break;
         
         
@@ -135,16 +138,9 @@ void handle_events(SDL_Event *event,world_t *world){
         }
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
-
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
 				world->gameover = 1;
             }
-			 
-         }else{
-            world->mouvement =0;
-            world->mouvement2 = 0;
-
          }
-	   
     }
 }

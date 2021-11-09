@@ -98,7 +98,8 @@ void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Hadouken
-    if(world->state == HADOUKEN){
+    if(world->sprite->timerlastshoot + 1 > SDL_GetTicks()/1000){
+        printf("oui");
         if((int)(compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
         }else if((int)(compteur*5) %5 ==1){

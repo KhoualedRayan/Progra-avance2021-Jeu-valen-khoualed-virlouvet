@@ -95,7 +95,7 @@ void gravity(world_t *world){
 	if(world->state == FALL){
 		world->vy = INITIAL_SPEED+2;
 	}
-	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP){
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
 		pause(10);
 		world->state = REST;
 	}
@@ -105,10 +105,27 @@ void gravity(world_t *world){
 	world->sprite->y = world->sprite-> y + world->vy; 
 
 }
+void hadouken(world_t *world){
+	int compt, temps;
+	if(world->test == HADOUKEN){
+		temps = 2;
+		compt = SDL_GetTicks()/1000;
+		if((world->sprite->timerlastshoot + 1 > SDL_GetTicks()/1000)){
+			world->state = HADOUKEN;
+			printf("%d",world->state);
+		}else{
+			world->state = REST;
+		}
+	}
+	
+	//world->test = 0;
+
+}
 
 
 void update_data(world_t *world){
 	limite(world);
+	//hadouken(world);
 	for (int i =0 ; i < 100 ; i++){
 		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->mouvement2 = 10;
