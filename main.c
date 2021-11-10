@@ -38,6 +38,21 @@ int main( int argc, char* args[] )
     //initialisation du jeu
     init(&window,&renderer,&textures,&world);
 
+    while(world.etat_menu != 3){
+        
+        //gestion des évènements
+        handle_events(&event,&world);
+
+        //mise à jour des données liée à la physique du monde
+        update_data(&world);
+
+        //affiche le menu
+        refresh_graphics_menu(renderer,&world,&textures);
+
+        // pause de 10 ms pour controler la vitesse de rafraichissement
+        pause(10);
+    }
+
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
         
         //gestion des évènements

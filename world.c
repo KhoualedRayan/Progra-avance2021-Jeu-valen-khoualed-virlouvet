@@ -27,11 +27,24 @@ void init_data(world_t * world){
 	world->projectile = (sprite_t*)malloc(sizeof(sprite_t));
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	world->titre = (sprite_t*)malloc(sizeof(sprite_t));
+	world->exit = (sprite_t*)malloc(sizeof(sprite_t));
+	world->exit2 = (sprite_t*)malloc(sizeof(sprite_t));
+	world->playervsplayer = (sprite_t*)malloc(sizeof(sprite_t));
+	world->playervsplayer2 = (sprite_t*)malloc(sizeof(sprite_t));
+	world->playervsbot = (sprite_t*)malloc(sizeof(sprite_t));
+	world->playervsbot2 = (sprite_t*)malloc(sizeof(sprite_t));
 	//initialisation des sprites
 	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
+	init_sprite(world->exit,SCREEN_WIDTH/2-BOUTON_WIDTH/2,50,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->exit2,SCREEN_WIDTH/2-BOUTON_WIDTH/2,50,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsplayer,SCREEN_WIDTH/2-BOUTON_WIDTH/2,90,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2,90,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2,130,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2,130,BOUTON_WIDTH,BOUTON_HEIGHT);
+	
 
 }
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
@@ -80,6 +93,12 @@ void clean_data(world_t *world){
     free(world->projectile);
 	free(world->menu);
 	free(world->titre);
+	free(world->exit);
+	free(world->exit2);
+	free(world->playervsplayer);
+	free(world->playervsplayer2);
+	free(world->playervsbot);
+	free(world->playervsbot2);
 }
 
 int is_game_over(world_t *world){

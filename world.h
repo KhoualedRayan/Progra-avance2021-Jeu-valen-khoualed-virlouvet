@@ -36,6 +36,12 @@ struct world_s{
 	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
 	sprite_t* titre;	/*!<titre devient un pointeur de sprite_t */
+	sprite_t* exit;	/*!<exit devient un pointeur de sprite_t */
+	sprite_t* exit2;	/*!<exit2 devient un pointeur de sprite_t */
+	sprite_t* playervsplayer;	/*!<playervsplayer devient un pointeur de sprite_t */
+	sprite_t* playervsplayer2;	/*!<playervsplayer2 devient un pointeur de sprite_t */
+	sprite_t* playervsbot;	/*!<playervsbot devient un pointeur de sprite_t */
+	sprite_t* playervsbot2;	/*!<playervsbot2 devient un pointeur de sprite_t */
 	int gameover;
 	int defeat_or_win;
 	int etat_menu;

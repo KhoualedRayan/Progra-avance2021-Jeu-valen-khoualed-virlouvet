@@ -81,6 +81,12 @@ struct textures_s{
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
     SDL_Texture* menu_1; /*!<Texture liée à l'image du fond du menu principal */
     SDL_Texture* titre_p; /*!<Texture liée au titre du menu principal */
+    SDL_Texture* exit_normal; /*!<Texture liée au titre du bouton exit */
+    SDL_Texture* exit_select; /*!<Texture liée au titre du bouton exit */
+    SDL_Texture* pvp_normal; /*!<Texture liée au titre du bouton pvp */
+    SDL_Texture* pvp_select; /*!<Texture liée au titre du bouton pvp */
+    SDL_Texture* pvb_normal; /*!<Texture liée au titre du bouton pvb */
+    SDL_Texture* pvb_select; /*!<Texture liée au titre du bouton pvb */
 };
 
 /**
