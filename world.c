@@ -13,6 +13,10 @@ void init_data(world_t * world){
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
 	world->test =0;
+	world->on = 0;
+	world->timerlastshoot = SDL_GetTicks()/1000;
+	world->firerate = 2;
+	world->nbr_hadouken = 0;
 	world->vy = INITIAL_SPEED;
 	world->state = REST;
 	//Initialisation de valeurs 
@@ -32,9 +36,7 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 	sprite->y = y;
 	sprite->w = w;
 	sprite->h = h;
-	sprite->timerlastshoot = SDL_GetTicks()/1000;
-	sprite->firerate = 2;
-	sprite->nbr_hadouken = 0;
+
 
 }
 
@@ -110,30 +112,29 @@ void hadouken(world_t *world){
 	if(world->test == HADOUKEN){
 		temps = 2;
 		compt = SDL_GetTicks()/1000;
-		if((world->sprite->timerlastshoot + 1 > SDL_GetTicks()/1000)){
+		if((world->timerlastshoot  +1 > SDL_GetTicks()/1000)){
 			world->state = HADOUKEN;
-			printf("%d",world->state);
 		}else{
 			world->state = REST;
+			world->test = 0;
 		}
 	}
 	
-	//world->test = 0;
 
 }
 
 
 void update_data(world_t *world){
 	limite(world);
-	//hadouken(world);
-	for (int i =0 ; i < 100 ; i++){
+	hadouken(world);
+	for (int i =0 ; i < 10 ; i++){
 		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->mouvement2 = 10;
 		}
 	}
 	gravity(world);
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
-	for (int i = 0; i <100; i++)
+	for (int i = 0; i <10; i++)
 	{
 		update_hadouken(&(world->hadouken[i]), world);
 		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);

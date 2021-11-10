@@ -98,36 +98,54 @@ void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Hadouken
-    if(world->sprite->timerlastshoot + 1 > SDL_GetTicks()/1000){
-        printf("oui");
-        if((int)(compteur*5) %5 ==0){
+    if(world->timerlastshoot + 1 > SDL_GetTicks()/1000 && world->state == HADOUKEN){
+        if((int)(compteur*6) %6 ==0){
             apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
-        }else if((int)(compteur*5) %5 ==1){
+        }else if((int)(compteur*6) %6 ==1){
             apply_sprite(renderer,textures->ryu_hadouken1,world->sprite);
         }
-        else if((int)(compteur*5) %5 ==2){
+        else if((int)(compteur*6) %6 ==2){
             apply_sprite(renderer,textures->ryu_hadouken2,world->sprite);
-        }else if((int)(compteur*5) %5 ==3){
+        }else if((int)(compteur*6) %6 ==3){
             apply_sprite(renderer, textures->ryu_hadouken3,world->sprite) ;
         }
-		else if((int)(compteur*5) %5 ==4){
+		else if((int)(compteur*6) %6 ==4){
             apply_sprite(renderer, textures->ryu_hadouken4,world->sprite) ;
+        }else if((int)(compteur*6) %6 ==5){
+            world->on = 1;
+        }
+    }
+    if(world->on == 1){
+        if((int)(compteur*2) %2 == 0){
+            for(int i=0; i<10;i++){
+                init_sprite(&(world->hadouken[world->nbr_hadouken]), world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
+                apply_sprite(renderer,textures->ryu_hadouken5,&(world->hadouken[i])) ;  
+            }
+        }else{
+            for(int i=0; i<10;i++){
+                apply_sprite(renderer, textures->ryu_hadouken6,&(world->hadouken[i])) ;
+            }
+        }
+    }
+    for (int i =0 ; i < 10 ; i++){
+        if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+            world->on = 0;
+            apply_sprite(renderer, textures->ryu_hadouken7,&(world->hadouken[i])) ;
         }
     }
 
 }
 
+
 void ryu_jumping(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //JUMPING
     if(world->state == JUMP){
-        if((int)(compteur*4) %4 ==0){
-            apply_sprite(renderer, textures->ryu_jumping,world->sprite);
-        }else if((int)(compteur*4) %4 ==1){
+        if(world->sprite->y >=419 - 80){
             apply_sprite(renderer,textures->ryu_jumping1,world->sprite);
         }
-        else if((int)(compteur*4) %4 ==2){
+        else if(world->sprite->y >=419 - 80*2){
             apply_sprite(renderer,textures->ryu_jumping2,world->sprite);
-        }else if((int)(compteur*4) %4 ==3){
+        }else if(world->sprite->y >=419 - 80*3){
             apply_sprite(renderer, textures->ryu_jumping3,world->sprite) ;
         }
     }
@@ -136,13 +154,11 @@ void ryu_jumping(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ryu_falling(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //FALLING
     if(world->state == FALL){
-        if((int)(compteur*3) %3 ==0){
+        if(world->sprite->y <=179+120){
             apply_sprite(renderer, textures->ryu_falling,world->sprite);
-        }else if((int)(compteur*3) %4 ==1){
-            apply_sprite(renderer,textures->ryu_falling1,world->sprite);
         }
-        else if((int)(compteur*3) %3 ==2){
-            apply_sprite(renderer,textures->ryu_falling2,world->sprite);
+        else if(world->sprite->y <=179+80*3){
+            apply_sprite(renderer,textures->ryu_falling1,world->sprite);
         }
     }
 

@@ -35,6 +35,10 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ryu_hadouken2);
     clean_texture(textures->ryu_hadouken3);
     clean_texture(textures->ryu_hadouken4);
+    clean_texture(textures->ryu_hadouken5);
+    clean_texture(textures->ryu_hadouken6);
+    clean_texture(textures->ryu_hadouken7);
+    clean_texture(textures->ryu_hadouken8);
 
     //Ryu jumping
     clean_texture(textures->ryu_jumping);
@@ -106,6 +110,10 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     textures->ryu_hadouken2 = load_image( "ressources/ryu_hadouken/f3.bmp",renderer);
     textures->ryu_hadouken3 = load_image( "ressources/ryu_hadouken/f4.bmp",renderer);
     textures->ryu_hadouken4 = load_image( "ressources/ryu_hadouken/f5.bmp",renderer); 
+    textures->ryu_hadouken5 = load_image( "ressources/hadouken/f1.bmp",renderer);
+    textures->ryu_hadouken6 = load_image( "ressources/hadouken/f2.bmp",renderer);
+    textures->ryu_hadouken7 = load_image( "ressources/hadouken/f3.bmp",renderer); 
+    textures->ryu_hadouken8 = load_image( "ressources/hadouken/f4.bmp",renderer); 
 
       //Ryu falling
     textures->ryu_falling = load_image( "ressources/ryu_falling/f1.bmp",renderer); 
@@ -163,10 +171,12 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
     //pour le hadouken
-    for(int i = 0; i<100 ; i++){
-        apply_sprite(renderer,textures->tir,&(world->hadouken[i]));
-    }
-    apply_sprite(renderer, textures->tir, world->projectile);
+    // int count = 0;
+    // if(world->on==1){
+    //     for(int i; i<10;i++){
+    //         apply_sprite(renderer,textures->tir,&(world->hadouken[i]));
+    //     }
+    // }
     //apply_sprite(renderer, textures->menu_1,world->menu);
     refresh_animations(world,renderer,textures);
 

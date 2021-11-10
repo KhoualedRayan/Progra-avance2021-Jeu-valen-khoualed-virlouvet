@@ -52,12 +52,12 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 &&world->state == REST){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->sprite->timerlastshoot + world->sprite->firerate < SDL_GetTicks()/1000){
-                init_sprite(&(world->hadouken[world->sprite->nbr_hadouken]), world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
-                world->sprite->nbr_hadouken = world->sprite->nbr_hadouken + 1;
-                world->sprite->timerlastshoot = SDL_GetTicks()/1000;
-                if (world->sprite->nbr_hadouken == 100){
-                    world->sprite->nbr_hadouken = 0;
+            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000){
+                world->nbr_hadouken = world->nbr_hadouken + 1;
+                world->on = 1;
+                world->timerlastshoot = SDL_GetTicks()/1000;
+                if (world->nbr_hadouken == 10){
+                    world->nbr_hadouken = 0;
                 }
                 world->mouvement = 4;
                 world->test = HADOUKEN;

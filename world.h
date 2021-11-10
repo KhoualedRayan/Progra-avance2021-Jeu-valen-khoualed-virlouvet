@@ -15,9 +15,7 @@ struct sprite_s {
 	int y;	/*!<Ordonnée du sprite */	
 	int h;	/*!<Hauteur du sprite */	
 	int w;	/*!<Largeur du sprite */
-	int nbr_hadouken; 
-	int timerlastshoot ; //temps depuis le dernier hadouken 
-	int firerate ; //temps entre chaque hadouken
+
 };
 /**
 * \brief Type qui correspond aux textures du sprite.
@@ -42,8 +40,12 @@ struct world_s{
 	int mouvement;
 	int mouvement2;
 	int test;
+	int on;
+	int nbr_hadouken; 
+	int timerlastshoot ; //temps depuis le dernier hadouken 
+	int firerate ; //temps entre chaque hadouken
 
-	sprite_t hadouken[100] ;
+	sprite_t hadouken[10] ;
 	int vy;
 	int state;
 };
