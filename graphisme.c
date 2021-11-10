@@ -12,8 +12,9 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->charac);
     clean_texture(textures->characTwo);
 	clean_texture(textures->tir);
+    clean_texture(textures->menu_1);
+    clean_texture(textures->titre_p);
 	clean_font(textures->font);
-
 }
 
 
@@ -22,7 +23,8 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
 	textures->charac = load_image( "ressources/ryu.bmp",renderer); 
     textures->characTwo = load_image( "ressources/ken.bmp",renderer);
 	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
-	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);	 			
+	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);
+    textures->titre_p = load_image("ressources/titre_principal.bmp", renderer);	 			
 	textures->font = load_font("times.ttf", 69);
 }
 
@@ -50,6 +52,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     apply_sprite(renderer, textures->characTwo, world->spriteTwo );
     apply_sprite(renderer, textures->tir, world->projectile);
     apply_sprite(renderer, textures->menu_1,world->menu);
+    apply_sprite(renderer, textures->titre_p,world->titre);
     // on met à jour l'écran
     update_screen(renderer);
 	

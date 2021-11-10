@@ -4,13 +4,22 @@
 /**
  * \brief Largeur de l'écran de jeu
  */
-#define SCREEN_WIDTH 1600
+#define SCREEN_WIDTH 1080
 
 /**
  * \brief Hauteur de l'écran de jeu
  */
-#define SCREEN_HEIGHT 900
+#define SCREEN_HEIGHT 720
 
+/**
+ * \brief Largeur du titre principal
+ */
+#define TITLE_WIDTH 1000
+
+/**
+ * \brief Hauteur du titre principal
+ */
+#define TITLE_HEIGHT 300
 
 /**
  * \brief Taille d'un perso
