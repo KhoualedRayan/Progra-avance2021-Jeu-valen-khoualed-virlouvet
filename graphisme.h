@@ -128,6 +128,14 @@ void apply_background(SDL_Renderer *renderer, SDL_Texture *texture);
 void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures); //graphique
 
 
+/**
+ * \brief La fonction rafraichit le menu en fonction de l'état des données du monde
+ * \param renderer le renderer lié à l'écran de jeu
+ * \param world les données du monde
+ * \param textures les textures
+ */
+
+void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 
 /**
  * \brief La fonction applique la texture du fond sur le renderer lié à l'écran de jeu

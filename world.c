@@ -9,6 +9,7 @@ void init_data(world_t * world){
     
     //on n'est pas à la fin du jeu
 	world->gameover = 0;
+	world->etat_menu = 0;
 	world->mouvement = 0;
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
@@ -78,6 +79,7 @@ void clean_data(world_t *world){
 	free(world->spriteTwo);
     free(world->projectile);
 	free(world->menu);
+	free(world->titre);
 }
 
 int is_game_over(world_t *world){

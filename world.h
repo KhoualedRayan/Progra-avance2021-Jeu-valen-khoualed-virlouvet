@@ -38,6 +38,7 @@ struct world_s{
 	sprite_t* titre;	/*!<titre devient un pointeur de sprite_t */
 	int gameover;
 	int defeat_or_win;
+	int etat_menu;
 	int mouvement;
 	int mouvement2;
 	int test;

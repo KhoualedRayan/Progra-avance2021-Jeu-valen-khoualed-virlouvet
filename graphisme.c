@@ -165,6 +165,16 @@ void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite
 }
 
 
+void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    //on vide le renderer
+    clear_renderer(renderer);
+    //application des textures dans le renderer
+    //T: faire des if pour les positions menu
+    apply_sprite(renderer, textures->menu_1,world->menu);
+    apply_sprite(renderer, textures->titre_p,world->titre);
+    // on met à jour l'écran
+    update_screen(renderer);
+}
 
 void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //on vide le renderer
@@ -179,7 +189,8 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     //         apply_sprite(renderer,textures->tir,&(world->hadouken[i]));
     //     }
     // }
-    //apply_sprite(renderer, textures->menu_1,world->menu);
+    apply_sprite(renderer, textures->menu_1,world->menu);
+    apply_sprite(renderer, textures->titre_p,world->titre);
     refresh_animations(world,renderer,textures);
 
 

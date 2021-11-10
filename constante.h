@@ -4,12 +4,12 @@
 /**
  * \brief Largeur de l'écran de jeu
  */
-#define SCREEN_WIDTH 1080
+#define SCREEN_WIDTH 1280
 
 /**
  * \brief Hauteur de l'écran de jeu
  */
-#define SCREEN_HEIGHT 720
+#define SCREEN_HEIGHT 900
 
 /**
  * \brief Largeur du titre principal
