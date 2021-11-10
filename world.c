@@ -88,17 +88,20 @@ void update_hadouken(sprite_t *hadouken, world_t *world){
 void gravity(world_t *world){
 	if(world->state == JUMP){
 		world->vy = -INITIAL_SPEED - 2;
+		world->mouvement = 0;
 	}
 	if(world->sprite->y == 179){
-		pause(10);
+		pause(20);
 		world->state = FALL;
+		world->mouvement = 0;
 
 	}
 	if(world->state == FALL){
 		world->vy = INITIAL_SPEED+2;
+		world->mouvement = 0;
+
 	}
 	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
-		pause(10);
 		world->state = REST;
 	}
 	if(world->state == REST){
