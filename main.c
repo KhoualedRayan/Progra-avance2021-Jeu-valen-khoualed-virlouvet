@@ -3,6 +3,7 @@
 #include "graphisme.h"
 #include "constante.h"
 #include "eventsMain.h"
+#include "animations.h"
 
 
 
@@ -36,7 +37,6 @@ int main( int argc, char* args[] )
 
     //initialisation du jeu
     init(&window,&renderer,&textures,&world);
-    
 
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
         

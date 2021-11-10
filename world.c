@@ -4,11 +4,21 @@
 #include "sdl2-light.h"
 
 
+
 void init_data(world_t * world){
     
     //on n'est pas à la fin du jeu
 	world->gameover = 0;
 	world->mouvement = 0;
+	world->mouvement2 = 0;
+	world->defeat_or_win = 0;
+	world->test =0;
+	world->on = 0;
+	world->timerlastshoot = SDL_GetTicks()/1000;
+	world->firerate = 2;
+	world->nbr_hadouken = 0;
+	world->vy = INITIAL_SPEED;
+	world->state = REST;
 	//Initialisation de valeurs 
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
@@ -17,12 +27,10 @@ void init_data(world_t * world){
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	world->titre = (sprite_t*)malloc(sizeof(sprite_t));
 	//initialisation des sprites
-	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
-	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, VERTICAL_SIZE, HORIZONTAL_SIZE);
+	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
-
-
 
 }
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
@@ -30,6 +38,8 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 	sprite->y = y;
 	sprite->w = w;
 	sprite->h = h;
+
+
 }
 
 int sprites_collide(sprite_t *sp1, sprite_t *sp2)
@@ -58,10 +68,6 @@ void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
 
 void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *world){
 	int hadoken = sprites_collide(sp1, sp2);
-	if (hadoken == 1)
-    {
-        sp1->x = 1000000000;
-    } 
 }
 
 
@@ -71,18 +77,70 @@ void clean_data(world_t *world){
     free(world->sprite);
 	free(world->spriteTwo);
     free(world->projectile);
+	free(world->menu);
 }
 
 int is_game_over(world_t *world){
     return world->gameover;
 }
 
+void update_hadouken(sprite_t *hadouken, world_t *world){
+	hadouken->x = hadouken->x + INITIAL_SPEED ;
+}
+void gravity(world_t *world){
+	if(world->state == JUMP){
+		world->vy = -INITIAL_SPEED - 2;
+	}
+	if(world->sprite->y == 179){
+		pause(10);
+		world->state = FALL;
+
+	}
+	if(world->state == FALL){
+		world->vy = INITIAL_SPEED+2;
+	}
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
+		pause(10);
+		world->state = REST;
+	}
+	if(world->state == REST){
+		world->vy =0;
+	}
+	world->sprite->y = world->sprite-> y + world->vy; 
+
+}
+void hadouken(world_t *world){
+	int compt, temps;
+	if(world->test == HADOUKEN){
+		temps = 2;
+		compt = SDL_GetTicks()/1000;
+		if((world->timerlastshoot  +1 > SDL_GetTicks()/1000)){
+			world->state = HADOUKEN;
+		}else{
+			world->state = REST;
+			world->test = 0;
+		}
+	}
+	
+
+}
+
 
 void update_data(world_t *world){
 	limite(world);
-	world->projectile->x = world->projectile->x + INITIAL_SPEED;
+	hadouken(world);
+	for (int i =0 ; i < 10 ; i++){
+		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+			world->mouvement2 = 10;
+		}
+	}
+	gravity(world);
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
-	handle_sprites_collision_hadoken(world->spriteTwo, world->projectile,world);
+	for (int i = 0; i <10; i++)
+	{
+		update_hadouken(&(world->hadouken[i]), world);
+		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
+	}
 }
 
 
