@@ -22,6 +22,16 @@
 #define TITLE_HEIGHT 300
 
 /**
+ * \brief Largeur des sprites boutons du menu principal
+ */
+#define BOUTON_WIDTH 300
+
+/**
+ * \brief Hauteur des sprites boutons du menu principal
+ */
+#define BOUTON_HEIGHT 50
+
+/**
  * \brief Taille d'un perso
  */
 

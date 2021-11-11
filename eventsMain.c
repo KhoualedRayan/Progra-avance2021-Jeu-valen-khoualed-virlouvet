@@ -15,6 +15,37 @@ void init(SDL_Window **window, SDL_Renderer ** renderer, textures_t *textures, w
     init_textures(*renderer,textures);
 }
 
+void handle_events_menu(SDL_Event *event,world_t *world){
+    const Uint8 *keystates = SDL_GetKeyboardState(NULL);
+        switch (event->type)
+        {
+        case SDL_KEYDOWN:
+            //SDL_Log("+key");
+
+            if (keystates[SDL_SCANCODE_DOWN] && world->etat_menu == 0){
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->etat_menu = 1;
+            }
+            if (keystates[SDL_SCANCODE_DOWN] && world->etat_menu == 1){
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->etat_menu = 2;
+            }
+            if (keystates[SDL_SCANCODE_UP] && world->etat_menu == 2){
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->etat_menu = 1;
+            }
+            if (keystates[SDL_SCANCODE_UP] && world->etat_menu == 1){
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->etat_menu = 0;
+            }
+            if(keystates[SDL_SCANCODE_KP_ENTER] && world->etat_menu == 0){
+                world->etat_menu = 3;
+            }
+        break;
+    }
+
+}
+
 void handle_events_ryu(SDL_Event *event,world_t *world){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
         switch (event->type)
@@ -93,24 +124,24 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if(keystates[SDL_SCANCODE_D]){ 
+            if(keystates[SDL_SCANCODE_D]){ //si la touche appuyée est 'd'
 
                 world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
                 world->mouvement2 = 1; 
                 walk2 = 1;
                 
             }
-			if(keystates[SDL_SCANCODE_A]){ //si la touche appuyée est 'flèche vers la gauche'
+			if(keystates[SDL_SCANCODE_A]){ //si la touche appuyée est 'a'
                 world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
                 world->mouvement2 = 2;
                 walk2=1;
                 
             }
-			if(keystates[SDL_SCANCODE_S] && walk2 == 0){ //si la touche appuyée est 'flèche vers le bas'
+			if(keystates[SDL_SCANCODE_S] && walk2 == 0){ //si la touche appuyée est 's'
                 world->mouvement2 = 3;
 
             }
-			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'flèche vers le haut'
+			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'z'
                 
             }
 

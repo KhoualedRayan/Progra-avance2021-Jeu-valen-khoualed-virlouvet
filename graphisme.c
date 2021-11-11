@@ -66,6 +66,12 @@ void clean_textures(textures_t *textures){
 
     clean_texture(textures->menu_1);
     clean_texture(textures->titre_p);
+    clean_texture(textures->exit_normal);
+    clean_texture(textures->exit_select);
+    clean_texture(textures->pvp_normal);
+    clean_texture(textures->pvp_select);
+    clean_texture(textures->pvb_normal);
+    clean_texture(textures->pvb_select);
 	clean_font(textures->font);
 }
 
@@ -79,7 +85,13 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     init_textures_ken(renderer, textures);
 
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);
-    textures->titre_p = load_image("ressources/titre_principal.bmp", renderer);	 			
+    textures->titre_p = load_image("ressources/titre_principal.bmp", renderer);	 
+    textures->exit_normal = load_image("ressources/exit.bmp", renderer);	
+    textures->exit_select = load_image("ressources/exit_select.bmp", renderer);
+    textures->pvp_normal = load_image("ressources/playervsplayer.bmp", renderer);
+    textures->pvp_select = load_image("ressources/playervsplayer_select.bmp", renderer);
+    textures->pvb_normal = load_image("ressources/playervsbot.bmp", renderer);
+    textures->pvb_select = load_image("ressources/playervsbot_select.bmp", renderer);			
 	textures->font = load_font("times.ttf", 69);
 }
 
@@ -163,6 +175,30 @@ void apply_sprite(SDL_Renderer *renderer, SDL_Texture *texture, sprite_t *sprite
 }
 
 
+void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    //on vide le renderer
+    clear_renderer(renderer);
+    //application des textures dans le renderer
+    apply_sprite(renderer, textures->menu_1,world->menu);
+    apply_sprite(renderer, textures->titre_p,world->titre);
+    if(world->etat_menu==0){
+        apply_sprite(renderer, textures->exit_select,world->exit2);
+        apply_sprite(renderer, textures->pvp_normal,world->playervsplayer);
+        apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
+    }
+    if(world->etat_menu == 1){
+        apply_sprite(renderer, textures->exit_normal,world->exit2);
+        apply_sprite(renderer, textures->pvp_select,world->playervsplayer2);
+        apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
+    }
+    if(world->etat_menu == 2){
+        apply_sprite(renderer, textures->exit_normal,world->exit);
+        apply_sprite(renderer, textures->pvp_normal,world->playervsplayer);
+        apply_sprite(renderer, textures->pvb_select,world->playervsbot2);
+    }
+    // on met à jour l'écran
+    update_screen(renderer);
+}
 
 void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //on vide le renderer
@@ -170,7 +206,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 	
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
-    //apply_sprite(renderer, textures->menu_1,world->menu);
+    apply_sprite(renderer, textures->menu_1, world->menu);
     refresh_animations(world,renderer,textures);
 
 

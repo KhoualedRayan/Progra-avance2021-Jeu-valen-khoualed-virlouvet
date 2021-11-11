@@ -80,6 +80,12 @@ struct textures_s{
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
     SDL_Texture* menu_1; /*!<Texture liée à l'image du fond du menu principal */
     SDL_Texture* titre_p; /*!<Texture liée au titre du menu principal */
+    SDL_Texture* exit_normal; /*!<Texture liée au titre du bouton exit */
+    SDL_Texture* exit_select; /*!<Texture liée au titre du bouton exit */
+    SDL_Texture* pvp_normal; /*!<Texture liée au titre du bouton pvp */
+    SDL_Texture* pvp_select; /*!<Texture liée au titre du bouton pvp */
+    SDL_Texture* pvb_normal; /*!<Texture liée au titre du bouton pvb */
+    SDL_Texture* pvb_select; /*!<Texture liée au titre du bouton pvb */
 };
 
 /**
@@ -127,6 +133,14 @@ void apply_background(SDL_Renderer *renderer, SDL_Texture *texture);
 void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *textures); //graphique
 
 
+/**
+ * \brief La fonction rafraichit le menu en fonction de l'état des données du monde
+ * \param renderer le renderer lié à l'écran de jeu
+ * \param world les données du monde
+ * \param textures les textures
+ */
+
+void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 
 /**
  * \brief La fonction applique la texture du fond sur le renderer lié à l'écran de jeu
