@@ -64,7 +64,6 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ken_walking3);
     clean_texture(textures->ken_walking4);
 
-	clean_texture(textures->tir);
     clean_texture(textures->menu_1);
     clean_texture(textures->titre_p);
 	clean_font(textures->font);
@@ -79,7 +78,6 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     //Ken
     init_textures_ken(renderer, textures);
 
-	textures->tir = load_image( "ressources/hadouken.bmp",renderer);  
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);
     textures->titre_p = load_image("ressources/titre_principal.bmp", renderer);	 			
 	textures->font = load_font("times.ttf", 69);
@@ -172,13 +170,6 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 	
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
-    //pour le hadouken
-    // int count = 0;
-    // if(world->on==1){
-    //     for(int i; i<10;i++){
-    //         apply_sprite(renderer,textures->tir,&(world->hadouken[i]));
-    //     }
-    // }
     //apply_sprite(renderer, textures->menu_1,world->menu);
     refresh_animations(world,renderer,textures);
 

@@ -76,7 +76,6 @@ struct textures_s{
     //Ken
     SDL_Texture* characTwo ;
 
-	SDL_Texture* tir; /*!<Texture liée à l'image d'un tir de projectile' */
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
     SDL_Texture* menu_1; /*!<Texture liée à l'image du fond du menu principal */

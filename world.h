@@ -33,7 +33,6 @@ typedef struct sprite_s sprite_t;
 struct world_s{
 	sprite_t* sprite;	/*!<sprite devient un pointeur de sprite_t */
 	sprite_t* spriteTwo;
-	sprite_t* projectile;	/*!<projectile devient un pointeur de sprite_t */
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
 	sprite_t* titre;	/*!<titre devient un pointeur de sprite_t */
 	int gameover;
@@ -45,7 +44,7 @@ struct world_s{
 	int nbr_hadouken; 
 	int timerlastshoot ; //temps depuis le dernier hadouken 
 	int firerate ; //temps entre chaque hadouken
-
+	char* text;
 	sprite_t hadouken[10] ;
 	int vy;
 	int state;
@@ -115,6 +114,7 @@ void limite(world_t* world);
 */
 
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h);
+void init_hadouken(world_t* world);
 
 
 

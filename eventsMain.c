@@ -38,7 +38,10 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
 
             if (keystates[SDL_SCANCODE_DOWN]&& walk ==0 &&world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
-                world->mouvement = 3;
+                world->state = CROUCH;
+                world->mouvement=3;
+                world->sprite->y = world->sprite->y + 180;
+                world->on = 2;
             }
             if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
@@ -54,12 +57,10 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             }
             if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000){
                 world->nbr_hadouken = world->nbr_hadouken + 1;
-                world->on = 1;
                 world->timerlastshoot = SDL_GetTicks()/1000;
                 if (world->nbr_hadouken == 10){
                     world->nbr_hadouken = 0;
                 }
-                world->mouvement = 4;
                 world->test = HADOUKEN;
                 for (int i =0 ; i < 100 ; i++){
                     if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
@@ -74,6 +75,11 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             //SDL_Log("-key");
             walk = 0;
             world->mouvement =0;
+            if(world->on == 2){
+                world->sprite->y = world->sprite->y - 180;
+                world->on = 0;
+                world->state = REST;
+            }
             break;
         
         

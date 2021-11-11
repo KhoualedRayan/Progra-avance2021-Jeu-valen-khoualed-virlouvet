@@ -23,7 +23,6 @@ void init_data(world_t * world){
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
 	world->spriteTwo = (sprite_t*)malloc(sizeof(sprite_t));
-	world->projectile = (sprite_t*)malloc(sizeof(sprite_t));
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	world->titre = (sprite_t*)malloc(sizeof(sprite_t));
 	//initialisation des sprites
@@ -31,6 +30,7 @@ void init_data(world_t * world){
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
+	init_hadouken(world);
 
 }
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
@@ -72,12 +72,14 @@ void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *wor
 
 
 
+
 void clean_data(world_t *world){
     /* utile uniquement si vous avez fait de l'allocation dynamique (malloc); la fonction ici doit permettre de libérer la mémoire (free) */
     free(world->sprite);
 	free(world->spriteTwo);
-    free(world->projectile);
 	free(world->menu);
+	free(world->titre);
+	free(world->text);
 }
 
 int is_game_over(world_t *world){
@@ -101,7 +103,6 @@ void gravity(world_t *world){
 	if(world->state == FALL){
 		world->vy = INITIAL_SPEED+2;
 		world->mouvement = 0;
-
 	}
 	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
 		world->state = REST;
@@ -162,5 +163,20 @@ void limite(world_t* world) {
 	if (world->spriteTwo->x > SCREEN_WIDTH - HORIZONTAL_SIZE) {
 		world->spriteTwo->x = SCREEN_WIDTH - HORIZONTAL_SIZE;
 	}
+
+}
+
+void init_hadouken(world_t* world) {
+	init_sprite(&(world->hadouken[0]),-9990,-9990,96,192);
+	init_sprite(&(world->hadouken[1]),-9990,-9990,96,192);
+	init_sprite(&(world->hadouken[2]),-9990,-9990,64,160);
+	init_sprite(&(world->hadouken[3]),-9990,-9990,288,160);
+	init_sprite(&(world->hadouken[4]),-9990,-9990,160,192);
+	init_sprite(&(world->hadouken[5]),-9990,-9990,96,192);
+	init_sprite(&(world->hadouken[6]),-9990,-9990,128,192);
+	init_sprite(&(world->hadouken[7]),-9990,-9990,128,192);
+	init_sprite(&(world->hadouken[0]),-9990,-9990,96,192);
+	init_sprite(&(world->hadouken[1]),-9990,-9990,96,192);
+	init_sprite(&(world->hadouken[2]),-9990,-9990,64,160);
 
 }

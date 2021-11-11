@@ -12,19 +12,19 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 	if (world->defeat_or_win !=2) {	
 		compteur = (float)(SDL_GetTicks()/1000.);
 	}
-	char* text = (char*)malloc(sizeof(char)* 100);	
+	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
-	sprintf(text, "TIME : %d",(int)(compteur));
-	apply_text(renderer, SCREEN_WIDTH/2 - 25,0,100,50,text,textures->font);
+	sprintf(world->text, "TIME : %d",(int)(compteur));
+	apply_text(renderer, SCREEN_WIDTH/2 - 25,0,100,50,world->text,textures->font);
 	}
 	if (world->defeat_or_win == 1) {
-		sprintf(text, "YOU DIED !");
-		apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2 -50,200,100,text,textures->font);
+		sprintf(world->text, "YOU DIED !");
+		apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2 -50,200,100,world->text,textures->font);
 		world->gameover=1;
 	}
 	if (world->defeat_or_win == 2) {
-		sprintf(text, "YOU WON IN %ds", (int)(compteur));
-		apply_text(renderer, SCREEN_WIDTH/2 -100 ,SCREEN_HEIGHT/2 -50,200,100,text,textures->font);
+		sprintf(world->text, "YOU WON IN %ds", (int)(compteur));
+		apply_text(renderer, SCREEN_WIDTH/2 -100 ,SCREEN_HEIGHT/2 -50,200,100,world->text,textures->font);
 		world->gameover = 1;
 	}
 }
@@ -88,7 +88,7 @@ void ryu_blocking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
-    if(world->mouvement == 3){
+    if(world->mouvement  == 3 && world->state == CROUCH){
         apply_sprite(renderer, textures->ryu_crouching,world->sprite);
     }
     if(world->mouvement == 8){
@@ -98,32 +98,33 @@ void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Hadouken
-    if(world->timerlastshoot + 1 > SDL_GetTicks()/1000 && world->state == HADOUKEN){
-        if((int)(compteur*6) %6 ==0){
+    if(world->state == HADOUKEN && world->mouvement ==0 ){
+
+        if((float) ((compteur) - world->timerlastshoot)  >=0.0 && (float) ((compteur) - world->timerlastshoot)  <=0.2){
             apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
-        }else if((int)(compteur*6) %6 ==1){
+        }if((float) ((compteur) - world->timerlastshoot)  >=0.2 && (float) ((compteur) - world->timerlastshoot)  <=0.4){
             apply_sprite(renderer,textures->ryu_hadouken1,world->sprite);
         }
-        else if((int)(compteur*6) %6 ==2){
+        if((float) ((compteur) - world->timerlastshoot)  >=0.4 && (float) ((compteur) - world->timerlastshoot)  <=0.6){
             apply_sprite(renderer,textures->ryu_hadouken2,world->sprite);
-        }else if((int)(compteur*6) %6 ==3){
+        }if((float) ((compteur) - world->timerlastshoot)  >=0.6 && (float) ((compteur) - world->timerlastshoot)  <=0.8){
             apply_sprite(renderer, textures->ryu_hadouken3,world->sprite) ;
         }
-		else if((int)(compteur*6) %6 ==4){
+		if((float) ((compteur) - world->timerlastshoot)  >=0.8 && (float) ((compteur)) - world->timerlastshoot  <=1){
             apply_sprite(renderer, textures->ryu_hadouken4,world->sprite) ;
-        }else if((int)(compteur*6) %6 ==5){
+        }if((float) ((compteur) - world->timerlastshoot)  >=0.8 ){
             world->on = 1;
         }
     }
     if(world->on == 1){
-        if((int)(compteur*2) %2 == 0){
-            for(int i=0; i<10;i++){
-                init_sprite(&(world->hadouken[world->nbr_hadouken]), world->sprite->x + HORIZONTAL_SIZE  , world->sprite->y + PROJECTILE_SIZE, PROJECTILE_SIZE, PROJECTILE_SIZE);
+        for(int i=0; i<10;i++){
+            if((float) ((compteur) - world->timerlastshoot)  >=0.8 && (float) ((compteur)) - world->timerlastshoot  <=1.){
+                init_sprite(&(world->hadouken[world->nbr_hadouken]), world->sprite->x + HORIZONTAL_SIZE - 96  , world->sprite->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
                 apply_sprite(renderer,textures->ryu_hadouken5,&(world->hadouken[i])) ;  
-            }
-        }else{
+            }else {
             for(int i=0; i<10;i++){
                 apply_sprite(renderer, textures->ryu_hadouken6,&(world->hadouken[i])) ;
+            }
             }
         }
     }
