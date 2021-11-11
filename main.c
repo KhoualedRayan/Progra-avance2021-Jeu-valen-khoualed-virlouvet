@@ -38,6 +38,7 @@ int main( int argc, char* args[] )
     //initialisation du jeu
     init(&window,&renderer,&textures,&world);
 
+
     while(world.etat_menu != 3){
         
         //gestion des évènements

@@ -179,23 +179,29 @@ void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *te
     //on vide le renderer
     clear_renderer(renderer);
     //application des textures dans le renderer
-    apply_sprite(renderer, textures->menu_1,world->menu);
-    apply_sprite(renderer, textures->titre_p,world->titre);
-    if(world->etat_menu==0){
-        apply_sprite(renderer, textures->exit_select,world->exit2);
-        apply_sprite(renderer, textures->pvp_normal,world->playervsplayer);
-        apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
-    }
-    if(world->etat_menu == 1){
-        apply_sprite(renderer, textures->exit_normal,world->exit2);
+    if(world->etat_menu == 0){
+        apply_sprite(renderer, textures->menu_1,world->menu);
+        apply_sprite(renderer, textures->titre_p,world->titre);
         apply_sprite(renderer, textures->pvp_select,world->playervsplayer2);
         apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
-    }
-    if(world->etat_menu == 2){
         apply_sprite(renderer, textures->exit_normal,world->exit);
+    }    
+    if(world->etat_menu == 1){
+        apply_sprite(renderer, textures->menu_1,world->menu);
+        apply_sprite(renderer, textures->titre_p,world->titre);
         apply_sprite(renderer, textures->pvp_normal,world->playervsplayer);
         apply_sprite(renderer, textures->pvb_select,world->playervsbot2);
+        apply_sprite(renderer, textures->exit_normal,world->exit);
     }
+    if(world->etat_menu==2){
+        apply_sprite(renderer, textures->menu_1,world->menu);
+        apply_sprite(renderer, textures->titre_p,world->titre);
+        apply_sprite(renderer, textures->pvp_normal,world->playervsplayer);
+        apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
+        apply_sprite(renderer, textures->exit_select,world->exit2);
+    }
+    
+
     // on met à jour l'écran
     update_screen(renderer);
 }
@@ -206,7 +212,6 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
 	
     //application des textures dans le renderer
     apply_background(renderer, textures->background);
-    apply_sprite(renderer, textures->menu_1, world->menu);
     refresh_animations(world,renderer,textures);
 
 

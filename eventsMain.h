@@ -17,6 +17,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world);
 void handle_events_ken(SDL_Event *event,world_t *world);
 void handle_events_menu(SDL_Event *event,world_t *world);
 
+
 /**
  * \brief fonction qui initialise le jeu: initialisation de la partie graphique (SDL), chargement des textures, initialisation des données
  * \param window la fenêtre du jeu

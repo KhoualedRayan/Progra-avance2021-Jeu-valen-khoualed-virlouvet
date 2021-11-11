@@ -38,12 +38,12 @@ void init_data(world_t * world){
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
 	init_hadouken(world);
-	init_sprite(world->exit,SCREEN_WIDTH/2-BOUTON_WIDTH/2,50,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->exit2,SCREEN_WIDTH/2-BOUTON_WIDTH/2,50,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsplayer,SCREEN_WIDTH/2-BOUTON_WIDTH/2,90,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2,90,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2,130,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2,130,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->exit,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->exit2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsplayer,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
 	
 
 }

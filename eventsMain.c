@@ -24,22 +24,38 @@ void handle_events_menu(SDL_Event *event,world_t *world){
 
             if (keystates[SDL_SCANCODE_DOWN] && world->etat_menu == 0){
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
-                world->etat_menu = 1;
-            }
-            if (keystates[SDL_SCANCODE_DOWN] && world->etat_menu == 1){
-                //SDL_Log("Keycode fleche bas"); // Affiche un message
-                world->etat_menu = 2;
-            }
-            if (keystates[SDL_SCANCODE_UP] && world->etat_menu == 2){
-                //SDL_Log("Keycode fleche bas"); // Affiche un message
-                world->etat_menu = 1;
-            }
-            if (keystates[SDL_SCANCODE_UP] && world->etat_menu == 1){
-                //SDL_Log("Keycode fleche bas"); // Affiche un message
-                world->etat_menu = 0;
-            }
-            if(keystates[SDL_SCANCODE_KP_ENTER] && world->etat_menu == 0){
+                printf("%d", world->etat_menu);
+                world->etat_menu++;
+                printf("%d", world->etat_menu);
+            }else{
+                if (keystates[SDL_SCANCODE_DOWN] && world->etat_menu == 1){
+                    //SDL_Log("Keycode fleche bas"); // Affiche un message
+                    printf("%d", world->etat_menu);
+                    world->etat_menu++;
+                    printf("%d", world->etat_menu);
+                }else{
+                    if (keystates[SDL_SCANCODE_UP] && world->etat_menu == 2){
+                        //SDL_Log("Keycode fleche haut"); // Affiche un message
+                        printf("%d", world->etat_menu);
+                        world->etat_menu--;
+                        printf("%d", world->etat_menu);
+                    }else{
+                        if (keystates[SDL_SCANCODE_UP] && world->etat_menu == 1){
+                            //SDL_Log("Keycode fleche haut"); // Affiche un message
+                            printf("%d", world->etat_menu);
+                            world->etat_menu--;
+                            printf("%d", world->etat_menu);
+                        }
+                        }
+                    }
+                }
+
+            if(keystates[SDL_SCANCODE_RETURN] && world->etat_menu == 0){
                 world->etat_menu = 3;
+            }
+            if(keystates[SDL_SCANCODE_RETURN] && world->etat_menu == 2){
+                world->etat_menu = 3;
+                world->gameover = 1; 
             }
         break;
     }
@@ -166,16 +182,18 @@ void handle_events(SDL_Event *event,world_t *world){
     while( SDL_PollEvent( event ) ) {
         handle_events_ryu(event,world);
         handle_events_ken(event,world);
-
+        handle_events_menu(event,world);
         
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu
+            world->etat_menu = 3;
             world->gameover = 1; 
         }
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
+                world->etat_menu = 3;
 				world->gameover = 1;
             }
          }
