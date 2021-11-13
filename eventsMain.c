@@ -88,7 +88,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->state = CROUCH;
                 world->mouvement=3;
                 world->sprite->y = world->sprite->y + 180;
-                world->on = 2;
+                world->crouch = 1;
             }
             if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
@@ -122,9 +122,9 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             //SDL_Log("-key");
             walk = 0;
             world->mouvement =0;
-            if(world->on == 2){
+            if(world->crouch == 1){
                 world->sprite->y = world->sprite->y - 180;
-                world->on = 0;
+                world->crouch = 0;
                 world->state = REST;
             }
             break;
@@ -180,9 +180,10 @@ void handle_events(SDL_Event *event,world_t *world){
 
     
     while( SDL_PollEvent( event ) ) {
+        handle_events_menu(event,world);
         handle_events_ryu(event,world);
         handle_events_ken(event,world);
-        handle_events_menu(event,world);
+        
         
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {

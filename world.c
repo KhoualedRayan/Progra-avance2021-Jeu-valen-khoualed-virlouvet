@@ -8,6 +8,8 @@
 void init_data(world_t * world){
     
     //on n'est pas à la fin du jeu
+
+	//Initialisation de valeurs 
 	world->gameover = 0;
 	world->etat_menu = 0;
 	world->mouvement = 0;
@@ -20,7 +22,7 @@ void init_data(world_t * world){
 	world->nbr_hadouken = 0;
 	world->vy = INITIAL_SPEED;
 	world->state = REST;
-	//Initialisation de valeurs 
+	
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
 	world->spriteTwo = (sprite_t*)malloc(sizeof(sprite_t));
@@ -135,8 +137,7 @@ void gravity(world_t *world){
 }
 void hadouken(world_t *world){
 	int compt, temps;
-	if(world->test == HADOUKEN){
-		temps = 2;
+	if(world->test == HADOUKEN && world->state != JUMP && world->state != FALL && world->state != CROUCH){
 		compt = SDL_GetTicks()/1000;
 		if((world->timerlastshoot  +1 > SDL_GetTicks()/1000)){
 			world->state = HADOUKEN;

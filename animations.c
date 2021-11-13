@@ -12,6 +12,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 	if (world->defeat_or_win !=2) {	
 		compteur = (float)(SDL_GetTicks()/1000.);
 	}
+
 	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
 	sprintf(world->text, "TIME : %d",(int)(compteur));

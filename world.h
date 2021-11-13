@@ -54,6 +54,7 @@ struct world_s{
 	char* text;
 	sprite_t hadouken[10] ;
 	int vy;
+	int crouch;
 	int state;
 };
 
