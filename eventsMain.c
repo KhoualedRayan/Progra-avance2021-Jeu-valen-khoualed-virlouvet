@@ -99,10 +99,10 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->mouvement = 5;
                 
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 &&world->state == REST){
+            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 ){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000){
+            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state == REST){
                 world->nbr_hadouken = world->nbr_hadouken + 1;
                 world->timerlastshoot = SDL_GetTicks()/1000;
                 if (world->nbr_hadouken == 10){

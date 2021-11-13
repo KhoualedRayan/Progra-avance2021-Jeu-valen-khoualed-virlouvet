@@ -40,6 +40,7 @@ void init_data(world_t * world){
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
 	init_hadouken(world);
+	init_pv(world);
 	init_sprite(world->exit,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
 	init_sprite(world->exit2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
 	init_sprite(world->playervsplayer,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
@@ -136,10 +137,10 @@ void gravity(world_t *world){
 
 }
 void hadouken(world_t *world){
-	int compt, temps;
+	int compt;
 	if(world->test == HADOUKEN && world->state != JUMP && world->state != FALL && world->state != CROUCH){
 		compt = SDL_GetTicks()/1000;
-		if((world->timerlastshoot  +1 > SDL_GetTicks()/1000)){
+		if((world->timerlastshoot +1 > SDL_GetTicks()/1000)){
 			world->state = HADOUKEN;
 		}else{
 			world->state = REST;
@@ -188,16 +189,25 @@ void limite(world_t* world) {
 }
 
 void init_hadouken(world_t* world) {
-	init_sprite(&(world->hadouken[0]),-9990,-9990,96,192);
-	init_sprite(&(world->hadouken[1]),-9990,-9990,96,192);
-	init_sprite(&(world->hadouken[2]),-9990,-9990,64,160);
-	init_sprite(&(world->hadouken[3]),-9990,-9990,288,160);
-	init_sprite(&(world->hadouken[4]),-9990,-9990,160,192);
-	init_sprite(&(world->hadouken[5]),-9990,-9990,96,192);
-	init_sprite(&(world->hadouken[6]),-9990,-9990,128,192);
-	init_sprite(&(world->hadouken[7]),-9990,-9990,128,192);
-	init_sprite(&(world->hadouken[0]),-9990,-9990,96,192);
-	init_sprite(&(world->hadouken[1]),-9990,-9990,96,192);
-	init_sprite(&(world->hadouken[2]),-9990,-9990,64,160);
-
+	for(int i = 0; i<10;i++){
+		init_sprite(&(world->hadouken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
+	}
 }
+
+void init_pv(world_t* world) {
+	for(int i = 0; i<100;i++){
+		init_sprite(&(world->pv[i]),SCREEN_WIDTH/2 -10*i,-25,10,10);
+	}
+}
+
+/*INSTRUCTIONS HP
+	FAIRE UN SPRITE D'UNE BARRE hp TOUTE ROUGE ET l'apply.
+	faire un for selon les hp des persos,
+	for(int i =0;i<ryu_hp;i++){
+		apply_sprite(hp_jaune);
+	}
+	appliquer le sprite des hp jaune par dessus la barre de vie rouge,
+	commme ça si il prend -10 hp, le for s'occupe dans l'enlever 10 cases du tableau de hp.
+
+	Faire un sprite d'une barre hp vide et des carrés jaune qui *100 fais la taille de la barre d'hp
+*/

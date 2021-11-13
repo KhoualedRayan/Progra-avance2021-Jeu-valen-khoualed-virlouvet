@@ -6,6 +6,7 @@
 #include "sdl2-ttf-light.h"
 
 float compteur;
+int time = 99;
 
 void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Affichage du texte graphique
@@ -15,8 +16,11 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
-	sprintf(world->text, "TIME : %d",(int)(compteur));
+	sprintf(world->text, "KO");
 	apply_text(renderer, SCREEN_WIDTH/2 - 25,0,100,50,world->text,textures->font);
+    sprintf(world->text, "%d",time- (int)(compteur));
+    apply_text(renderer, SCREEN_WIDTH/2 - 25,50,100,50,world->text,textures->font);
+
 	}
 	if (world->defeat_or_win == 1) {
 		sprintf(world->text, "YOU DIED !");
@@ -99,27 +103,31 @@ void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Hadouken
+    int temps;
+    float delai;
     if(world->state == HADOUKEN && world->mouvement ==0 ){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((compteur) - temps);
 
-        if((float) ((compteur) - world->timerlastshoot)  >=0.0 && (float) ((compteur) - world->timerlastshoot)  <=0.2){
+        if(delai  >=0.0 && delai  <=0.2){
             apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
-        }if((float) ((compteur) - world->timerlastshoot)  >=0.2 && (float) ((compteur) - world->timerlastshoot)  <=0.4){
+        }if(delai  >=0.2 && delai <=0.4){
             apply_sprite(renderer,textures->ryu_hadouken1,world->sprite);
         }
-        if((float) ((compteur) - world->timerlastshoot)  >=0.4 && (float) ((compteur) - world->timerlastshoot)  <=0.6){
+        if(delai  >=0.4 && delai <=0.6){
             apply_sprite(renderer,textures->ryu_hadouken2,world->sprite);
-        }if((float) ((compteur) - world->timerlastshoot)  >=0.6 && (float) ((compteur) - world->timerlastshoot)  <=0.8){
+        }if(delai  >=0.6 && delai  <=0.8){
             apply_sprite(renderer, textures->ryu_hadouken3,world->sprite) ;
         }
-		if((float) ((compteur) - world->timerlastshoot)  >=0.8 && (float) ((compteur)) - world->timerlastshoot  <=1){
+		if(delai  >=0.8 && delai  <=1.){
             apply_sprite(renderer, textures->ryu_hadouken4,world->sprite) ;
-        }if((float) ((compteur) - world->timerlastshoot)  >=0.8 ){
+        }if(delai >=0.8 ){
             world->on = 1;
         }
     }
     if(world->on == 1){
         for(int i=0; i<10;i++){
-            if((float) ((compteur) - world->timerlastshoot)  >=0.8 && (float) ((compteur)) - world->timerlastshoot  <=1.){
+            if(delai >=0.8 && delai  <=1.){
                 init_sprite(&(world->hadouken[world->nbr_hadouken]), world->sprite->x + HORIZONTAL_SIZE - 96  , world->sprite->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
                 apply_sprite(renderer,textures->ryu_hadouken5,&(world->hadouken[i])) ;  
             }else {

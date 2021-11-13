@@ -41,6 +41,7 @@ struct world_s{
 	sprite_t* playervsplayer2;	/*!<playervsplayer2 devient un pointeur de sprite_t */
 	sprite_t* playervsbot;	/*!<playervsbot devient un pointeur de sprite_t */
 	sprite_t* playervsbot2;	/*!<playervsbot2 devient un pointeur de sprite_t */
+	sprite_t pv[100];
 	int gameover;
 	int defeat_or_win;
 	int etat_menu;
@@ -123,8 +124,7 @@ void limite(world_t* world);
 
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h);
 void init_hadouken(world_t* world);
-
-
+void init_pv(world_t* world);
 
 
 
