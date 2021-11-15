@@ -17,6 +17,8 @@ void init_data(world_t * world){
 	world->defeat_or_win = 0;
 	world->test =0;
 	world->on = 0;
+	world->ryu_pv = 20;
+	world->ken_pv = 20;
 	world->timerlastshoot = SDL_GetTicks()/1000;
 	world->firerate = 2;
 	world->nbr_hadouken = 0;
@@ -34,6 +36,9 @@ void init_data(world_t * world){
 	world->playervsplayer2 = (sprite_t*)malloc(sizeof(sprite_t));
 	world->playervsbot = (sprite_t*)malloc(sizeof(sprite_t));
 	world->playervsbot2 = (sprite_t*)malloc(sizeof(sprite_t));
+	world->ryu_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
+	world->ken_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
+
 	//initialisation des sprites
 	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
@@ -103,6 +108,8 @@ void clean_data(world_t *world){
 	free(world->playervsplayer2);
 	free(world->playervsbot);
 	free(world->playervsbot2);
+	free(world->ryu_hp_barre);
+	free(world->ken_hp_barre);
 }
 
 int is_game_over(world_t *world){
@@ -195,19 +202,10 @@ void init_hadouken(world_t* world) {
 }
 
 void init_pv(world_t* world) {
-	for(int i = 0; i<100;i++){
-		init_sprite(&(world->pv[i]),SCREEN_WIDTH/2 -10*i,-25,10,10);
+	init_sprite(world->ryu_hp_barre, 40,0,500,150);
+	init_sprite(world->ken_hp_barre,  SCREEN_WIDTH/2 + 120,0,500,150);
+	for(int i = 0; i<20;i++){
+		init_sprite(&(world->ryu_hp[i]),130+19*i,76,19,37);
+		init_sprite(&(world->ken_hp[i]),SCREEN_WIDTH - 130-19*i,76,19,37);
 	}
 }
-
-/*INSTRUCTIONS HP
-	FAIRE UN SPRITE D'UNE BARRE hp TOUTE ROUGE ET l'apply.
-	faire un for selon les hp des persos,
-	for(int i =0;i<ryu_hp;i++){
-		apply_sprite(hp_jaune);
-	}
-	appliquer le sprite des hp jaune par dessus la barre de vie rouge,
-	commme ça si il prend -10 hp, le for s'occupe dans l'enlever 10 cases du tableau de hp.
-
-	Faire un sprite d'une barre hp vide et des carrés jaune qui *100 fais la taille de la barre d'hp
-*/

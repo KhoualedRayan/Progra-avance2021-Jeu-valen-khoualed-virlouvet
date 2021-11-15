@@ -41,7 +41,13 @@ struct world_s{
 	sprite_t* playervsplayer2;	/*!<playervsplayer2 devient un pointeur de sprite_t */
 	sprite_t* playervsbot;	/*!<playervsbot devient un pointeur de sprite_t */
 	sprite_t* playervsbot2;	/*!<playervsbot2 devient un pointeur de sprite_t */
-	sprite_t pv[100];
+	sprite_t* ryu_hp_barre;
+	sprite_t* ken_hp_barre;
+	sprite_t ryu_hp[20];
+	sprite_t ken_hp[20];
+	int ryu_pv;
+	int ken_pv;
+
 	int gameover;
 	int defeat_or_win;
 	int etat_menu;

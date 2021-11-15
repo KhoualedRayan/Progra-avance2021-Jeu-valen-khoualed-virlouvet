@@ -17,9 +17,9 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
 	sprintf(world->text, "KO");
-	apply_text(renderer, SCREEN_WIDTH/2 - 25,0,100,50,world->text,textures->font);
+	apply_text(renderer, SCREEN_WIDTH/2 - 25,20,100,50,world->text,textures->font);
     sprintf(world->text, "%d",time- (int)(compteur));
-    apply_text(renderer, SCREEN_WIDTH/2 - 25,50,100,50,world->text,textures->font);
+    apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 
 	}
 	if (world->defeat_or_win == 1) {
@@ -174,6 +174,17 @@ void ryu_falling(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 }
 
+void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    //HP BARRE
+    apply_sprite(renderer,textures->ryu_hp,world->ryu_hp_barre);
+    for (int i =0 ; i < world->ryu_pv ; i++){
+        apply_sprite(renderer, textures->ryu_hp_fill,&(world->ryu_hp[i])) ;
+    }
+
+}
+
+
+
 void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
     if(world->mouvement2 == 0){
@@ -245,6 +256,15 @@ void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     }
 }
 
+void ken_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    //HP BARRE
+    apply_sprite(renderer,textures->ken_hp,world->ken_hp_barre);
+    for (int i =0 ; i < world->ken_pv ; i++){
+        apply_sprite(renderer, textures->ken_hp_fill,&(world->ken_hp[i])) ;
+    }
+
+}
+
 void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textures){
     //TIMER
     timer(renderer,world,textures);
@@ -254,17 +274,18 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
 	ryu_walking(renderer,world,textures);
 	ryu_blocking(renderer,world,textures);
 	ryu_crouching(renderer,world,textures);
-    ken_hidle(renderer,world,textures);
-    ken_walking(renderer,world,textures);
-    ken_hit(renderer, world, textures);
     ryu_jumping(renderer,world,textures);
     ryu_falling(renderer,world,textures);
     ryu_hadouken(renderer,world,textures);
+    ryu_hp(renderer,world,textures);
 
 
 
     //KEN
     ken_hidle(renderer,world,textures);
+    ken_walking(renderer,world,textures);
+    ken_hit(renderer, world, textures);
+    ken_hp(renderer,world,textures);
 
 
 

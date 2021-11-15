@@ -109,6 +109,8 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN;
+                world->ryu_pv = world->ryu_pv -1;
+                world->ken_pv = world->ken_pv -3;
                 for (int i =0 ; i < 100 ; i++){
                     if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
                         world->mouvement2 = 10;

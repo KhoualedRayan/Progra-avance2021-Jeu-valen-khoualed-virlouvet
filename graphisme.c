@@ -51,6 +51,10 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ryu_falling1);
     clean_texture(textures->ryu_falling2);
 
+    //Ryu hp barre
+    clean_texture(textures->ryu_hp);
+    clean_texture(textures->ryu_hp_fill);
+
     //ken_idle
     clean_texture(textures->ken_idle);
     clean_texture(textures->ken_idle1);
@@ -116,6 +120,10 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     //Ryu crouching
     textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer);
 
+    //Ryu hp
+    textures->ryu_hp = load_image("ressources/ryu_hp/hp.bmp",renderer);
+    textures->ryu_hp_fill = load_image("ressources/ryu_hp/hp_fill.bmp",renderer);
+
     //Ryu walking
     textures->ryu_hadouken = load_image( "ressources/ryu_hadouken/f1.bmp",renderer); 
     textures->ryu_hadouken1 = load_image( "ressources/ryu_hadouken/f2.bmp",renderer);
@@ -127,7 +135,7 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     textures->ryu_hadouken7 = load_image( "ressources/hadouken/f3.bmp",renderer); 
     textures->ryu_hadouken8 = load_image( "ressources/hadouken/f4.bmp",renderer); 
 
-      //Ryu falling
+    //Ryu falling
     textures->ryu_falling = load_image( "ressources/ryu_falling/f1.bmp",renderer); 
     textures->ryu_falling1 = load_image( "ressources/ryu_falling/f2.bmp",renderer);
     textures->ryu_falling2 = load_image( "ressources/ryu_falling/f3.bmp",renderer);
@@ -158,6 +166,9 @@ void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
     textures->ken_hit1 = load_image( "ressources/ken_hit/ken_hit1.bmp", renderer);
     textures->ken_hit2 = load_image( "ressources/ken_hit/ken_hit2.bmp", renderer);
     textures->ken_hit3 = load_image( "ressources/ken_hit/ken_hit3.bmp", renderer);
+    //Ken_hp
+    textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);
+    textures->ken_hp_fill = load_image("ressources/ken_hp/hp_fill.bmp",renderer);
 
 }
 

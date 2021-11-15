@@ -42,6 +42,28 @@ struct textures_s{
     SDL_Texture* ryu_hadouken7; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_hadouken8; /*!<Texture liée à l'image du perso. */
 
+    //Ryu_jumping
+    SDL_Texture* ryu_jumping; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_jumping1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_jumping2; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_jumping3; /*!<Texture liée à l'image du perso. */
+
+    //Ryu_falling
+    SDL_Texture* ryu_falling; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_falling1; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_falling2; /*!<Texture liée à l'image du perso. */
+
+    //Ryu hp barre
+    SDL_Texture* ryu_hp;
+    SDL_Texture* ryu_hp_fill;
+
+
+    //Ken
+    SDL_Texture* characTwo ;
+
+    //Ken hp barre
+    SDL_Texture* ken_hp;
+    SDL_Texture* ken_hp_fill;
 
     //Ken_idle
     SDL_Texture* ken_idle ;
@@ -61,20 +83,6 @@ struct textures_s{
     SDL_Texture* ken_hit1;
     SDL_Texture* ken_hit2;
     SDL_Texture* ken_hit3;
-    //Ryu_jumping
-    SDL_Texture* ryu_jumping; /*!<Texture liée à l'image du perso. */
-    SDL_Texture* ryu_jumping1; /*!<Texture liée à l'image du perso. */
-    SDL_Texture* ryu_jumping2; /*!<Texture liée à l'image du perso. */
-    SDL_Texture* ryu_jumping3; /*!<Texture liée à l'image du perso. */
-
-    //Ryu_falling
-    SDL_Texture* ryu_falling; /*!<Texture liée à l'image du perso. */
-    SDL_Texture* ryu_falling1; /*!<Texture liée à l'image du perso. */
-    SDL_Texture* ryu_falling2; /*!<Texture liée à l'image du perso. */
-
-
-    //Ken
-    SDL_Texture* characTwo ;
 
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
