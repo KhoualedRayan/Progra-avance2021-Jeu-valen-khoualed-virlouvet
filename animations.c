@@ -5,20 +5,19 @@
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
 
-float compteur;
-int time = 99;
+int time = 30;
 
 void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Affichage du texte graphique
 	if (world->defeat_or_win !=2) {	
-		compteur = (float)(SDL_GetTicks()/1000.);
+		world->compteur = (float)(SDL_GetTicks()/1000.);
 	}
 
 	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
 	sprintf(world->text, "KO");
 	apply_text(renderer, SCREEN_WIDTH/2 - 25,20,100,50,world->text,textures->font);
-    sprintf(world->text, "%d",time- (int)(compteur));
+    sprintf(world->text, "%d",time- (int)(world->compteur));
     apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 
 	}
@@ -28,23 +27,28 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 		world->gameover=1;
 	}
 	if (world->defeat_or_win == 2) {
-		sprintf(world->text, "YOU WON IN %ds", (int)(compteur));
+		sprintf(world->text, "YOU WON IN %ds", (int)(world->compteur));
 		apply_text(renderer, SCREEN_WIDTH/2 -100 ,SCREEN_HEIGHT/2 -50,200,100,world->text,textures->font);
 		world->gameover = 1;
 	}
+
+        if(time-(int)(world->compteur) <= 0){ // quand le compteur est à zero le menu réapparait
+            world->etat_menu = 0;
+            world->gameover = 1;
+        }
 }
 
 void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
     if(world->mouvement == REST && world->state == REST){
-        if((int)(compteur*4) %4 ==0){
+        if((int)(world->compteur*4) %4 ==0){
             apply_sprite(renderer, textures->ryu_idle,world->sprite);
-        }else if((int)(compteur*4) %4 ==1){
+        }else if((int)(world->compteur*4) %4 ==1){
             apply_sprite(renderer,textures->ryu_idle1,world->sprite);
         }
-        else if((int)(compteur*4) %4 ==2){
+        else if((int)(world->compteur*4) %4 ==2){
             apply_sprite(renderer,textures->ryu_idle2,world->sprite);
-        }else if((int)(compteur*4) %4 ==3){
+        }else if((int)(world->compteur*4) %4 ==3){
             apply_sprite(renderer, textures->ryu_idle3,world->sprite) ;
         }
     }
@@ -52,34 +56,34 @@ void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //WALK RIGHT    
     if(world->mouvement == 1){
-        if((int)(compteur*5) %5 ==0){
+        if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_walking,world->sprite);
-        }else if((int)(compteur*5) %5 ==1){
+        }else if((int)(world->compteur*5) %5 ==1){
             apply_sprite(renderer,textures->ryu_walking1,world->sprite);
         }
-        else if((int)(compteur*5) %5 ==2){
+        else if((int)(world->compteur*5) %5 ==2){
             apply_sprite(renderer,textures->ryu_walking2,world->sprite);
-        }else if((int)(compteur*5) %5 ==3){
+        }else if((int)(world->compteur*5) %5 ==3){
             apply_sprite(renderer, textures->ryu_walking3,world->sprite) ;
         }
-		else if((int)(compteur*5) %5 ==4){
+		else if((int)(world->compteur*5) %5 ==4){
             apply_sprite(renderer, textures->ryu_walking4,world->sprite) ;
         }
     }
 
     //WALK LEFT
 	if(world->mouvement == 2){
-        if((int)(compteur*5) %5 ==0){
+        if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_walking,world->sprite);
-        }else if((int)(compteur*5) %5 ==1){
+        }else if((int)(world->compteur*5) %5 ==1){
             apply_sprite(renderer,textures->ryu_walking1,world->sprite);
         }
-        else if((int)(compteur*5) %5 ==2){
+        else if((int)(world->compteur*5) %5 ==2){
             apply_sprite(renderer,textures->ryu_walking2,world->sprite);
-        }else if((int)(compteur*5) %5 ==3){
+        }else if((int)(world->compteur*5) %5 ==3){
             apply_sprite(renderer, textures->ryu_walking3,world->sprite) ;
         }
-		else if((int)(compteur*5) %5 ==4){
+		else if((int)(world->compteur*5) %5 ==4){
             apply_sprite(renderer, textures->ryu_walking4,world->sprite) ;
         }
     }
@@ -107,7 +111,7 @@ void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float delai;
     if(world->state == HADOUKEN && world->mouvement ==0 ){
         temps = SDL_GetTicks()/1000;
-        delai = (float) ((compteur) - temps);
+        delai = (float) ((world->compteur) - temps);
 
         if(delai  >=0.0 && delai  <=0.2){
             apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
@@ -188,14 +192,14 @@ void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
     if(world->mouvement2 == 0){
-        if((int)(compteur*4) %4 ==0){
+        if((int)(world->compteur*4) %4 ==0){
             apply_sprite(renderer, textures->ken_idle,world->spriteTwo);
-        }else if((int)(compteur*4) %4 ==1){
+        }else if((int)(world->compteur*4) %4 ==1){
             apply_sprite(renderer,textures->ken_idle1,world->spriteTwo);
         }
-        else if((int)(compteur*4) %4 ==2){
+        else if((int)(world->compteur*4) %4 ==2){
             apply_sprite(renderer,textures->ken_idle2,world->spriteTwo);
-        }else if((int)(compteur*4) %4 ==3){
+        }else if((int)(world->compteur*4) %4 ==3){
             apply_sprite(renderer, textures->ken_idle3,world->spriteTwo) ;
         }
     }
@@ -204,34 +208,34 @@ void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ken_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //WALK RIGHT    
     if(world->mouvement2 == 1){
-        if((int)(compteur*5) %5 ==0){
+        if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ken_walking,world->spriteTwo);
-        }else if((int)(compteur*5) %5 ==1){
+        }else if((int)(world->compteur*5) %5 ==1){
             apply_sprite(renderer,textures->ken_walking1,world->spriteTwo);
         }
-        else if((int)(compteur*5) %5 ==2){
+        else if((int)(world->compteur*5) %5 ==2){
             apply_sprite(renderer,textures->ken_walking2,world->spriteTwo);
-        }else if((int)(compteur*5) %5 ==3){
+        }else if((int)(world->compteur*5) %5 ==3){
             apply_sprite(renderer, textures->ken_walking3,world->spriteTwo) ;
         }
-		else if((int)(compteur*5) %5 ==4){
+		else if((int)(world->compteur*5) %5 ==4){
             apply_sprite(renderer, textures->ken_walking4,world->spriteTwo) ;
         }
     }
 
     //WALK LEFT
 	if(world->mouvement2 == 2){
-        if((int)(compteur*5) %5 ==0){
+        if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ken_walking,world->spriteTwo);
-        }else if((int)(compteur*5) %5 ==1){
+        }else if((int)(world->compteur*5) %5 ==1){
             apply_sprite(renderer,textures->ken_walking1,world->spriteTwo);
         }
-        else if((int)(compteur*5) %5 ==2){
+        else if((int)(world->compteur*5) %5 ==2){
             apply_sprite(renderer,textures->ken_walking2,world->spriteTwo);
-        }else if((int)(compteur*5) %5 ==3){
+        }else if((int)(world->compteur*5) %5 ==3){
             apply_sprite(renderer, textures->ken_walking3,world->spriteTwo) ;
         }
-		else if((int)(compteur*5) %5 ==4){
+		else if((int)(world->compteur*5) %5 ==4){
             apply_sprite(renderer, textures->ken_walking4,world->spriteTwo) ;
         }
     }
@@ -241,14 +245,14 @@ void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->mouvement2 == 10){
         for (int i =0 ; i < 100 ; i++){
             if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-                if((int)(compteur*4) %4 ==0){
+                if((int)(world->compteur*4) %4 ==0){
                     apply_sprite(renderer, textures->ken_hit,world->spriteTwo);
-                }else if((int)(compteur*4) %4 ==1){
+                }else if((int)(world->compteur*4) %4 ==1){
                     apply_sprite(renderer,textures->ken_hit1,world->spriteTwo);
                 }
-                else if((int)(compteur*4) %4 ==2){
+                else if((int)(world->compteur*4) %4 ==2){
                     apply_sprite(renderer,textures->ken_hit2,world->spriteTwo);
-                }else if((int)(compteur*4) %4 ==3){
+                }else if((int)(world->compteur*4) %4 ==3){
                     apply_sprite(renderer, textures->ken_hit3,world->spriteTwo) ;
                 }
             }

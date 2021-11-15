@@ -10,6 +10,7 @@ void init_data(world_t * world){
     //on n'est pas à la fin du jeu
 
 	//Initialisation de valeurs 
+	world->compteur;
 	world->gameover = 0;
 	world->etat_menu = 0;
 	world->mouvement = 0;

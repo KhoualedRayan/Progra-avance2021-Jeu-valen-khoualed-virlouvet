@@ -48,6 +48,7 @@ struct world_s{
 	int ryu_pv;
 	int ken_pv;
 
+	float compteur;
 	int gameover;
 	int defeat_or_win;
 	int etat_menu;
