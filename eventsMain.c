@@ -85,7 +85,6 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->state = JUMP;
-                printf("%d", world->etat_menu);
             }
             if(keystates[SDL_SCANCODE_RCTRL] && walk==0 &&world->state == REST){ //si la touche appuyée est 'flèche vers la gauche'
                 //world->sprite->x = world->sprite->x - MOVING_STEP/2;

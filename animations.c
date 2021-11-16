@@ -5,7 +5,7 @@
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
 
-int time = 30;
+int time = 60;
 
 void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Affichage du texte graphique
@@ -32,7 +32,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 		world->gameover = 1;
 	}
 
-        if(time-(int)(world->compteur) <= 0){ // quand le compteur est à zero le menu réapparait
+        if(time-(int)(world->compteur) <= 0 || world->ken_pv <=0 ||world->ryu_pv <=0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
             world->etat_menu = 0;
             world->gameover = 1;
         }

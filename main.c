@@ -38,7 +38,7 @@ int main( int argc, char* args[] )
 
     while(world.etat_menu == 0 && !is_game_over(&world)){
         //initialisation du jeu
-        init(&window,&renderer,&textures,&world);printf("%d",world.etat_menu);
+        init(&window,&renderer,&textures,&world);
     while(world.etat_menu != 3){
         
         //gestion des évènements
@@ -53,10 +53,12 @@ int main( int argc, char* args[] )
         // pause de 10 ms pour controler la vitesse de rafraichissement
         pause(10);
     }
-    printf("%d",world.etat_menu);
+
+    if(world.etat_menu==3 && world.gameover==0){
+    init(&window,&renderer,&textures,&world);
+    }
+
     while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
-
-
 
         //gestion des évènements
         handle_events(&event,&world);
@@ -79,7 +81,6 @@ int main( int argc, char* args[] )
 	pause(2000);
     //nettoyage final
     clean(window,renderer,&textures,&world);
-    printf("%d",world.etat_menu);
     }
     
    
