@@ -175,8 +175,10 @@ void handle_events(SDL_Event *event,world_t *world){
     
     while( SDL_PollEvent( event ) ) {
         handle_events_menu(event,world);
-        handle_events_ryu(event,world);
-        handle_events_ken(event,world);
+        if(world->etat_menu == 3){
+            handle_events_ryu(event,world);
+            handle_events_ken(event,world);
+        }
         
         
         //Si l'utilisateur a cliqué sur le X de la fenêtre 

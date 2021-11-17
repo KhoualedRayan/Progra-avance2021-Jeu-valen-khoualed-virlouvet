@@ -39,47 +39,54 @@ int main( int argc, char* args[] )
     while(world.etat_menu == 0 && !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
-
         while(world.etat_menu != 3){
         
-        //gestion des évènements
-        handle_events(&event,&world);
+            //gestion des évènements
+            handle_events(&event,&world);
 
-        //mise à jour des données liée à la physique du monde
-        update_data(&world);
+            //mise à jour des données liée à la physique du monde
+            update_data(&world);
 
-        //affiche le menu
-        refresh_graphics_menu(renderer,&world,&textures);
+            //affiche le menu
+            refresh_graphics_menu(renderer,&world,&textures);
 
-        // pause de 10 ms pour controler la vitesse de rafraichissement
-        pause(10);
+            // pause de 10 ms pour controler la vitesse de rafraichissement
+            pause(10);
+
+            world.compteur_menu = (float)(SDL_GetTicks()/1000.);
         }
 
         if(world.etat_menu==3 && world.gameover==0){
-        init(&window,&renderer,&textures,&world);
-        }
-
-        while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
-
-        //gestion des évènements
-        handle_events(&event,&world);
-        
-        //mise à jour des données liée à la physique du monde
-        update_data(&world);
-
-	
-        //rafraichissement de l'écran
-        refresh_graphics(renderer,&world,&textures);
-		
-        // pause de 10 ms pour controler la vitesse de rafraichissement
-        pause(10);    
+            world.compteur =(float)(SDL_GetTicks()/1000.);
+	        world.mouvement = 0;
+	        world.mouvement2 = 0;
+	        world.defeat_or_win = 0;
+	        world.test =0;
+            init_sprite(world.sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	        init_sprite(world.spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
         }
     
+        while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
+
+            //gestion des évènements
+            handle_events(&event,&world);
+        
+            //mise à jour des données liée à la physique du monde
+            update_data(&world);
+
+	
+            //rafraichissement de l'écran
+            refresh_graphics(renderer,&world,&textures);
+		
+            // pause de 10 ms pour controler la vitesse de rafraichissement
+            pause(10);    
+        }
+
         if(world.etat_menu == 0){ // retour au menu
             world.gameover=0;
         }
 
-	    pause(2000);
+	    pause(1000);
         //nettoyage final
         clean(window,renderer,&textures,&world);
     }
