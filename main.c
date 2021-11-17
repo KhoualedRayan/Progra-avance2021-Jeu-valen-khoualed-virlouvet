@@ -34,12 +34,13 @@ int main( int argc, char* args[] )
     SDL_Renderer *renderer;
     SDL_Window *window;
 	
-        
+    world.etat_menu = 0;
 
     while(world.etat_menu == 0 && !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
-    while(world.etat_menu != 3){
+
+        while(world.etat_menu != 3){
         
         //gestion des évènements
         handle_events(&event,&world);
@@ -52,13 +53,13 @@ int main( int argc, char* args[] )
 
         // pause de 10 ms pour controler la vitesse de rafraichissement
         pause(10);
-    }
+        }
 
-    if(world.etat_menu==3 && world.gameover==0){
-    init(&window,&renderer,&textures,&world);
-    }
+        if(world.etat_menu==3 && world.gameover==0){
+        init(&window,&renderer,&textures,&world);
+        }
 
-    while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
+        while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
 
         //gestion des évènements
         handle_events(&event,&world);
@@ -72,15 +73,15 @@ int main( int argc, char* args[] )
 		
         // pause de 10 ms pour controler la vitesse de rafraichissement
         pause(10);    
-    }
+        }
     
-    if(world.etat_menu == 0){ // retour au menu
-        world.gameover=0;
-    }
+        if(world.etat_menu == 0){ // retour au menu
+            world.gameover=0;
+        }
 
-	pause(2000);
-    //nettoyage final
-    clean(window,renderer,&textures,&world);
+	    pause(2000);
+        //nettoyage final
+        clean(window,renderer,&textures,&world);
     }
     
    
