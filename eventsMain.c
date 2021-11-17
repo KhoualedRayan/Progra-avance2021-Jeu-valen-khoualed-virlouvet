@@ -105,12 +105,6 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN;
-                world->ken_pv = world->ken_pv -3;
-                for (int i =0 ; i < 100 ; i++){
-                    if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-                        world->mouvement2 = 10;
-                    }
-                }
 
             }
             break;
@@ -164,12 +158,6 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN_KEN;
-                world->ryu_pv = world->ryu_pv -3;
-                for (int i =0 ; i < 100 ; i++){
-                    if(sprites_collide(world->sprite, &(world->hadouken[i]))){
-                        world->mouvement2 = 10;
-                    }
-                }
 
             }
 
@@ -196,8 +184,14 @@ void handle_events(SDL_Event *event,world_t *world){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
         }
-        
-        
+        for (int i =0 ; i < 10 ; i++){
+            if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+                world->ken_pv = world->ken_pv - 3;
+            }
+            if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+                world->ryu_pv = world->ryu_pv - 3;
+            }
+        } 
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu

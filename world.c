@@ -95,6 +95,11 @@ void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
 
 void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *world){
 	int hadoken = sprites_collide(sp1, sp2);
+	int temps = SDL_GetTicks()/1000;
+    int delai = (float) ((world->compteur) - temps);
+	if(hadoken == 1 && delai >=0.1 && delai <= 0.3  ){
+		sp2->x = 9999;
+	}
 
 }
 
@@ -215,11 +220,16 @@ void update_data(world_t *world){
 	hadouken(world);
 	hadouken_ken(world);
 	attack(world);
-	for (int i =0 ; i < 10 ; i++){
-		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+	/*for (int i =0 ; i < 10 ; i++){
+        if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+			world->ken_pv = world->ken_pv - 3;
 			world->mouvement2 = 10;
-		}
-	}
+        }
+        if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+			world->ryu_pv = world->ryu_pv - 3;
+			world->mouvement = 10;
+        }
+    } */
 	gravity(world);
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
 	for (int i = 0; i <10; i++)

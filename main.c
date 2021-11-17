@@ -34,9 +34,10 @@ int main( int argc, char* args[] )
     SDL_Renderer *renderer;
     SDL_Window *window;
 	
+    world.gameover = 0;
     world.etat_menu = 0;
 
-    while(world.etat_menu == 0 || !is_game_over(&world)){
+    while(world.etat_menu == 0 && !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
         while(world.etat_menu != 3){

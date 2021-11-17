@@ -63,6 +63,7 @@ struct world_s{
 	int firerate ; //temps entre chaque hadouken
 	char* text;
 	sprite_t hadouken[10] ;
+	sprite_t hadouken_ken[10];
 	int vy;
 	int crouch;
 	int state;
