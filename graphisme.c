@@ -67,6 +67,12 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ken_walking2);
     clean_texture(textures->ken_walking3);
     clean_texture(textures->ken_walking4);
+    
+    //ken_hadouken
+    clean_texture(textures->ken_hadouken);
+    clean_texture(textures->ken_hadouken1);
+    clean_texture(textures->ken_hadouken2);
+    clean_texture(textures->ken_hadouken3);
 
     clean_texture(textures->menu_1);
     clean_texture(textures->titre_p);
@@ -166,6 +172,13 @@ void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
     textures->ken_hit1 = load_image( "ressources/ken_hit/ken_hit1.bmp", renderer);
     textures->ken_hit2 = load_image( "ressources/ken_hit/ken_hit2.bmp", renderer);
     textures->ken_hit3 = load_image( "ressources/ken_hit/ken_hit3.bmp", renderer);
+
+    //ken_hadouken
+    textures->ken_hadouken = load_image( "ressources/ken_hadouken/ken_hadouken.bmp",renderer); 
+    textures->ken_hadouken1 = load_image( "ressources/ken_hadouken/ken_hadouken1.bmp",renderer);
+    textures->ken_hadouken2 = load_image( "ressources/ken_hadouken/ken_hadouken2.bmp",renderer);
+    textures->ken_hadouken3 = load_image( "ressources/ken_hadouken/ken_hadouken3.bmp",renderer); 
+
     //Ken_hp
     textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);
     textures->ken_hp_fill = load_image("ressources/ken_hp/hp_fill.bmp",renderer);

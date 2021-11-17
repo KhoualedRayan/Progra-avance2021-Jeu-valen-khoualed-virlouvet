@@ -65,10 +65,11 @@
 #define INITIAL_SPEED 3
 
 #define REST 0
-
+#define REST_KEN 100
 #define FALL 1
 #define JUMP 2
 #define HADOUKEN 3
+#define HADOUKEN_KEN 33
 #define CROUCH 4
 #define RISE 5
 

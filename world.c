@@ -25,6 +25,7 @@ void init_data(world_t * world){
 	world->nbr_hadouken = 0;
 	world->vy = INITIAL_SPEED;
 	world->state = REST;
+	world->state_ken = REST_KEN ;
 	
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
@@ -124,16 +125,19 @@ void gravity(world_t *world){
 	if(world->state == JUMP){
 		world->vy = -INITIAL_SPEED - 2;
 		world->mouvement = 0;
+		world->mouvement2 = 0;
 	}
 	if(world->sprite->y == 179){
 		pause(20);
 		world->state = FALL;
 		world->mouvement = 0;
+		world->mouvement2 = 0;
 
 	}
 	if(world->state == FALL){
 		world->vy = INITIAL_SPEED+2;
 		world->mouvement = 0;
+		world->mouvement2 = 0;
 	}
 	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
 		world->state = REST;
@@ -155,14 +159,51 @@ void hadouken(world_t *world){
 			world->test = 0;
 		}
 	}
-	
+}
 
+void gravity_ken(world_t *world){
+	if(world->state_ken == JUMP){
+		world->vy = -INITIAL_SPEED - 2;
+		world->mouvement2 = 0;
+	}
+	if(world->spriteTwo->y == 179){
+		pause(20);
+		world->state_ken = FALL;
+		world->mouvement2 = 0;
+
+	}
+	if(world->state_ken == FALL){
+		world->vy = INITIAL_SPEED+2;
+		world->mouvement2 = 0;
+	}
+	if(world->spriteTwo->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
+		world->state_ken = REST_KEN;
+	}
+	if(world->state_ken == REST_KEN){
+		world->vy =0;
+	}
+	world->spriteTwo->y = world->spriteTwo-> y + world->vy; 
+
+}
+
+void hadouken_ken(world_t *world){
+	int compt;
+	if(world->test == HADOUKEN_KEN && world->state != JUMP && world->state != FALL && world->state != CROUCH){
+		compt = SDL_GetTicks()/1000;
+		if((world->timerlastshoot +1 > SDL_GetTicks()/1000)){
+			world->state_ken = HADOUKEN_KEN;
+		}else{
+			world->state_ken = REST_KEN;
+			world->test = 0;
+		}
+	}
 }
 
 
 void update_data(world_t *world){
 	limite(world);
 	hadouken(world);
+	hadouken_ken(world);
 	for (int i =0 ; i < 10 ; i++){
 		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->mouvement2 = 10;

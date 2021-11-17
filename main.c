@@ -36,7 +36,7 @@ int main( int argc, char* args[] )
 	
     world.etat_menu = 0;
 
-    while(world.etat_menu == 0 && !is_game_over(&world)){
+    while(world.etat_menu == 0 || !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
 

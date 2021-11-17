@@ -101,7 +101,6 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN;
-                world->ryu_pv = world->ryu_pv -1;
                 world->ken_pv = world->ken_pv -3;
                 for (int i =0 ; i < 100 ; i++){
                     if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
@@ -154,7 +153,21 @@ void handle_events_ken(SDL_Event *event,world_t *world){
 			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'z'
                 
             }
+            if(keystates[SDL_SCANCODE_RSHIFT] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state == REST){
+                world->nbr_hadouken = world->nbr_hadouken + 1;
+                world->timerlastshoot = SDL_GetTicks()/1000;
+                if (world->nbr_hadouken == 10){
+                    world->nbr_hadouken = 0;
+                }
+                world->test = HADOUKEN_KEN;
+                world->ryu_pv = world->ryu_pv -3;
+                for (int i =0 ; i < 100 ; i++){
+                    if(sprites_collide(world->sprite, &(world->hadouken[i]))){
+                        world->mouvement2 = 10;
+                    }
+                }
 
+            }
 
             break;
         

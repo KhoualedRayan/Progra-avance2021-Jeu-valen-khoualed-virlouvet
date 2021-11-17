@@ -64,6 +64,7 @@ struct world_s{
 	int vy;
 	int crouch;
 	int state;
+	int state_ken;
 };
 
 /**
