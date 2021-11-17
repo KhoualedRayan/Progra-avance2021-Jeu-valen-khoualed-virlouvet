@@ -213,11 +213,8 @@ void hadouken_ken(world_t *world){
 void update_data(world_t *world){
 	limite(world);
 	hadouken(world);
-<<<<<<< HEAD
 	hadouken_ken(world);
-=======
 	attack(world);
->>>>>>> a608d5e4e5d7dcd824fd5e1192f10d41ae037034
 	for (int i =0 ; i < 10 ; i++){
 		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->mouvement2 = 10;
