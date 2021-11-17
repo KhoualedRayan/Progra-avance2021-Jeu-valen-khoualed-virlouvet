@@ -11,6 +11,7 @@ void init_data(world_t * world){
 
 	//Initialisation de valeurs 
 	world->compteur ;
+	world->compteur_menu;
 	world->gameover = 0;
 	world->etat_menu = 0;
 	world->mouvement = 0;
@@ -44,6 +45,7 @@ void init_data(world_t * world){
 	//initialisation des sprites
 	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
 	init_hadouken(world);

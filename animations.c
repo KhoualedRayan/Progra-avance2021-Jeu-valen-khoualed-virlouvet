@@ -18,7 +18,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 	if (world->defeat_or_win == 0) {
 	sprintf(world->text, "KO");
 	apply_text(renderer, SCREEN_WIDTH/2 - 25,20,100,50,world->text,textures->font);
-    sprintf(world->text, "%d",time- (int)(world->compteur));
+    sprintf(world->text, "%d",time- (int)(world->compteur) + (int)(world->compteur_menu));
     apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 
 	}
@@ -33,7 +33,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 		world->gameover = 1;
 	}
 
-        if(time-(int)(world->compteur) <= 0 || world->ken_pv <=0 ||world->ryu_pv <=0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+        if(time- (int)(world->compteur) + (int)(world->compteur_menu) <= 0 || world->ken_pv <=0 ||world->ryu_pv <=0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
             world->etat_menu = 0;
             world->gameover = 1;
         }

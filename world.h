@@ -50,6 +50,7 @@ struct world_s{
 	int ken_pv;
 
 	float compteur;
+	float compteur_menu;
 	int gameover;
 	int defeat_or_win;
 	int etat_menu;
