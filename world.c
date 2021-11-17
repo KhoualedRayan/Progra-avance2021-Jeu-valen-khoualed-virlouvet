@@ -261,6 +261,8 @@ void limite(world_t* world) {
 void init_hadouken(world_t* world) {
 	for(int i = 0; i<10;i++){
 		init_sprite(&(world->hadouken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
+		init_sprite(&(world->hadouken_ken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
+
 	}
 }
 

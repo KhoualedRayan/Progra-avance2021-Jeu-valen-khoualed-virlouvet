@@ -158,9 +158,9 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     textures->ryu_falling2 = load_image( "ressources/ryu_falling/f3.bmp",renderer);
 
     //Ryu l-punch
-    textures->ryu_falling = load_image( "ressources/ryu_l-punch/f1.bmp",renderer); 
-    textures->ryu_falling1 = load_image( "ressources/ryu_l-punch/f2.bmp",renderer);
-    textures->ryu_falling2 = load_image( "ressources/ryu_l-punch/f3.bmp",renderer);
+    textures->ryu_lpunch = load_image( "ressources/ryu_l-punch/f1.bmp",renderer); 
+    textures->ryu_lpunch1 = load_image( "ressources/ryu_l-punch/f2.bmp",renderer);
+    textures->ryu_lpunch2 = load_image( "ressources/ryu_l-punch/f3.bmp",renderer);
 
     //Ryu jumping
     textures->ryu_jumping = load_image( "ressources/ryu_jumping/f1.bmp",renderer); 

@@ -94,7 +94,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 ){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_J] && walk ==0 ){
+            if(keystates[SDL_SCANCODE_J] && world->state == REST ){
                 world->state = ATTACK;
                 printf("D");
             }
