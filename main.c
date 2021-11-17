@@ -36,7 +36,7 @@ int main( int argc, char* args[] )
 	
     world.etat_menu = 0;
 
-    while(world.etat_menu == 0 && !is_game_over(&world)){
+    while(world.etat_menu ==0 || !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
 
@@ -48,6 +48,7 @@ int main( int argc, char* args[] )
         //mise à jour des données liée à la physique du monde
         update_data(&world);
 
+
         //affiche le menu
         refresh_graphics_menu(renderer,&world,&textures);
 
@@ -57,7 +58,7 @@ int main( int argc, char* args[] )
 
         if(world.etat_menu==3 && world.gameover==0){
         init(&window,&renderer,&textures,&world);
-        }
+    }
 
         while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
 

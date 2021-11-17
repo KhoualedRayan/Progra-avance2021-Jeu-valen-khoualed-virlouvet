@@ -13,12 +13,14 @@ void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_jumping(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_falling(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 
 //KEN
 void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ken_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ken_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+
 
 
 

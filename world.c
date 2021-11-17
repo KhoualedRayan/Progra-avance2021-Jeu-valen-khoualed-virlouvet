@@ -28,6 +28,7 @@ void init_data(world_t * world){
 	
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
+	world->spriteAttack = (sprite_t*)malloc(sizeof(sprite_t));
 	world->spriteTwo = (sprite_t*)malloc(sizeof(sprite_t));
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	world->titre = (sprite_t*)malloc(sizeof(sprite_t));
@@ -91,6 +92,7 @@ void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
 
 void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *world){
 	int hadoken = sprites_collide(sp1, sp2);
+
 }
 
 
@@ -99,6 +101,7 @@ void handle_sprites_collision_hadoken(sprite_t *sp1, sprite_t *sp2, world_t *wor
 void clean_data(world_t *world){
     /* utile uniquement si vous avez fait de l'allocation dynamique (malloc); la fonction ici doit permettre de libérer la mémoire (free) */
     free(world->sprite);
+	free(world->spriteAttack);
 	free(world->spriteTwo);
 	free(world->menu);
 	free(world->titre);
@@ -135,7 +138,7 @@ void gravity(world_t *world){
 		world->vy = INITIAL_SPEED+2;
 		world->mouvement = 0;
 	}
-	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN ){
 		world->state = REST;
 	}
 	if(world->state == REST){
@@ -143,6 +146,11 @@ void gravity(world_t *world){
 	}
 	world->sprite->y = world->sprite-> y + world->vy; 
 
+}
+void attack(world_t *world){
+	if(world->state == ATTACK){
+		init_sprite(world->spriteAttack,world->sprite->x, world->sprite->y, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	}
 }
 void hadouken(world_t *world){
 	int compt;
@@ -163,6 +171,7 @@ void hadouken(world_t *world){
 void update_data(world_t *world){
 	limite(world);
 	hadouken(world);
+	attack(world);
 	for (int i =0 ; i < 10 ; i++){
 		if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->mouvement2 = 10;

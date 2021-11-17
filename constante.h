@@ -71,6 +71,7 @@
 #define HADOUKEN 3
 #define CROUCH 4
 #define RISE 5
+#define ATTACK 6
 
 
 #endif

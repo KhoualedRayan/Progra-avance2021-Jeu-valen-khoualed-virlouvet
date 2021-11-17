@@ -51,6 +51,11 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ryu_falling1);
     clean_texture(textures->ryu_falling2);
 
+    //Ryu jumping
+    clean_texture(textures->ryu_lpunch);
+    clean_texture(textures->ryu_lpunch1);
+    clean_texture(textures->ryu_lpunch2);
+
     //Ryu hp barre
     clean_texture(textures->ryu_hp);
     clean_texture(textures->ryu_hp_fill);
@@ -88,6 +93,8 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     //Ken
     init_textures_ken(renderer, textures);
 
+
+    //Menu
 	textures->menu_1 = load_image( "ressources/fond_menu.bmp",renderer);
     textures->titre_p = load_image("ressources/titre_principal.bmp", renderer);	 
     textures->exit_normal = load_image("ressources/exit.bmp", renderer);	
@@ -139,6 +146,11 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     textures->ryu_falling = load_image( "ressources/ryu_falling/f1.bmp",renderer); 
     textures->ryu_falling1 = load_image( "ressources/ryu_falling/f2.bmp",renderer);
     textures->ryu_falling2 = load_image( "ressources/ryu_falling/f3.bmp",renderer);
+
+    //Ryu l-punch
+    textures->ryu_falling = load_image( "ressources/ryu_l-punch/f1.bmp",renderer); 
+    textures->ryu_falling1 = load_image( "ressources/ryu_l-punch/f2.bmp",renderer);
+    textures->ryu_falling2 = load_image( "ressources/ryu_l-punch/f3.bmp",renderer);
 
     //Ryu jumping
     textures->ryu_jumping = load_image( "ressources/ryu_jumping/f1.bmp",renderer); 
