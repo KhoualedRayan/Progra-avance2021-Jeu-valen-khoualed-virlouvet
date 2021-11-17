@@ -5,7 +5,7 @@
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
 
-int time = 60;
+int time = 10;
 
 void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Affichage du texte graphique

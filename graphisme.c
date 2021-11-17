@@ -60,6 +60,10 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->ryu_hp);
     clean_texture(textures->ryu_hp_fill);
 
+    //Ken hp barre
+    clean_texture(textures->ken_hp);
+    clean_texture(textures->ken_hp_fill);
+
     //ken_idle
     clean_texture(textures->ken_idle);
     clean_texture(textures->ken_idle1);

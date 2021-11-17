@@ -82,14 +82,13 @@ int main( int argc, char* args[] )
             // pause de 10 ms pour controler la vitesse de rafraichissement
             pause(10);    
         }
+	    pause(1000);
+        //nettoyage final
+        clean(window,renderer,&textures,&world);      
 
         if(world.etat_menu == 0){ // retour au menu
             world.gameover=0;
         }
-
-	    pause(1000);
-        //nettoyage final
-        clean(window,renderer,&textures,&world);
     }
     
    
