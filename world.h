@@ -32,6 +32,7 @@ typedef struct sprite_s sprite_t;
 
 struct world_s{
 	sprite_t* sprite;	/*!<sprite devient un pointeur de sprite_t */
+	sprite_t* spriteAttack;  /*sprite qui attack*/
 	sprite_t* spriteTwo;
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
 	sprite_t* titre;	/*!<titre devient un pointeur de sprite_t */
@@ -49,6 +50,7 @@ struct world_s{
 	int ken_pv;
 
 	float compteur;
+	float compteur_menu;
 	int gameover;
 	int defeat_or_win;
 	int etat_menu;
@@ -97,6 +99,8 @@ void clean_data(world_t *world);
 
 int is_game_over(world_t *world);
 void gravity(world_t *world);
+void attack(world_t *world);
+
 
 
 

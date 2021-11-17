@@ -72,6 +72,7 @@
 #define HADOUKEN_KEN 33
 #define CROUCH 4
 #define RISE 5
+#define ATTACK 6
 
 
 #endif

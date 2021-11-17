@@ -10,14 +10,15 @@ int time = 60;
 void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Affichage du texte graphique
 	if (world->defeat_or_win !=2) {	
-		world->compteur = (float)(SDL_GetTicks()/1000.);
+		world->compteur = (float)(SDL_GetTicks()/1000.) ;
 	}
+
 
 	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
 	sprintf(world->text, "KO");
 	apply_text(renderer, SCREEN_WIDTH/2 - 25,20,100,50,world->text,textures->font);
-    sprintf(world->text, "%d",time- (int)(world->compteur));
+    sprintf(world->text, "%d",time- (int)(world->compteur) + (int)(world->compteur_menu));
     apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 
 	}
@@ -32,7 +33,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 		world->gameover = 1;
 	}
 
-        if(time-(int)(world->compteur) <= 0 || world->ken_pv <=0 ||world->ryu_pv <=0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+        if(time- (int)(world->compteur) + (int)(world->compteur_menu) <= 0 || world->ken_pv <=0 ||world->ryu_pv <=0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
             world->etat_menu = 0;
             world->gameover = 1;
         }
@@ -184,6 +185,12 @@ void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     for (int i =0 ; i < world->ryu_pv ; i++){
         apply_sprite(renderer, textures->ryu_hp_fill,&(world->ryu_hp[i])) ;
     }
+}
+
+void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    if(world->state == ATTACK){
+        apply_sprite(renderer, textures->ryu_lpunch1,world->spriteAttack);
+    }
 
 }
 
@@ -264,18 +271,25 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     }
 }
 void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    int temps;
+    float delai;
     if(world->mouvement2 == 10){
-        for (int i =0 ; i < 100 ; i++){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - temps);
+        for (int i =0 ; i < 10 ; i++){
             if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-                if((int)(world->compteur*4) %4 ==0){
+                if(delai  >=0.0 && delai  <=0.2){
                     apply_sprite(renderer, textures->ken_hit,world->spriteTwo);
-                }else if((int)(world->compteur*4) %4 ==1){
+                }if(delai  >=0.2 && delai  <=0.4){
                     apply_sprite(renderer,textures->ken_hit1,world->spriteTwo);
                 }
-                else if((int)(world->compteur*4) %4 ==2){
+                if(delai  >=0.4 && delai  <=0.6){
                     apply_sprite(renderer,textures->ken_hit2,world->spriteTwo);
-                }else if((int)(world->compteur*4) %4 ==3){
+                }if(delai  >=0.6 && delai  <=0.8){
                     apply_sprite(renderer, textures->ken_hit3,world->spriteTwo) ;
+                }if(delai >= 1){
+                    world->mouvement2 = 0;
+                    world->hadouken[i].x = 9999;
                 }
             }
         }
@@ -303,6 +317,7 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
     ryu_jumping(renderer,world,textures);
     ryu_falling(renderer,world,textures);
     ryu_hadouken(renderer,world,textures);
+    ryu_lpunch(renderer,world,textures);
     ryu_hp(renderer,world,textures);
 
 
