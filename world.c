@@ -2,13 +2,42 @@
 #include "graphisme.h"
 #include "constante.h"
 #include "sdl2-light.h"
+#include "ryu.h"
 
 
 
 void init_data(world_t * world){
-    
     //on n'est pas à la fin du jeu
 
+	//Initialisation de valeurs 
+	init_valeurs(world);
+
+	// Allocation de mémoire
+	init_mémoire(world);
+
+	//initialisation des sprites
+	init_environnement(world) ;
+
+}
+
+void init_environnement(world_t* world){
+	//initialisation des sprites
+	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	
+	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
+	init_hadouken(world);
+	init_pv(world);
+	init_sprite(world->exit,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->exit2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsplayer,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
+}
+
+void init_valeurs(world_t* world){
 	//Initialisation de valeurs 
 	world->compteur ;
 	world->compteur_menu;
@@ -32,7 +61,9 @@ void init_data(world_t * world){
 	world->vy = INITIAL_SPEED;
 	world->state = REST;
 	world->state_ken = REST_KEN ;
-	
+}
+
+void init_mémoire(world_t * world){
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
 	world->spriteAttack = (sprite_t*)malloc(sizeof(sprite_t));
@@ -47,31 +78,13 @@ void init_data(world_t * world){
 	world->playervsbot2 = (sprite_t*)malloc(sizeof(sprite_t));
 	world->ryu_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
 	world->ken_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
-
-	//initialisation des sprites
-	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
-	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
-	
-	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-	init_sprite(world->titre,SCREEN_WIDTH/2-TITLE_WIDTH/2,10,TITLE_WIDTH,TITLE_HEIGHT);
-	init_hadouken(world);
-	init_pv(world);
-	init_sprite(world->exit,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->exit2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,550,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsplayer,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
-	
-
 }
+
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 	sprite->x = x;
 	sprite->y = y;
 	sprite->w = w;
 	sprite->h = h;
-
-
 }
 
 int sprites_collide(sprite_t *sp1, sprite_t *sp2)
@@ -136,72 +149,6 @@ int is_game_over(world_t *world){
 void update_hadouken(sprite_t *hadouken, world_t *world){
 	hadouken->x = hadouken->x + INITIAL_SPEED ;
 }
-void gravity(world_t *world){
-	if(world->state == JUMP){
-		world->vy = -INITIAL_SPEED - 2;
-		world->mouvement = 0;
-		world->mouvement2 = 0;
-	}
-	if(world->sprite->y == 179){
-		pause(20);
-		world->state = FALL;
-		world->mouvement = 0;
-		world->mouvement2 = 0;
-
-	}
-	if(world->state == FALL){
-		world->vy = INITIAL_SPEED+2;
-		world->mouvement = 0;
-		world->mouvement2 = 0;
-	}
-	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN && world->state != ATTACK ){
-		world->state = REST;
-	}
-	if(world->state == REST){
-		world->vy =0;
-	}
-	world->sprite->y = world->sprite-> y + world->vy; 
-
-}
-void attack(world_t *world){
-	if(world->test == ATTACK && world->state != JUMP && world->state != FALL && world->state != CROUCH && world->state != HADOUKEN){
-		init_sprite(world->spriteAttack,world->sprite->x, world->sprite->y, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
-		if((world->timerLastAttack +1 > SDL_GetTicks()/1000)){
-			world->state = ATTACK;
-		}else{
-			world->state = REST;
-			world->test = 0;
-			world->hitted = 0;
-			world->addw = 0;
-			world->addh = 0;
-		}
-	}else{
-		init_sprite(world->spriteAttack,world->sprite->x, world->sprite->y+3000, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
-	}
-}
-void hadouken(world_t *world){
-	if(world->test == HADOUKEN && world->state != JUMP && world->state != FALL && world->state != CROUCH && world->state != ATTACK){
-		if((world->timerlastshoot +1 > SDL_GetTicks()/1000)){
-			world->state = HADOUKEN;
-		}else{
-			world->state = REST;
-			world->test = 0;
-			world->hitted = 0;
-		}
-	}
-}
-void receive_damage(world_t* world){
-	for (int i =0 ; i < 10 ; i++){
-		if(sprites_collide(world->spriteTwo,world->spriteAttack) || sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-			world->stun = SDL_GetTicks()/1000;
-			if((world->stun +1 > SDL_GetTicks()/1000)){
-				world->state_ken = ATTACKED;
-				world->mouvement2 = 10;
-			}
-		}
-	}
-}
-
 void gravity_ken(world_t *world){
 	if(world->state_ken == JUMP){
 		world->vy = -INITIAL_SPEED - 2;
@@ -240,24 +187,15 @@ void hadouken_ken(world_t *world){
 	}
 }
 
+void update_data_Ken(world_t* world){
+    gravity_ken(world) ;
+    hadouken_ken(world);
+}
 
 void update_data(world_t *world){
+	update_data_ryu(world);
+	update_data_Ken(world);
 	limite(world);
-	hadouken(world);
-	hadouken_ken(world);
-	attack(world);
-	receive_damage(world);
-	/*for (int i =0 ; i < 10 ; i++){
-        if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-			world->ken_pv = world->ken_pv - 3;
-			world->mouvement2 = 10;
-        }
-        if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
-			world->ryu_pv = world->ryu_pv - 3;
-			world->mouvement = 10;
-        }
-    } */
-	gravity(world);
 	handle_sprites_collision(world->sprite, world->spriteTwo,world);
 	for (int i = 0; i <10; i++)
 	{

@@ -80,7 +80,11 @@ struct world_s{
 
 typedef struct world_s world_t;
 
+void init_valeurs(world_t* world);
 
+void init_environnement(world_t* world);
+
+void init_mémoire(world_t * world);
 /**
  * \brief La fonction initialise les données du monde du jeu
  * \param world les données du monde

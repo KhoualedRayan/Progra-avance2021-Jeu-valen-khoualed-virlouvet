@@ -129,7 +129,6 @@ void clean_textures(textures_t *textures);
 
 void init_textures(SDL_Renderer *renderer, textures_t *textures);
 
-void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures);
 
 void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures);
 
