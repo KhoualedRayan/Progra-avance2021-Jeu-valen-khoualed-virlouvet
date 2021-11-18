@@ -89,6 +89,7 @@ int main( int argc, char* args[] )
         if(world.etat_menu == 0){ // retour au menu
             world.gameover=0;
         }
+        clean_sdl(renderer,window);
     }
     
    //nettoyage final 
