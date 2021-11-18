@@ -13,7 +13,7 @@ void init_data(world_t * world){
 	init_valeurs(world);
 
 	// Allocation de mémoire
-	init_mémoire(world);
+	init_memoire(world);
 
 	//initialisation des sprites
 	init_environnement(world) ;
