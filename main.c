@@ -45,6 +45,7 @@ int main( int argc, char* args[] )
             //gestion des évènements
             handle_events(&event,&world);
 
+            if(world.etat_menu != 3){
             //mise à jour des données liée à la physique du monde
             update_data(&world);
 
@@ -55,6 +56,7 @@ int main( int argc, char* args[] )
             pause(10);
 
             world.compteur_menu = (float)(SDL_GetTicks()/1000.);
+            }
         }
 
         if(world.etat_menu==3 && world.gameover==0){
@@ -83,15 +85,14 @@ int main( int argc, char* args[] )
             pause(10);    
         }
 	    pause(1000);
-        //nettoyage final
-        clean(window,renderer,&textures,&world);      
 
         if(world.etat_menu == 0){ // retour au menu
             world.gameover=0;
         }
     }
     
-   
+   //nettoyage final 
+   clean(window,renderer,&textures,&world);  
     
     
     return 0;
