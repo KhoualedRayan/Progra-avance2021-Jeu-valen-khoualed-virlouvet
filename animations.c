@@ -108,7 +108,7 @@ void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Hadouken
-    int temps;
+    float temps;
     float delai;
     if(world->state == HADOUKEN && world->mouvement ==0 ){
         temps = SDL_GetTicks()/1000;
@@ -229,7 +229,7 @@ void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ken_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //WALK RIGHT    
-    if(world->mouvement2 == 1){
+    if(world->mouvement2 == 1 && world->state_ken!= ATTACKED){
         if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ken_walking,world->spriteTwo);
         }else if((int)(world->compteur*5) %5 ==1){
@@ -246,7 +246,7 @@ void ken_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     }
 
     //WALK LEFT
-	if(world->mouvement2 == 2){
+	if(world->mouvement2 == 2 && world->state_ken!= ATTACKED){
         if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ken_walking,world->spriteTwo);
         }else if((int)(world->compteur*5) %5 ==1){
@@ -283,31 +283,37 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
     }
 }
+
+
 void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
-    int temps;
+    float temps;
     float delai;
-    if(world->mouvement2 == 10){
+    if(world->state_ken == ATTACKED && world->mouvement2 == 10){
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - temps);
-        for (int i =0 ; i < 10 ; i++){
-            if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-                if(delai  >=0.0 && delai  <=0.2){
-                    apply_sprite(renderer, textures->ken_hit,world->spriteTwo);
-                }if(delai  >=0.2 && delai  <=0.4){
-                    apply_sprite(renderer,textures->ken_hit1,world->spriteTwo);
-                }
-                if(delai  >=0.4 && delai  <=0.6){
-                    apply_sprite(renderer,textures->ken_hit2,world->spriteTwo);
-                }if(delai  >=0.6 && delai  <=0.8){
-                    apply_sprite(renderer, textures->ken_hit3,world->spriteTwo) ;
-                }if(delai >= 1){
-                    world->mouvement2 = 0;
-                    world->hadouken[i].x = 9999;
-                }
+        if(delai  >=0.0 && delai  <=0.25){
+            apply_sprite(renderer, textures->ken_hit,world->spriteTwo);
+        }if(delai  >=0.25 && delai  <=0.5){
+            apply_sprite(renderer,textures->ken_hit1,world->spriteTwo);
+        }
+        if(delai  >=0.5 && delai  <=0.75){
+            apply_sprite(renderer,textures->ken_hit2,world->spriteTwo);
+        }if(delai  >=0.75 && delai  <=0.98){
+            apply_sprite(renderer, textures->ken_hit3,world->spriteTwo) ;
+        }
+        if(delai >= 0.98){
+            world->state_ken = REST_KEN;
+            world->mouvement2 = 0;
+        }
+        for(int i=0;i<10;i++){
+            if(sprites_collide(world->spriteTwo,&(world->hadouken[i])) && world->hitted == 0){
+                world->ken_pv += -2;
+                world->hitted = 1;
             }
         }
     }
 }
+
 
 void ken_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //HP BARRE

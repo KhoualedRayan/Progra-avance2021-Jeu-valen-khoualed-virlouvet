@@ -49,6 +49,7 @@ struct world_s{
 	int ryu_pv;
 	int ken_pv;
 	int hitted;
+	int stun;
 	int addw;
 	int addh;
 	float compteur;
@@ -141,6 +142,7 @@ void limite(world_t* world);
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h);
 void init_hadouken(world_t* world);
 void init_pv(world_t* world);
+void receive_damage(world_t *world);
 
 
 

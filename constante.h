@@ -73,6 +73,7 @@
 #define CROUCH 4
 #define RISE 5
 #define ATTACK 6
+#define ATTACKED 7
 
 
 #endif

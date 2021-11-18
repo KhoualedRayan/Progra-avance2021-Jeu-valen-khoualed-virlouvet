@@ -22,6 +22,7 @@ void init_data(world_t * world){
 	world->addw = 0;
 	world->hitted = 0;
 	world->on = 0;
+	world->stun = 0;
 	world->ryu_pv = 20;
 	world->ken_pv = 20;
 	world->timerlastshoot = SDL_GetTicks()/1000;
@@ -174,6 +175,8 @@ void attack(world_t *world){
 			world->addw = 0;
 			world->addh = 0;
 		}
+	}else{
+		init_sprite(world->spriteAttack,world->sprite->x, world->sprite->y+3000, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
 	}
 }
 void hadouken(world_t *world){
@@ -183,6 +186,18 @@ void hadouken(world_t *world){
 		}else{
 			world->state = REST;
 			world->test = 0;
+			world->hitted = 0;
+		}
+	}
+}
+void receive_damage(world_t* world){
+	for (int i =0 ; i < 10 ; i++){
+		if(sprites_collide(world->spriteTwo,world->spriteAttack) || sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+			world->stun = SDL_GetTicks()/1000;
+			if((world->stun +1 > SDL_GetTicks()/1000)){
+				world->state_ken = ATTACKED;
+				world->mouvement2 = 10;
+			}
 		}
 	}
 }
@@ -202,7 +217,7 @@ void gravity_ken(world_t *world){
 		world->vy = INITIAL_SPEED+2;
 		world->mouvement2 = 0;
 	}
-	if(world->spriteTwo->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN){
+	if(world->spriteTwo->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN && world->state_ken != ATTACKED	){
 		world->state_ken = REST_KEN;
 	}
 	if(world->state_ken == REST_KEN){
@@ -231,6 +246,7 @@ void update_data(world_t *world){
 	hadouken(world);
 	hadouken_ken(world);
 	attack(world);
+	receive_damage(world);
 	/*for (int i =0 ; i < 10 ; i++){
         if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->ken_pv = world->ken_pv - 3;

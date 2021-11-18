@@ -133,14 +133,14 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if(keystates[SDL_SCANCODE_D]){ //si la touche appuyée est 'd'
+            if(keystates[SDL_SCANCODE_D] && world->state_ken == REST_KEN){ //si la touche appuyée est 'd'
 
                 world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
                 world->mouvement2 = 1; 
                 walk2 = 1;
                 
             }
-			if(keystates[SDL_SCANCODE_A]){ //si la touche appuyée est 'a'
+			if(keystates[SDL_SCANCODE_A] && world->state_ken == REST_KEN){ //si la touche appuyée est 'a'
                 world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
                 world->mouvement2 = 2;
                 walk2=1;
@@ -168,7 +168,9 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
             walk2 = 0;
-            world->mouvement2 =0;
+            if(world->state_ken != ATTACKED){
+                world->mouvement2 =0;
+            }
             break;
         
         
@@ -186,14 +188,14 @@ void handle_events(SDL_Event *event,world_t *world){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
         }
-        for (int i =0 ; i < 10 ; i++){
-            if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-                world->ken_pv = world->ken_pv - 3;
-            }
-            if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
-                world->ryu_pv = world->ryu_pv - 3;
-            }
-        } 
+        // for (int i =0 ; i < 10 ; i++){
+        //     if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
+        //         world->ken_pv = world->ken_pv - 3;
+        //     }
+        //     if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+        //         world->ryu_pv = world->ryu_pv - 3;
+        //     }
+        // } 
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu
