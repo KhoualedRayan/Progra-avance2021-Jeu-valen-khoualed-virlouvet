@@ -1,0 +1,426 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Thu Nov 18 23:41:28 2021
+
+# Variables
+
+# 'override' directive
+GNUMAKEFLAGS := 
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = ubuntu
+# default
+.SHELLFLAGS := -c
+# makefile (from 'Makefile', line 6)
+OBJ = $(SRC:%.c=%.o)
+# environment
+XDG_SESSION_CLASS = user
+# makefile (from 'Makefile', line 5)
+SRC = main.c sdl2-light.c world.c graphisme.c sdl2-ttf-light.c eventsMain.c animations.c ryu.c ken.c ryu_graphisme.c ken_graphisme.c
+# environment
+SNAP_COMMON = /var/snap/code/common
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+IM_CONFIG_PHASE = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /run/user/1000/gdm/Xauthority
+# environment
+GDMSESSION = ubuntu
+# environment
+XMODIFIERS = @im=ibus
+# makefile
+CURDIR := /home/virbek/Documents/programmation_avance/Progra-avance2021-Jeu-valen-khoualed-virlouvet
+# makefile
+SHELL = /bin/sh
+# environment
+SNAP_DATA = /var/snap/code/82
+# environment
+VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"2e2aa82e8d01527e087108cb63eee9b1.fr","_translationsConfigFile":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr/tcf.json","_cacheRoot":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr","_resolvedLanguagePackCoreLocation":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247","_corruptedFile":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr/corrupted.info","_languagePackSupport":true}
+# environment
+JOURNAL_STREAM = 8:49508
+# makefile (from 'Makefile', line 1)
+CFLAGS = -O3 `sdl2-config --cflags`
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+SNAP_ARCH = amd64
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# environment
+JAVA_HOME = /usr/lib/jvm/jdk-11.0.12
+# automatic
+@F = $(notdir $@)
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+USERNAME = virbek
+# environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+_ = /snap/code/82/usr/share/code/code
+# environment
+MANAGERPID = 1480
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# environment
+VSCODE_CWD = /home/virbek
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/82/usr/share/glib-2.0/schemas
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /usr/lib/jvm/jdk-11.0.12/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# makefile (from 'Makefile', line 8)
+PROG = jeu
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+SESSION_MANAGER = local/Virbek:@/tmp/.ICE-unix/1780,unix/Virbek:/tmp/.ICE-unix/1780
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/virbek/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+SNAP = /snap/code/82
+# environment
+SNAP_VERSION = ccbaa2d2
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+VSCODE_LOG_STACK = false
+# environment
+DISABLE_WAYLAND = 1
+# environment
+VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=690e1a7e-274d-495c-8437-9070543dedba&iid=690e1a7e-274d-495c-8437-9070543dedba&sid=690e1a7e-274d-495c-8437-9070543dedba","uploadToServer":true}
+# environment
+INVOCATION_ID = f7f77284a3f64a68aa633c0d1c0bf25f
+# makefile (from 'Makefile', line 2)
+LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lm 
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/82/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 11603
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+SNAP_INSTANCE_KEY = 
+# environment
+PWD = /home/virbek/Documents/programmation_avance/Progra-avance2021-Jeu-valen-khoualed-virlouvet
+# default
+.LOADED := 
+# environment
+SSH_AGENT_PID = 1672
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+HOME = /home/virbek
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /home/virbek/.config/Code/CachedData/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247
+# environment
+LOGNAME = virbek
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
+# environment
+SNAP_CONTEXT = tXoTwyiaAfz26j68e6GMgGnyy1btVhlEjAROept38A26-sChkLm2
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+SNAP_USER_COMMON = /home/virbek/snap/code/common
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+MAKELEVEL := 0
+# environment
+SNAP_REAL_HOME = /home/virbek
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+QT_IM_MODULE = ibus
+# environment
+SNAP_USER_DATA = /home/virbek/snap/code/82
+# environment
+SHLVL = 0
+# environment
+GNOME_SHELL_SESSION_MODE = ubuntu
+# environment
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9f736b29-9483-42ce-b564-89ead388123d.sock
+# default
+MAKE_VERSION := 4.2.1
+# environment
+USER = virbek
+# environment
+SNAP_REVISION = 82
+# makefile
+.DEFAULT_GOAL := jeu
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := make
+# makefile (from 'Makefile', line 4)
+INC = sdl2-light.h constante.h world.h graphisme.h sdl2-ttf-light.h eventsMain.h animations.h ken.h ryu.h ryu_graphisme.h  ken_graphisme.h
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-0e443d47-1.62.3-main.sock
+# environment
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+BREAKPAD_DUMP_LOCATION = /home/virbek/.config/Code/exthost Crash Reports
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# automatic
++F = $(notdir $+)
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
+# default
+MAKEFILES := 
+# environment
+SNAP_COOKIE = tXoTwyiaAfz26j68e6GMgGnyy1btVhlEjAROept38A26-sChkLm2
+# automatic
+<F = $(notdir $<)
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+SNAP_NAME = code
+# environment
+LC_ALL = C
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+SNAP_REEXEC = 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+WINDOWPATH = 2
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+VSCODE_PID = 11653
+# variable set hash-table stats:
+# Load=131/1024=13%, Rehash=0, Collisions=22/160=14%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+ 
+make: *** No rule to make target 'all'.  Stop.
+ 
+# . (device 66311, inode 265810): 47 files, no impossibilities.
+
+# 47 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+%.o: %.c sdl2-light.h constante.h world.h graphisme.h sdl2-ttf-light.h eventsMain.h animations.h ken.h ryu.h ryu_graphisme.h ken_graphisme.h
+#  recipe to execute (from 'Makefile', line 11):
+	gcc $(CFLAGS) -c $<
+
+# 1 implicit rules, 0 (0.0%) terminal.
+
+# Files
+
+# Not a target:
+graphisme.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+world.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ken_graphisme.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-11-18 23:21:14.1574392
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+eventsMain.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ken.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+jeu: main.o sdl2-light.o world.o graphisme.o sdl2-ttf-light.o eventsMain.o animations.o ryu.o ken.o ryu_graphisme.o ken_graphisme.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 14):
+	gcc $(CFLAGS) $(OBJ) $(LDFLAGS) -o $@
+
+# Not a target:
+sdl2-ttf-light.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 21):
+	rm -f *~ *.o $(PROG)
+	rm -rf latex html
+
+# Not a target:
+animations.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ryu_graphisme.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+sdl2-light.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ryu.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+doc: jeu
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 17):
+	doxygen ./$(PROG)
+	make -C latex
+
+# files hash-table stats:
+# Load=18/1024=2%, Rehash=0, Collisions=0/40=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 56 / storage = 577 B / avg = 10 B
+# current buf: size = 8162 B / used = 577 B / count = 56 / avg = 10 B
+
+# strcache performance: lookups = 87 / hit rate = 35%
+# hash-table stats:
+# Load=56/8192=1%, Rehash=0, Collisions=1/87=1%
+# Finished Make data base on Thu Nov 18 23:41:28 2021
+
+ 

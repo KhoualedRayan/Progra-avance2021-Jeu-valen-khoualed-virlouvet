@@ -88,6 +88,9 @@ struct textures_s{
     SDL_Texture* ken_hadouken1; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ken_hadouken2; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ken_hadouken3; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ken_hadouken4; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ken_hadouken5; /*!<Texture liée à l'image du perso. */
+
 
     //ken_hit
     SDL_Texture* ken_hit;

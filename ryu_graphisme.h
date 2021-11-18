@@ -16,6 +16,18 @@ void ryu_walking_clean(textures_t *textures);
 
 void ryu_walking_textures(textures_t *textures, SDL_Renderer *renderer);
 
+void ryu_hadouken_clean(textures_t *textures);
+
+void ryu_hadouken_textures(textures_t *textures, SDL_Renderer *renderer);
+
+void ryu_jump_clean(textures_t *textures);
+
+void ryu_jump_textures(textures_t *textures, SDL_Renderer *renderer);
+
+void ryu_fight_clean(textures_t *textures);
+
+void ryu_fight_textures(textures_t *textures, SDL_Renderer *renderer);
+
 void clean_texture_ryu(textures_t *textures);
 
 void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures);

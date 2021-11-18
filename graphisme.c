@@ -1,5 +1,6 @@
 #include "graphisme.h"
 #include "ryu_graphisme.h"
+#include "ken_graphisme.h"
 #include "world.h"
 #include "constante.h"
 #include "sdl2-light.h"
@@ -9,66 +10,12 @@
 
 void clean_textures(textures_t *textures){
     clean_texture(textures->background);
-    //Ryu_idle
-    clean_texture_ryu(textures) ;
-
-
-    //Ryu crouching
-    clean_texture(textures->ryu_crouching);
-
-    //Ryu hadouken
-    clean_texture(textures->ryu_hadouken);
-    clean_texture(textures->ryu_hadouken1);
-    clean_texture(textures->ryu_hadouken2);
-    clean_texture(textures->ryu_hadouken3);
-    clean_texture(textures->ryu_hadouken4);
-    clean_texture(textures->ryu_hadouken5);
-    clean_texture(textures->ryu_hadouken6);
-    clean_texture(textures->ryu_hadouken7);
-    clean_texture(textures->ryu_hadouken8);
-
-    //Ryu jumping
-    clean_texture(textures->ryu_jumping);
-    clean_texture(textures->ryu_jumping1);
-    clean_texture(textures->ryu_jumping2);
-    clean_texture(textures->ryu_jumping3);
-
-    //Ryu jumping
-    clean_texture(textures->ryu_falling);
-    clean_texture(textures->ryu_falling1);
-    clean_texture(textures->ryu_falling2);
-
-    //Ryu jumping
-    clean_texture(textures->ryu_lpunch);
-    clean_texture(textures->ryu_lpunch1);
-    clean_texture(textures->ryu_lpunch2);
-
-    //Ryu hp barre
-    clean_texture(textures->ryu_hp);
-    clean_texture(textures->ryu_hp_fill);
-
-    //Ken hp barre
-    clean_texture(textures->ken_hp);
-    clean_texture(textures->ken_hp_fill);
-
-    //ken_idle
-    clean_texture(textures->ken_idle);
-    clean_texture(textures->ken_idle1);
-    clean_texture(textures->ken_idle2);
-    clean_texture(textures->ken_idle3);
-
-    //ken_walking
-    clean_texture(textures->ken_walking);
-    clean_texture(textures->ken_walking1);
-    clean_texture(textures->ken_walking2);
-    clean_texture(textures->ken_walking3);
-    clean_texture(textures->ken_walking4);
     
-    //ken_hadouken
-    clean_texture(textures->ken_hadouken);
-    clean_texture(textures->ken_hadouken1);
-    clean_texture(textures->ken_hadouken2);
-    clean_texture(textures->ken_hadouken3);
+    //clean ryu
+    clean_texture_ryu(textures);
+    
+    //clean ken
+    clean_textures_ken(textures);
 
     clean_texture(textures->menu_1);
     clean_texture(textures->titre_p);
@@ -103,38 +50,6 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
 	textures->font = load_font("times.ttf", 69);
 }
 
-
-void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
-
-
-    //Ken_idle
-    textures->ken_idle = load_image( "ressources/ken_idle/ken_idle.bmp",renderer);
-    textures->ken_idle1 = load_image( "ressources/ken_idle/ken_idle1.bmp",renderer);
-    textures->ken_idle2 = load_image( "ressources/ken_idle/ken_idle2.bmp",renderer);
-    textures->ken_idle3 = load_image( "ressources/ken_idle/ken_idle3.bmp",renderer);
-    //ken_walking
-    textures->ken_walking = load_image( "ressources/ken_walking/ken_walking1.bmp", renderer);
-    textures->ken_walking1 = load_image( "ressources/ken_walking/ken_walking2.bmp", renderer);
-    textures->ken_walking2 = load_image( "ressources/ken_walking/ken_walking3.bmp", renderer);
-    textures->ken_walking3 = load_image( "ressources/ken_walking/ken_walking4.bmp", renderer);
-    textures->ken_walking4 = load_image( "ressources/ken_walking/ken_walking5.bmp", renderer);
-    //ken_hit
-    textures->ken_hit = load_image( "ressources/ken_hit/ken_hit.bmp", renderer);
-    textures->ken_hit1 = load_image( "ressources/ken_hit/ken_hit1.bmp", renderer);
-    textures->ken_hit2 = load_image( "ressources/ken_hit/ken_hit2.bmp", renderer);
-    textures->ken_hit3 = load_image( "ressources/ken_hit/ken_hit3.bmp", renderer);
-
-    //ken_hadouken
-    textures->ken_hadouken = load_image( "ressources/ken_hadouken/ken_hadouken.bmp",renderer); 
-    textures->ken_hadouken1 = load_image( "ressources/ken_hadouken/ken_hadouken1.bmp",renderer);
-    textures->ken_hadouken2 = load_image( "ressources/ken_hadouken/ken_hadouken2.bmp",renderer);
-    textures->ken_hadouken3 = load_image( "ressources/ken_hadouken/ken_hadouken3.bmp",renderer); 
-
-    //Ken_hp
-    textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);
-    textures->ken_hp_fill = load_image("ressources/ken_hp/hp_fill.bmp",renderer);
-
-}
 
 
 void apply_background(SDL_Renderer *renderer, SDL_Texture *texture){
