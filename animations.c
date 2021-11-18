@@ -5,7 +5,7 @@
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
 
-int time = 10;
+int time = 99;
 
 void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Affichage du texte graphique
@@ -188,10 +188,23 @@ void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 }
 
 void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
     if(world->state == ATTACK){
-        apply_sprite(renderer, textures->ryu_lpunch1,world->spriteAttack);
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ryu_lpunch,world->spriteAttack);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ryu_lpunch1,world->spriteAttack);
+            if(sprites_collide(world->spriteTwo,world->spriteAttack) && world->hitted == 0){
+                world->ken_pv += -2;
+                world->hitted = 1;
+            }
+                
+        }
     }
-
 }
 
 

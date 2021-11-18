@@ -94,8 +94,10 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 ){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_J] && world->state == REST ){
-                world->state = ATTACK;
+            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 ){
+                world->test = ATTACK;
+                world->addw = 23;
+                world->timerLastAttack = SDL_GetTicks()/1000;
                 printf("D");
             }
             if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state == REST){
