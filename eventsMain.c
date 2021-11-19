@@ -153,7 +153,7 @@ void handle_events_ken(SDL_Event *event,world_t *world){
 			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'z'
                 
             }
-            if(keystates[SDL_SCANCODE_RSHIFT] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state == REST){
+            if(keystates[SDL_SCANCODE_RSHIFT] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state_ken == REST_KEN){
                 world->nbr_hadouken = world->nbr_hadouken + 1;
                 world->timerlastshoot = SDL_GetTicks()/1000;
                 if (world->nbr_hadouken == 10){

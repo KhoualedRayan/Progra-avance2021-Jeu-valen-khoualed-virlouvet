@@ -68,7 +68,8 @@ struct world_s{
 	char* text;
 	sprite_t hadouken[10] ;
 	sprite_t hadouken_ken[10];
-	int vy;
+	int vy_ryu;
+	int vy_ken;
 	int crouch;
 	int state;
 	int state_ken;

@@ -13,7 +13,6 @@ void attack_ryu(world_t *world);
 void hadouken_ryu(world_t *world);
 
 
-void receive_damage_ryu(world_t* world);
 
 void update_data_ryu(world_t* world);
 

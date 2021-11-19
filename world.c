@@ -59,7 +59,8 @@ void init_valeurs(world_t* world){
 	world->firerate = 2;
 	world->timerLastAttack = 0;
 	world->nbr_hadouken = 0;
-	world->vy = INITIAL_SPEED;
+	world->vy_ryu = INITIAL_SPEED;
+	world->vy_ken = INITIAL_SPEED;
 	world->state = REST;
 	world->state_ken = REST_KEN ;
 }

@@ -288,8 +288,9 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->on == 1){
         for(int i=0; i<10;i++){
             if(delai >=1 && delai  <=1.2){
-                init_sprite(&(world->hadouken[world->nbr_hadouken]), world->spriteTwo->x + HORIZONTAL_SIZE - 96  , world->spriteTwo->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
+                init_sprite(&(world->hadouken[i]), world->spriteTwo->x + HORIZONTAL_SIZE - 96  , world->spriteTwo->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
                 apply_sprite(renderer,textures->ken_hadouken4,&(world->hadouken[i])) ;  
+                printf("x");
             }else {
                 for(int i=0; i<10;i++){
                     apply_sprite(renderer, textures->ken_hadouken5,&(world->hadouken[i])) ;
