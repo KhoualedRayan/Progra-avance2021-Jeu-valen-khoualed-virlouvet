@@ -61,6 +61,7 @@ struct world_s{
 	int mouvement2;
 	int test;
 	int on;
+	int on2;
 	int nbr_hadouken; 
 	float timerLastAttack; // temps depuis la derniere attaque.
 	int timerlastshoot ; //temps depuis le dernier hadouken 
@@ -122,6 +123,8 @@ void attack(world_t *world);
 void update_data(world_t *world);
 
 void update_hadouken(sprite_t *hadouken, world_t *world);
+
+void update_hadouken_opposite(sprite_t *sp1, world_t *world);
 
 int sprites_collide(sprite_t *sp1, sprite_t *sp2);
 

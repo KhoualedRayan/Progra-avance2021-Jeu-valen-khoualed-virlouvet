@@ -52,6 +52,7 @@ void init_valeurs(world_t* world){
 	world->addw = 0;
 	world->hitted = 0;
 	world->on = 0;
+	world->on2 = 0;
 	world->stun = 0;
 	world->ryu_pv = 20;
 	world->ken_pv = 20;
@@ -148,9 +149,13 @@ int is_game_over(world_t *world){
     return world->gameover;
 }
 
-void update_hadouken(sprite_t *hadouken, world_t *world){
-	hadouken->x = hadouken->x + INITIAL_SPEED ;
+void update_hadouken(sprite_t *sp1, world_t *world){
+	sp1->x = sp1->x + INITIAL_SPEED ;
 }
+void update_hadouken_opposite(sprite_t *sp1, world_t *world){
+	sp1->x = sp1->x - INITIAL_SPEED ;
+}
+
 
 void update_data(world_t *world){
 	update_data_ryu(world);
@@ -160,6 +165,7 @@ void update_data(world_t *world){
 	for (int i = 0; i <10; i++)
 	{
 		update_hadouken(&(world->hadouken[i]), world);
+		update_hadouken_opposite(&(world->hadouken_ken[i]), world);
 		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
 	}
 }

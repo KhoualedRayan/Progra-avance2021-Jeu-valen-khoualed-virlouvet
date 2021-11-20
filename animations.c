@@ -280,26 +280,24 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
             apply_sprite(renderer,textures->ken_hadouken2,world->spriteTwo);
         }if(delai  >=0.75 && delai  <=1){
             apply_sprite(renderer, textures->ken_hadouken3,world->spriteTwo) ;
+        }if(delai>= 0.75){
+            world->on2=1;
         }
     }
-    if(delai >=1 ){
-        world->on = 1;
-    }
-    if(world->on == 1){
+    if(world->on2 == 1){
         for(int i=0; i<10;i++){
-            if(delai >=1 && delai  <=1.2){
-                init_sprite(&(world->hadouken[i]), world->spriteTwo->x + HORIZONTAL_SIZE - 96  , world->spriteTwo->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
-                apply_sprite(renderer,textures->ken_hadouken4,&(world->hadouken[i])) ;  
-                printf("x");
+            if(delai >=0.8 && delai  <=1.){
+                init_sprite(&(world->hadouken_ken[world->nbr_hadouken]), world->spriteTwo->x + HORIZONTAL_SIZE - 96  , world->spriteTwo->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
+                apply_sprite(renderer,textures->ken_hadouken4,&(world->hadouken_ken[i])) ;  
             }else {
                 for(int i=0; i<10;i++){
-                    apply_sprite(renderer, textures->ken_hadouken5,&(world->hadouken[i])) ;
+                    apply_sprite(renderer, textures->ken_hadouken5,&(world->hadouken_ken[i])) ;
                 }
             }
         }
         for (int i =0 ; i < 10 ; i++){
-            if(sprites_collide(world->sprite, &(world->hadouken[i]))){
-                world->on = 0;
+            if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+                world->on2 = 0;
             }
         }
     }
