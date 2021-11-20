@@ -24,9 +24,17 @@ void ryu_jump_clean(textures_t *textures);
 
 void ryu_jump_textures(textures_t *textures, SDL_Renderer *renderer);
 
-void ryu_fight_clean(textures_t *textures);
+void ryu_lpunch_clean(textures_t *textures);
 
-void ryu_fight_textures(textures_t *textures, SDL_Renderer *renderer);
+void ryu_lpunch_textures(textures_t *textures, SDL_Renderer *renderer);
+
+void ryu_crouch_lpunch_clean(textures_t *textures);
+
+void ryu_crouch_lpunch_textures(textures_t *textures, SDL_Renderer *renderer);
+
+void ryu_lkick_clean(textures_t *textures);
+
+void ryu_lkick_textures(textures_t *textures, SDL_Renderer *renderer);
 
 void clean_texture_ryu(textures_t *textures);
 

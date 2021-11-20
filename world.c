@@ -64,6 +64,7 @@ void init_valeurs(world_t* world){
 	world->vy_ken = INITIAL_SPEED;
 	world->state = REST;
 	world->state_ken = REST_KEN ;
+	world->typeOfAttack = REST;
 }
 
 void init_memoire(world_t * world){

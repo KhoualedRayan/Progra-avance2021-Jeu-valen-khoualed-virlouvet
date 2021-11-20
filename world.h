@@ -74,6 +74,7 @@ struct world_s{
 	int crouch;
 	int state;
 	int state_ken;
+	int typeOfAttack;
 };
 
 /**

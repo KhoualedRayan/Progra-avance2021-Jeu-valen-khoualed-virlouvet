@@ -56,7 +56,14 @@ struct textures_s{
     //Ryu_l-punch
     SDL_Texture* ryu_lpunch; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_lpunch1; /*!<Texture liée à l'image du perso. */
-    SDL_Texture* ryu_lpunch2; /*!<Texture liée à l'image du perso. */
+
+    //Ryu_l-kick
+    SDL_Texture* ryu_lkick; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_lkick1; /*!<Texture liée à l'image du perso. */
+
+    //Ryu_crouch_lpunch
+    SDL_Texture* ryu_crouch_lpunch; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_crouch_lpunch2; /*!<Texture liée à l'image du perso. */
 
     //Ryu hp barre
     SDL_Texture* ryu_hp;

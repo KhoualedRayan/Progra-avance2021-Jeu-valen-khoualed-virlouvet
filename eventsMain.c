@@ -94,11 +94,24 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 ){
                 world->mouvement = 8;
             }
+            if(keystates[SDL_SCANCODE_DOWN] && keystates[SDL_SCANCODE_J] && walk ==0 ){
+                world->test = ATTACK;
+                world->typeOfAttack = CROUCH_LPUNCH;
+                world->addw = 23;
+                world->addw = 180;
+                world->timerLastAttack = SDL_GetTicks()/1000;
+            }
             if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 ){
                 world->test = ATTACK;
+                world->typeOfAttack = LPUNCH;
                 world->addw = 23;
                 world->timerLastAttack = SDL_GetTicks()/1000;
-                printf("D");
+            }
+            if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0 ){
+                world->test = ATTACK;
+                world->typeOfAttack = LKICK;
+                world->addw = 23;
+                world->timerLastAttack = SDL_GetTicks()/1000;
             }
             if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state == REST){
                 world->nbr_hadouken = world->nbr_hadouken + 1;

@@ -63,7 +63,7 @@
 */
 
 #define INITIAL_SPEED 3
-
+// constante pour world->state
 #define REST 0
 #define REST_KEN 100
 #define FALL 1
@@ -74,6 +74,12 @@
 #define RISE 5
 #define ATTACK 6
 #define ATTACKED 7
+
+//constate pour world->typeOfAttack
+
+#define LKICK 51
+#define LPUNCH 52
+#define CROUCH_LPUNCH 53
 
 
 #endif

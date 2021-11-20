@@ -190,7 +190,7 @@ void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(world->state == ATTACK){
+    if(world->state == ATTACK && world->typeOfAttack == LPUNCH){
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - world->timerLastAttack);
         if(delai  >=-0.0 && delai  <=0.3){
@@ -206,7 +206,45 @@ void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
     }
 }
+void ryu_lkick(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state == ATTACK && world->typeOfAttack == LKICK){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ryu_lkick,world->spriteAttack);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ryu_lkick1,world->spriteAttack);
+            if(sprites_collide(world->spriteTwo,world->spriteAttack) && world->hitted == 0){
+                world->ken_pv += -3;
+                world->hitted = 1;
+            }
+                
+        }
+    }
+}
 
+void ryu_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state == ATTACK && world->typeOfAttack == CROUCH_LPUNCH){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ryu_crouch_lpunch,world->spriteAttack);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ryu_crouch_lpunch2,world->spriteAttack);
+            if(sprites_collide(world->spriteTwo,world->spriteAttack) && world->hitted == 0){
+                world->ken_pv += -2;
+                world->hitted = 1;
+            }
+                
+        }
+    }
+}
 
 
 void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
@@ -326,7 +364,7 @@ void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
         for(int i=0;i<10;i++){
             if(sprites_collide(world->spriteTwo,&(world->hadouken[i])) && world->hitted == 0){
-                world->ken_pv += -2;
+                world->ken_pv -= 5;
                 world->hitted = 1;
             }
         }
@@ -356,7 +394,9 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
     ryu_falling(renderer,world,textures);
     ryu_hadouken(renderer,world,textures);
     ryu_lpunch(renderer,world,textures);
+    ryu_lkick(renderer,world,textures);
     ryu_hp(renderer,world,textures);
+    ryu_crouch_lpunch(renderer,world,textures);
 
 
 

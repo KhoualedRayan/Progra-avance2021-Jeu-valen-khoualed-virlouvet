@@ -100,18 +100,40 @@ void ryu_jump_textures(textures_t *textures, SDL_Renderer *renderer){
 }
 
 
-//ryu_fight
-void ryu_fight_clean(textures_t *textures){
+//ryu_lpunch
+void ryu_lpunch_clean(textures_t *textures){
     clean_texture(textures->ryu_lpunch);
     clean_texture(textures->ryu_lpunch1);
-    clean_texture(textures->ryu_lpunch2);
 }
 
-void ryu_fight_textures(textures_t *textures, SDL_Renderer *renderer){
+void ryu_lpunch_textures(textures_t *textures, SDL_Renderer *renderer){
     //Ryu l-punch
-    textures->ryu_lpunch = load_image( "ressources/ryu_l-punch/f1.bmp",renderer); 
-    textures->ryu_lpunch1 = load_image( "ressources/ryu_l-punch/f2.bmp",renderer);
-    textures->ryu_lpunch2 = load_image( "ressources/ryu_l-punch/f3.bmp",renderer);
+    textures->ryu_lpunch = load_image( "ressources/ryu_attacks/l-punch/f1.bmp",renderer); 
+    textures->ryu_lpunch1 = load_image( "ressources/ryu_attacks/l-punch/f2.bmp",renderer);
+}
+
+//ryu_lkick
+void ryu_lkick_clean(textures_t *textures){
+    clean_texture(textures->ryu_lkick);
+    clean_texture(textures->ryu_lkick1);
+}
+
+void ryu_lkick_textures(textures_t *textures, SDL_Renderer *renderer){
+    //Ryu l-punch
+    textures->ryu_lkick = load_image( "ressources/ryu_attacks/l-kick/f1.bmp",renderer); 
+    textures->ryu_lkick1 = load_image( "ressources/ryu_attacks/l-kick/f2.bmp",renderer);
+}
+
+//ryu_crouch_lpunch
+void ryu_crouch_lpunch_clean(textures_t *textures){
+    clean_texture(textures->ryu_crouch_lpunch);
+    clean_texture(textures->ryu_crouch_lpunch2);
+}
+
+void ryu_crouch_lpunch_textures(textures_t *textures, SDL_Renderer *renderer){
+    //Ryu l-punch
+    textures->ryu_crouch_lpunch = load_image( "ressources/ryu_attacks/crouch_l-punch/f1.bmp",renderer); 
+    textures->ryu_crouch_lpunch2 = load_image( "ressources/ryu_attacks/crouch_l-punch/f2.bmp",renderer);
 }
 
 void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
@@ -124,7 +146,11 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
 
     ryu_jump_textures(textures,renderer);
 
-    ryu_fight_textures(textures,renderer);
+    ryu_lpunch_textures(textures,renderer);
+
+    ryu_crouch_lpunch_textures(textures,renderer);
+
+    ryu_lkick_textures(textures,renderer);
 
     //Ryu crouching
     textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer);
@@ -141,7 +167,9 @@ void clean_texture_ryu(textures_t *textures){
     ryu_walking_clean(textures);
     ryu_hadouken_clean(textures);
     ryu_jump_clean(textures);
-    ryu_fight_clean(textures);
+    ryu_lpunch_clean(textures);
+    ryu_lkick_clean(textures);
+    ryu_crouch_lpunch_clean(textures);
     //Ryu crouching
     clean_texture(textures->ryu_crouching);
 
