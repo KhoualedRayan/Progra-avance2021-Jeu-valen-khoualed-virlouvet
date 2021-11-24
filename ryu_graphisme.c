@@ -21,6 +21,20 @@ void ryu_idle_textures(textures_t *textures, SDL_Renderer *renderer){
 	textures->ryu_idle3 = load_image( "ressources/ryu_idle/f4.bmp",renderer); 
 }
 
+void ryu_hit_textures(textures_t *textures, SDL_Renderer *renderer){
+    textures->ryu_hit = load_image( "ressources/ryu_hit/ryu_hit.bmp", renderer);
+    textures->ryu_hit1 = load_image( "ressources/ryu_hit/ryu_hit1.bmp", renderer);
+    textures->ryu_hit2 = load_image( "ressources/ryu_hit/ryu_hit2.bmp", renderer);
+    textures->ryu_hit3 = load_image( "ressources/ryu_hit/ryu_hit3.bmp", renderer);
+}
+
+void ryu_hit_clean(textures_t *textures){
+    clean_texture(textures->ryu_hit);
+    clean_texture(textures->ryu_hit1);
+    clean_texture(textures->ryu_hit2);
+    clean_texture(textures->ryu_hit3);
+
+}
 //ryu_walking
 void ryu_walking_clean(textures_t *textures){
 
@@ -140,6 +154,8 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     //Ryu_idle
 	ryu_idle_textures(textures,renderer);
 
+    ryu_hit_textures(textures,renderer);
+
     ryu_walking_textures(textures, renderer);
 
     ryu_hadouken_textures(textures, renderer);
@@ -164,6 +180,7 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
 
 void clean_texture_ryu(textures_t *textures){
     ryu_idle_clean(textures);
+    ryu_hit_clean(textures);
     ryu_walking_clean(textures);
     ryu_hadouken_clean(textures);
     ryu_jump_clean(textures);

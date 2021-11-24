@@ -28,14 +28,13 @@ void gravity_ken(world_t *world){
 }
 
 void hadouken_ken(world_t *world){
-	int compt;
 	if(world->test == HADOUKEN_KEN && world->state_ken != JUMP && world->state_ken != FALL && world->state_ken != CROUCH){
-		compt = SDL_GetTicks()/1000;
-		if((world->timerlastshoot +1 > SDL_GetTicks()/1000)){
+		if((world->timerlastshoot +2 > SDL_GetTicks()/1000)){
 			world->state_ken = HADOUKEN_KEN;
 		}else{
 			world->state_ken = REST_KEN;
 			world->test = 0;
+			world->hitted_ryu = 0;
 		}
 	}
 }

@@ -49,6 +49,7 @@ struct world_s{
 	int ryu_pv;
 	int ken_pv;
 	int hitted;
+	int hitted_ryu ;
 	int stun;
 	int addw;
 	int addh;

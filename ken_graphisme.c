@@ -61,6 +61,7 @@ void ken_hadouken_clean(textures_t *textures){
     clean_texture(textures->ken_hadouken3);
     clean_texture(textures->ken_hadouken4);
     clean_texture(textures->ken_hadouken5);
+    clean_texture(textures->ken_hadouken6);
 }
 
 void ken_hadouken_textures(SDL_Renderer *renderer, textures_t *textures){
@@ -69,7 +70,8 @@ void ken_hadouken_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->ken_hadouken2 = load_image( "ressources/ken_hadouken/ken_hadouken2.bmp",renderer);
     textures->ken_hadouken3 = load_image( "ressources/ken_hadouken/ken_hadouken3.bmp",renderer); 
     textures->ken_hadouken4 = load_image( "ressources/hadouken/hadouken_k.bmp",renderer); 
-    textures->ken_hadouken5 = load_image( "ressources/hadouken/hadouken_k1.bmp",renderer); 
+    textures->ken_hadouken6 = load_image( "ressources/hadouken/hadouken_k1.bmp",renderer); 
+    textures->ken_hadouken5 = load_image( "ressources/hadouken/hadouken_k2.bmp",renderer); 
 }
 
 void clean_textures_ken(textures_t *textures){

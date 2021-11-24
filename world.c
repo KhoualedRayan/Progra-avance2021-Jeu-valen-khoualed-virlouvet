@@ -51,6 +51,7 @@ void init_valeurs(world_t* world){
 	world->addh = 0;
 	world->addw = 0;
 	world->hitted = 0;
+	world->hitted_ryu = 0 ;
 	world->on = 0;
 	world->on2 = 0;
 	world->stun = 0;
@@ -168,6 +169,7 @@ void update_data(world_t *world){
 		update_hadouken(&(world->hadouken[i]), world);
 		update_hadouken_opposite(&(world->hadouken_ken[i]), world);
 		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
+		handle_sprites_collision_hadoken(world->sprite, &(world->hadouken_ken[i]),world);
 	}
 }
 

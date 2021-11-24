@@ -58,9 +58,22 @@ void hadouken_ryu(world_t *world){
 	}
 }
 
+void receive_damage_ryu(world_t* world){
+	for (int i =0 ; i < 10 ; i++){
+		if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+			world->stun = SDL_GetTicks()/1000;
+			if((world->stun +1 > SDL_GetTicks()/1000)){
+				world->state = ATTACKED;
+				world->mouvement =  13;
+			}
+		}
+	}
+}
+
 
 void update_data_ryu(world_t* world){
     hadouken_ryu(world);
 	attack_ryu(world);
     gravity_ryu(world);
+	receive_damage_ryu(world);
 }

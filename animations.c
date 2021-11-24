@@ -54,6 +54,34 @@ void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
     }
 }
+void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state == ATTACKED && world->mouvement == 13){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - temps);
+        if(delai  >=0.0 && delai  <=0.25){
+            apply_sprite(renderer, textures->ryu_hit,world->sprite);
+        }if(delai  >=0.25 && delai  <=0.5){
+            apply_sprite(renderer,textures->ryu_hit1,world->sprite);
+        }
+        if(delai  >=0.5 && delai  <=0.75){
+            apply_sprite(renderer,textures->ryu_hit2,world->sprite);
+        }if(delai  >=0.75 && delai  < 0.98){
+            apply_sprite(renderer, textures->ryu_hit3,world->sprite) ;
+        }
+        if(delai >= 0.98){
+            world->state = REST;
+            world->mouvement = REST;
+        }
+        for(int i=0;i<10;i++){
+            if(sprites_collide(world->sprite,&(world->hadouken_ken[i])) && world->hitted_ryu == 0){
+                world->ryu_pv -= 5;
+                world->hitted_ryu = 1;
+            }
+        }
+    }
+}
 void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //WALK RIGHT    
     if(world->mouvement == 1){
@@ -303,7 +331,7 @@ void ken_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Hadouken
-    int temps;
+    float temps;
     float delai;
     if(world->state_ken == HADOUKEN_KEN){
         temps = SDL_GetTicks()/1000;
@@ -316,7 +344,7 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
         if(delai  >=0.5 && delai <=0.75){
             apply_sprite(renderer,textures->ken_hadouken2,world->spriteTwo);
-        }if(delai  >=0.75 && delai  <=1){
+        }if(delai  >=0.75 && delai  <=1.){
             apply_sprite(renderer, textures->ken_hadouken3,world->spriteTwo) ;
         }if(delai>= 0.75){
             world->on2=1;
@@ -325,7 +353,7 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->on2 == 1){
         for(int i=0; i<10;i++){
             if(delai >=0.8 && delai  <=1.){
-                init_sprite(&(world->hadouken_ken[world->nbr_hadouken]), world->spriteTwo->x + HORIZONTAL_SIZE - 96  , world->spriteTwo->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
+                init_sprite(&(world->hadouken_ken[world->nbr_hadouken]), world->spriteTwo->x + HORIZONTAL_SIZE - 260  , world->spriteTwo->y + PROJECTILE_SIZE + 48, PROJECTILE_SIZE, PROJECTILE_SIZE);
                 apply_sprite(renderer,textures->ken_hadouken4,&(world->hadouken_ken[i])) ;  
             }else {
                 for(int i=0; i<10;i++){
@@ -336,6 +364,7 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         for (int i =0 ; i < 10 ; i++){
             if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
                 world->on2 = 0;
+                apply_sprite(renderer, textures->ken_hadouken6,&(world->hadouken_ken[i])) ;
             }
         }
     }
@@ -387,6 +416,7 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
 
     //RYU
     ryu_hidle(renderer,world,textures);
+    ryu_hit(renderer,world,textures);
 	ryu_walking(renderer,world,textures);
 	ryu_blocking(renderer,world,textures);
 	ryu_crouching(renderer,world,textures);
