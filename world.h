@@ -51,6 +51,8 @@ struct world_s{
 	int hitted;
 	int hitted_ryu ;
 	int stun;
+	int addx;
+	int addy;
 	int addw;
 	int addh;
 	float compteur;

@@ -32,7 +32,7 @@ void gravity_ryu(world_t *world){
 
 void attack_ryu(world_t *world){
 	if(world->test == ATTACK && world->state != JUMP && world->state != FALL && world->state != CROUCH && world->state != HADOUKEN){
-		init_sprite(world->spriteAttack,world->sprite->x, world->sprite->y, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
+		init_sprite(world->spriteAttack,world->sprite->x +world->addx, world->sprite->y +world->addy, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
 		if((world->timerLastAttack +1 > SDL_GetTicks()/1000)){
 			world->state = ATTACK;
 		}else{
@@ -41,6 +41,8 @@ void attack_ryu(world_t *world){
 			world->hitted = 0;
 			world->addw = 0;
 			world->addh = 0;
+			world->addx = 0;
+			world->addy = 0;
 		}
 	}else{
 		init_sprite(world->spriteAttack,world->sprite->x, world->sprite->y+3000, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
