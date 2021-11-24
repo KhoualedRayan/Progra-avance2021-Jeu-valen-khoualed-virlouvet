@@ -128,6 +128,9 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             //SDL_Log("-key");
             walk = 0;
             world->mouvement =0;
+            if(world->state != ATTACKED){
+                world->mouvement =0;
+            }
             if(world->crouch == 1){
                 world->sprite->y = world->sprite->y - 144;
                 world->crouch = 0;
@@ -135,8 +138,6 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->state = REST;
             }
             break;
-        
-        
     }
 
 }
