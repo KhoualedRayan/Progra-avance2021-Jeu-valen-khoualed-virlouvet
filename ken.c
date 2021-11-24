@@ -17,7 +17,7 @@ void gravity_ken(world_t *world){
 		world->vy_ken = INITIAL_SPEED+2;
 		world->mouvement2 = 0;
 	}
-	if(world->spriteTwo->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state_ken !=JUMP && world->state_ken !=HADOUKEN && world->state_ken!= ATTACKED){
+	if(world->spriteTwo->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state_ken <=1){
 		world->state_ken = REST_KEN;
 	}
 	if(world->state_ken == REST_KEN){

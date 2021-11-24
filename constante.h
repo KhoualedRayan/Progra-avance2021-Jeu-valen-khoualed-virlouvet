@@ -65,7 +65,7 @@
 #define INITIAL_SPEED 3
 // constante pour world->state
 #define REST 0
-#define REST_KEN 100
+#define REST_KEN 0
 #define FALL 1
 #define JUMP 2
 #define HADOUKEN 3
