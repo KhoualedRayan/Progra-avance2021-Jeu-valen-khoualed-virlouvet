@@ -79,7 +79,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->state = CROUCH;
                 world->mouvement=3;
-                world->sprite->y = world->sprite->y + 180;
+                world->sprite->y = world->sprite->y + 144;
                 world->crouch = 1;
             }
             if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
@@ -94,20 +94,20 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 ){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_DOWN] && keystates[SDL_SCANCODE_J] && walk ==0 ){
+            if(keystates[SDL_SCANCODE_DOWN] && keystates[SDL_SCANCODE_J] && walk ==0 && world->state == CROUCH){
                 world->test = ATTACK;
                 world->typeOfAttack = CROUCH_LPUNCH;
                 world->addw = 23;
-                world->addw = 180;
+                world->addy = 144;
                 world->timerLastAttack = SDL_GetTicks()/1000;
             }
-            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 ){
+            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LPUNCH;
                 world->addw = 23;
                 world->timerLastAttack = SDL_GetTicks()/1000;
             }
-            if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0 ){
+            if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0  && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LKICK;
                 world->addw = 23;
@@ -129,8 +129,9 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             walk = 0;
             world->mouvement =0;
             if(world->crouch == 1){
-                world->sprite->y = world->sprite->y - 180;
+                world->sprite->y = world->sprite->y - 144;
                 world->crouch = 0;
+                world->spriteAttack->y -= 144;
                 world->state = REST;
             }
             break;
@@ -201,14 +202,6 @@ void handle_events(SDL_Event *event,world_t *world){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
         }
-        // for (int i =0 ; i < 10 ; i++){
-        //     if(sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-        //         world->ken_pv = world->ken_pv - 3;
-        //     }
-        //     if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
-        //         world->ryu_pv = world->ryu_pv - 3;
-        //     }
-        // } 
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu
