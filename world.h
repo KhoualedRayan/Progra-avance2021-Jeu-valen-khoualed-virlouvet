@@ -32,8 +32,9 @@ typedef struct sprite_s sprite_t;
 
 struct world_s{
 	sprite_t* sprite;	/*!<sprite devient un pointeur de sprite_t */
-	sprite_t* spriteAttack;  /*sprite qui attack*/
 	sprite_t* spriteTwo;
+	sprite_t* spriteAttack;  /*sprite qui attack*/
+	sprite_t* spriteAttackTwo;  /*sprite qui attack*/
 	sprite_t* menu;		/*!<menu devient un pointeur de sprite_t */
 	sprite_t* titre;	/*!<titre devient un pointeur de sprite_t */
 	sprite_t* exit;	/*!<exit devient un pointeur de sprite_t */
@@ -155,7 +156,7 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h);
 void init_hadouken(world_t* world);
 void init_pv(world_t* world);
 void receive_damage(world_t *world);
-
+void damage_knockback(sprite_t *sptank,sprite_t* spdamage, int damage,int kb, world_t * world);
 
 
 #endif

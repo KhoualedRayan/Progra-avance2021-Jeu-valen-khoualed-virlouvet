@@ -68,6 +68,10 @@ void receive_damage_ryu(world_t* world){
 				world->state = ATTACKED;
 				world->mouvement =  13;
 			}
+
+			if(world->hitted == 1){
+				world->sprite->x -=10;
+			}
 		}
 	}
 }
