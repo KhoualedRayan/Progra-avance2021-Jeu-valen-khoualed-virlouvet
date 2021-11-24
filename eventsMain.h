@@ -15,6 +15,7 @@
 void handle_events(SDL_Event *event,world_t *world);
 void handle_events_ryu(SDL_Event *event,world_t *world);
 void handle_events_ken(SDL_Event *event,world_t *world);
+void handle_events_bot(SDL_Event *event,world_t *world);
 void handle_events_menu(SDL_Event *event,world_t *world);
 
 

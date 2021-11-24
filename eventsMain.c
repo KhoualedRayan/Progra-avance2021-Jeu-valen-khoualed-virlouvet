@@ -191,6 +191,21 @@ void handle_events_ken(SDL_Event *event,world_t *world){
     } 
 
 }
+void handle_events_bot(SDL_Event *event,world_t *world){
+    if(world->sprite->x + 250 > world->spriteTwo->x){ //si la touche appuyée est 'd'
+
+        world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
+        world->mouvement2 = 1; 
+        walk2 = 1;
+        
+    }
+    if(world->sprite->x + 250 < world->spriteTwo->x){
+        world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
+        world->mouvement2 = 2;
+        walk2 = 1 ;
+    }
+}	   
+
 
 void handle_events(SDL_Event *event,world_t *world){
     const Uint8 *keystates;
@@ -201,6 +216,10 @@ void handle_events(SDL_Event *event,world_t *world){
         if(world->etat_menu == 3){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
+        }
+        if(world->etat_menu == 2){
+            handle_events_ryu(event,world);
+            handle_events_bot(event,world);
         }
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {

@@ -59,7 +59,7 @@ int main( int argc, char* args[] )
             }
         }
 
-        if(world.etat_menu==3 && world.gameover==0){
+        if(world.etat_menu==3 && world.gameover==0 || world.etat_menu==2 && world.gameover==0 ){
             world.compteur =(float)(SDL_GetTicks()/1000.);
 	        world.mouvement = 0;
 	        world.mouvement2 = 0;
