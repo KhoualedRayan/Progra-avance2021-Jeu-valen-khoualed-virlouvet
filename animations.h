@@ -17,13 +17,6 @@ void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_lkick(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 
-//KEN
-void ken_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures);
-void ken_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures);
-void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures);
-void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures);
-void ken_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures);
-
 
 
 

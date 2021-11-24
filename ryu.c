@@ -20,7 +20,7 @@ void gravity_ryu(world_t *world){
 		world->vy_ryu = INITIAL_SPEED+2;
 		world->mouvement = 0;
 	}
-	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state !=JUMP && world->state !=HADOUKEN && world->state != ATTACK ){
+	if(world->sprite->y == (SCREEN_HEIGHT - VERTICAL_SIZE - 120) && world->state <=1){
 		world->state = REST;
 	}
 	if(world->state == REST){
@@ -67,6 +67,10 @@ void receive_damage_ryu(world_t* world){
 			if((world->stun +1 > SDL_GetTicks()/1000)){
 				world->state = ATTACKED;
 				world->mouvement =  13;
+			}
+
+			if(world->hitted == 1){
+				world->sprite->x -=10;
 			}
 		}
 	}

@@ -60,14 +60,14 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if (keystates[SDL_SCANCODE_RIGHT] && world->state == REST){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+            if (keystates[SDL_SCANCODE_D] && world->state == REST){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
                 //SDL_Log("Scancode fleche droite"); // Affiche un message
                 world->sprite->x = world->sprite->x + MOVING_STEP;
                 world->mouvement = 1;
                 walk = 1;
             }
 
-            if (keystates[SDL_SCANCODE_LEFT]&& world->state == REST){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
+            if (keystates[SDL_SCANCODE_A]&& world->state == REST){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
                 //SDL_Log("Keycode fleche gauche"); // Affiche un message
                 world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 2;
@@ -75,26 +75,24 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
 
             }
 
-            if (keystates[SDL_SCANCODE_DOWN]&& walk ==0 &&world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+            if (keystates[SDL_SCANCODE_S]&& walk ==0 &&world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->state = CROUCH;
                 world->mouvement=3;
                 world->sprite->y = world->sprite->y + 144;
                 world->crouch = 1;
             }
-            if (keystates[SDL_SCANCODE_UP] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
+            if (keystates[SDL_SCANCODE_W] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->state = JUMP;
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && walk==0 &&world->state == REST){ //si la touche appuyée est 'flèche vers la gauche'
-                //world->sprite->x = world->sprite->x - MOVING_STEP/2;
+            if(keystates[SDL_SCANCODE_LSHIFT] && walk==0 &&world->state == REST&&world->state <=0){ //si la touche appuyée est 'Lshift'
                 world->mouvement = 5;
-                
             }
-            if(keystates[SDL_SCANCODE_RCTRL] && keystates[SDL_SCANCODE_DOWN] && walk ==0 ){
+            if(keystates[SDL_SCANCODE_LSHIFT] && keystates[SDL_SCANCODE_S] && walk ==0 && world->state == CROUCH ){
                 world->mouvement = 8;
             }
-            if(keystates[SDL_SCANCODE_DOWN] && keystates[SDL_SCANCODE_J] && walk ==0 && world->state == CROUCH){
+            if(keystates[SDL_SCANCODE_S] && keystates[SDL_SCANCODE_J] && walk ==0 && world->state == CROUCH){
                 world->test = ATTACK;
                 world->typeOfAttack = CROUCH_LPUNCH;
                 world->addw = 23;
@@ -128,6 +126,9 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             //SDL_Log("-key");
             walk = 0;
             world->mouvement =0;
+            if(world->state != ATTACKED){
+                world->mouvement =0;
+            }
             if(world->crouch == 1){
                 world->sprite->y = world->sprite->y - 144;
                 world->crouch = 0;
@@ -135,8 +136,6 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->state = REST;
             }
             break;
-        
-        
     }
 
 }
@@ -147,24 +146,24 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         {
         case SDL_KEYDOWN:
             //SDL_Log("+key");
-            if(keystates[SDL_SCANCODE_D] && world->state_ken == REST_KEN){ //si la touche appuyée est 'd'
+            if(keystates[SDL_SCANCODE_RIGHT] && world->state_ken == REST_KEN){ //si la touche appuyée est 'd'
 
                 world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
                 world->mouvement2 = 1; 
                 walk2 = 1;
                 
             }
-			if(keystates[SDL_SCANCODE_A] && world->state_ken == REST_KEN){ //si la touche appuyée est 'a'
+			if(keystates[SDL_SCANCODE_LEFT] && world->state_ken == REST_KEN){ //si la touche appuyée est 'a'
                 world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
                 world->mouvement2 = 2;
                 walk2=1;
                 
             }
-			if(keystates[SDL_SCANCODE_S] && walk2 == 0){ //si la touche appuyée est 's'
+			if(keystates[SDL_SCANCODE_DOWN] && walk2 == 0){ //si la touche appuyée est 's'
                 world->mouvement2 = 3;
 
             }
-			if(keystates[SDL_SCANCODE_Z]){ //si la touche appuyée est 'z'
+			if(keystates[SDL_SCANCODE_UP]){ //si la touche appuyée est 'z'
                 
             }
             if(keystates[SDL_SCANCODE_RSHIFT] && walk2 ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state_ken == REST_KEN){

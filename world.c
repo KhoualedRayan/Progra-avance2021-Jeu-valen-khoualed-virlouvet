@@ -74,6 +74,7 @@ void init_memoire(world_t * world){
 	// Allocation de mémoire
 	world->sprite = (sprite_t*)malloc(sizeof(sprite_t));
 	world->spriteAttack = (sprite_t*)malloc(sizeof(sprite_t));
+	world->spriteAttackTwo = (sprite_t*)malloc(sizeof(sprite_t));
 	world->spriteTwo = (sprite_t*)malloc(sizeof(sprite_t));
 	world->menu = (sprite_t*)malloc(sizeof(sprite_t));
 	world->titre = (sprite_t*)malloc(sizeof(sprite_t));
@@ -135,6 +136,7 @@ void clean_data(world_t *world){
     /* utile uniquement si vous avez fait de l'allocation dynamique (malloc); la fonction ici doit permettre de libérer la mémoire (free) */
     free(world->sprite);
 	free(world->spriteAttack);
+	free(world->spriteAttackTwo);
 	free(world->spriteTwo);
 	free(world->menu);
 	free(world->titre);
@@ -160,6 +162,19 @@ void update_hadouken_opposite(sprite_t *sp1, world_t *world){
 	sp1->x = sp1->x - INITIAL_SPEED ;
 }
 
+void damage_knockback(sprite_t *sptank,sprite_t* spdamage, int damage,int kb, world_t * world){
+    if(sprites_collide(sptank,spdamage) && world->hitted == 0){
+		if(spdamage == world->spriteAttack){
+        	world->ken_pv -= damage;
+		}
+		if(spdamage == world->spriteAttackTwo){
+			world->ryu_pv -= damage;
+		}
+
+        sptank->x += kb;
+        world->hitted = 1;
+    }
+}
 
 void update_data(world_t *world){
 	update_data_ryu(world);
