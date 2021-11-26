@@ -173,7 +173,19 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN_KEN;
+            }
 
+            if(keystates[SDL_SCANCODE_L] && world->state_ken == REST && walk2 == 0 && world->addy2 == 0){
+                world->test2 = ATTACK;
+                world->typeOfAttack2 = LPUNCH;
+                world->addx2 = -23;
+                world->timerLastAttack2 = SDL_GetTicks()/1000;
+            }
+            if(keystates[SDL_SCANCODE_M] && world->state_ken == REST && walk2 == 0  && world->addy2 == 0){
+                world->test2 = ATTACK;
+                world->typeOfAttack2 = LKICK;
+                world->addx2 = -23;
+                world->timerLastAttack2 = SDL_GetTicks()/1000;
             }
 
             break;
@@ -181,6 +193,7 @@ void handle_events_ken(SDL_Event *event,world_t *world){
         case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
             walk2 = 0;
+            world->mouvement =0;
             if(world->state_ken != ATTACKED){
                 world->mouvement2 =0;
             }

@@ -140,6 +140,56 @@ void ken_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 }
 
+void ken_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state_ken == ATTACK && world->typeOfAttack2 == LPUNCH){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack2);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ken_lpunch,world->spriteAttackTwo);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ken_lpunch1,world->spriteAttackTwo);
+            damage_knockback(world->sprite,world->spriteAttackTwo,2,-6,world);
+                
+        }
+    }
+}
+
+void ken_lkick(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state_ken == ATTACK && world->typeOfAttack2 == LKICK){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack2);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ken_lkick,world->spriteAttackTwo);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ken_lkick1,world->spriteAttackTwo);
+            damage_knockback(world->sprite,world->spriteAttackTwo,3,-20,world);        
+        }
+    }
+}
+
+void ken_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state_ken == ATTACK && world->typeOfAttack2 == CROUCH_LPUNCH){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack2);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ken_crouch_lpunch,world->spriteAttackTwo);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ken_crouch_lpunch2,world->spriteAttackTwo);
+            damage_knockback(world->sprite,world->spriteAttackTwo,1,-5,world);
+                
+        }
+    }
+}
+
 void refresh_animations_ken(world_t* world,SDL_Renderer *renderer,textures_t *textures){
     //KEN
     ken_hidle(renderer,world,textures);
@@ -147,4 +197,7 @@ void refresh_animations_ken(world_t* world,SDL_Renderer *renderer,textures_t *te
     ken_hadouken(renderer,world,textures);
     ken_hit(renderer, world, textures);
     ken_hp(renderer,world,textures);
+    ken_lpunch(renderer,world,textures);
+    ken_lkick(renderer,world,textures);
+    ken_crouch_lpunch(renderer,world,textures);
 }

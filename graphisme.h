@@ -111,6 +111,18 @@ struct textures_s{
     SDL_Texture* ken_hit2;
     SDL_Texture* ken_hit3;
 
+    //KEn_l-punch
+    SDL_Texture* ken_lpunch; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ken_lpunch1; /*!<Texture liée à l'image du perso. */
+
+    //ken_l-kick
+    SDL_Texture* ken_lkick; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ken_lkick1; /*!<Texture liée à l'image du perso. */
+
+    //ken_crouch_lpunch
+    SDL_Texture* ken_crouch_lpunch; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ken_crouch_lpunch2; /*!<Texture liée à l'image du perso. */
+
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
     SDL_Texture* menu_1; /*!<Texture liée à l'image du fond du menu principal */
