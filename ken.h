@@ -10,6 +10,8 @@ void hadouken_ken(world_t *world);
 
 void receive_damage_ken(world_t * world);
 
+void attack_ken(world_t *world);
+
 void update_data_Ken(world_t* world);
 
 #endif

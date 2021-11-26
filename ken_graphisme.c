@@ -74,11 +74,50 @@ void ken_hadouken_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->ken_hadouken5 = load_image( "ressources/hadouken/hadouken_k2.bmp",renderer); 
 }
 
+//ken_lpunch
+void ken_lpunch_clean(textures_t *textures){
+    clean_texture(textures->ken_lpunch);
+    clean_texture(textures->ken_lpunch1);
+}
+
+void ken_lpunch_textures( SDL_Renderer *renderer,textures_t *textures){
+    //Ryu l-punch
+    textures->ken_lpunch = load_image( "ressources/ken_attacks/l-punch/f1.bmp",renderer); 
+    textures->ken_lpunch1 = load_image( "ressources/ken_attacks/l-punch/f2.bmp",renderer);
+}
+
+//ken_lkick
+void ken_lkick_clean(textures_t *textures){
+    clean_texture(textures->ken_lkick);
+    clean_texture(textures->ken_lkick1);
+}
+
+void ken_lkick_textures(SDL_Renderer *renderer,textures_t *textures){
+    //Ryu l-punch
+    textures->ken_lkick = load_image( "ressources/ken_attacks/l-kick/f1.bmp",renderer); 
+    textures->ken_lkick1 = load_image( "ressources/ken_attacks/l-kick/f2.bmp",renderer);
+}
+
+//ken_crouch_lpunch
+void ken_crouch_lpunch_clean(textures_t *textures){
+    clean_texture(textures->ken_crouch_lpunch);
+    clean_texture(textures->ken_crouch_lpunch2);
+}
+
+void ken_crouch_lpunch_textures(SDL_Renderer *renderer,textures_t *textures){
+    //Ryu l-punch
+    textures->ken_crouch_lpunch = load_image( "ressources/ken_attacks/crouch_l-punch/f1.bmp",renderer); 
+    textures->ken_crouch_lpunch2 = load_image( "ressources/ken_attacks/crouch_l-punch/f2.bmp",renderer);
+}
+
 void clean_textures_ken(textures_t *textures){
     ken_idle_clean(textures);
     ken_hit_clean(textures);
     ken_walking_clean(textures);
     ken_hadouken_clean(textures);
+    ken_crouch_lpunch_clean(textures);
+    ken_lpunch_clean(textures);
+    ken_lkick_clean(textures);
     //Ken hp barre
     clean_texture(textures->ken_hp);
     clean_texture(textures->ken_hp_fill);
@@ -91,6 +130,9 @@ void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
     ken_idle_textures(renderer,textures);
     ken_walking_textures(renderer,textures);
     ken_hadouken_textures(renderer,textures);
+    ken_crouch_lpunch_textures(renderer,textures);
+    ken_lkick_textures(renderer,textures);
+    ken_lpunch_textures(renderer,textures);
 
     //Ken_hp
     textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);

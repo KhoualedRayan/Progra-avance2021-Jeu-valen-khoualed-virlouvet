@@ -56,6 +56,10 @@ struct world_s{
 	int addy;
 	int addw;
 	int addh;
+	int addx2;
+	int addy2;
+	int addw2;
+	int addh2;
 	float compteur;
 	float compteur_menu;
 	int gameover;
@@ -64,10 +68,12 @@ struct world_s{
 	int mouvement;
 	int mouvement2;
 	int test;
+	int test2;
 	int on;
 	int on2;
 	int nbr_hadouken; 
 	float timerLastAttack; // temps depuis la derniere attaque.
+	float timerLastAttack2; // temps depuis la derniere attaque.
 	int timerlastshoot ; //temps depuis le dernier hadouken 
 	int firerate ; //temps entre chaque hadouken
 	char* text;
@@ -79,6 +85,7 @@ struct world_s{
 	int state;
 	int state_ken;
 	int typeOfAttack;
+	int typeOfAttack2;
 };
 
 /**

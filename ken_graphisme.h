@@ -25,6 +25,18 @@ void ken_hadouken_clean(textures_t *textures);
 
 void ken_hadouken_textures(SDL_Renderer *renderer, textures_t *textures);
 
+void ken_lpunch_clean(textures_t *textures);
+
+void ken_lpunch_textures(textures_t *textures, SDL_Renderer *renderer);
+
+void ken_crouch_lpunch_clean(textures_t *textures);
+
+void ken_crouch_lpunch_textures(textures_t *textures, SDL_Renderer *renderer);
+
+void ken_lkick_clean(textures_t *textures);
+
+void ken_lkick_textures(textures_t *textures, SDL_Renderer *renderer);
+
 void clean_textures_ken(textures_t *textures);
 
 

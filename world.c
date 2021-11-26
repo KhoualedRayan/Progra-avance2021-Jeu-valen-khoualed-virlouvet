@@ -48,10 +48,15 @@ void init_valeurs(world_t* world){
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
 	world->test =0;
+	world->test2 = 0;
 	world->addx = 0;
 	world->addy = 0;
 	world->addh = 0;
 	world->addw = 0;
+	world->addx2 = 0;
+	world->addy2 = 0;
+	world->addh2 = 0;
+	world->addw2 = 0;
 	world->hitted = 0;
 	world->hitted_ryu = 0 ;
 	world->on = 0;
@@ -62,12 +67,14 @@ void init_valeurs(world_t* world){
 	world->timerlastshoot = SDL_GetTicks()/1000;
 	world->firerate = 2;
 	world->timerLastAttack = 0;
+	world->timerLastAttack2 = 0;
 	world->nbr_hadouken = 0;
 	world->vy_ryu = INITIAL_SPEED;
 	world->vy_ken = INITIAL_SPEED;
 	world->state = REST;
 	world->state_ken = REST_KEN ;
 	world->typeOfAttack = REST;
+	world->typeOfAttack2 = REST;
 }
 
 void init_memoire(world_t * world){
@@ -213,7 +220,6 @@ void init_hadouken(world_t* world) {
 	for(int i = 0; i<10;i++){
 		init_sprite(&(world->hadouken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
 		init_sprite(&(world->hadouken_ken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
-
 	}
 }
 

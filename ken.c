@@ -38,6 +38,24 @@ void hadouken_ken(world_t *world){
 		}
 	}
 }
+void attack_ken(world_t *world){
+	if(world->test2 == ATTACK && world->state_ken != JUMP && world->state != FALL && world->state != CROUCH && world->state != HADOUKEN){
+		init_sprite(world->spriteAttackTwo,world->spriteTwo->x +world->addx2, world->spriteTwo->y +world->addy2, HORIZONTAL_SIZE+world->addw2, VERTICAL_SIZE + world->addh2);
+		if((world->timerLastAttack2 +1 > SDL_GetTicks()/1000)){
+			world->state_ken = ATTACK;
+		}else{
+			world->state_ken = REST;
+			world->test2 = 0;
+			world->hitted = 0;
+			world->addw2 = 0;
+			world->addh2 = 0;
+			world->addx2 = 0;
+			world->addy2 = 0;
+		}
+	}else{
+		init_sprite(world->spriteAttackTwo,world->spriteTwo->x, world->spriteTwo->y+3000, HORIZONTAL_SIZE+world->addw2, VERTICAL_SIZE + world->addh2);
+	}
+}
 
 void receive_damage_ken(world_t* world){
 	for (int i =0 ; i < 10 ; i++){
@@ -53,6 +71,7 @@ void receive_damage_ken(world_t* world){
 
 void update_data_Ken(world_t* world){
     gravity_ken(world) ;
+	attack_ken(world);
     hadouken_ken(world);
 	receive_damage_ken(world);
 }

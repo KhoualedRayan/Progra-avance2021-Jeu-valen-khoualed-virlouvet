@@ -281,9 +281,9 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
     ryu_jumping(renderer,world,textures);
     ryu_falling(renderer,world,textures);
     ryu_hadouken(renderer,world,textures);
+    ryu_hp(renderer,world,textures);
     ryu_lpunch(renderer,world,textures);
     ryu_lkick(renderer,world,textures);
-    ryu_hp(renderer,world,textures);
     ryu_crouch_lpunch(renderer,world,textures);
 
     //Ken
