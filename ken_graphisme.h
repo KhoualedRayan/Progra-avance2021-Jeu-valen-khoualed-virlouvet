@@ -37,6 +37,10 @@ void ken_lkick_clean(textures_t *textures);
 
 void ken_lkick_textures(textures_t *textures, SDL_Renderer *renderer);
 
+void ken_victory_textures(SDL_Renderer *renderer,textures_t *textures);
+
+void ken_victory_clean(textures_t *textures);
+
 void clean_textures_ken(textures_t *textures);
 
 

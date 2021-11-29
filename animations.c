@@ -34,7 +34,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 		world->gameover = 1;
 	}
 
-        if(time- (int)(world->compteur) + (int)(world->compteur_menu) <= 0 || world->ken_pv <=0 ||world->ryu_pv <=0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+        if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
             world->etat_menu = 0;
             world->gameover = 1;
         }
@@ -266,6 +266,35 @@ void ryu_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textur
     }
 }
 
+void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(99 - (int)(world->compteur) + (int)(world->compteur_menu) <= 0 || world->ken_pv <=0){
+        world->mouvement = 52 ;
+        world->state = REST ;
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - temps);
+        if(delai  >=-0.0 && delai  <=0.3){
+            sprintf(world->text, "YOU WIN !");
+		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
+            apply_sprite(renderer, textures->ryu_victory,world->sprite);
+
+        }
+        if(delai  >=0.3 && delai  <=0.6){
+            sprintf(world->text, "YOU WIN !");
+		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
+            apply_sprite(renderer, textures->ryu_victory1,world->sprite);
+                
+        }
+        if(delai  >=0.6 && delai  <=1.){
+            sprintf(world->text, "YOU WIN !");
+		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
+            apply_sprite(renderer, textures->ryu_victory2,world->sprite);
+            world->win = 1 ;
+        }
+    }
+}
+
 
 
 void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textures){
@@ -285,6 +314,7 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
     ryu_lpunch(renderer,world,textures);
     ryu_lkick(renderer,world,textures);
     ryu_crouch_lpunch(renderer,world,textures);
+    ryu_victory(renderer,world,textures) ;
 
     //Ken
     refresh_animations_ken(world,renderer,textures);

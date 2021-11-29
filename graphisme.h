@@ -74,6 +74,11 @@ struct textures_s{
     SDL_Texture* ryu_hp;
     SDL_Texture* ryu_hp_fill;
 
+    //Ryu victory pose
+    SDL_Texture* ryu_victory;
+    SDL_Texture* ryu_victory1;
+    SDL_Texture* ryu_victory2;
+
 
     //Ken
     SDL_Texture* characTwo ;
@@ -122,6 +127,11 @@ struct textures_s{
     //ken_crouch_lpunch
     SDL_Texture* ken_crouch_lpunch; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ken_crouch_lpunch2; /*!<Texture liée à l'image du perso. */
+
+    //ken victory pose
+    SDL_Texture* ken_victory;
+    SDL_Texture* ken_victory1;
+    SDL_Texture* ken_victory2;
 
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */

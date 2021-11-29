@@ -190,6 +190,36 @@ void ken_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textur
     }
 }
 
+void ken_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(99 - (int)(world->compteur) + (int)(world->compteur_menu) <= 0 || world->ryu_pv <=0){
+        world->mouvement2 = 52 ;
+        world->state_ken = REST_KEN ;
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - temps);
+        if(delai  >=-0.0 && delai  <=0.3){
+            sprintf(world->text, "YOU LOOSE !");
+		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
+            apply_sprite(renderer, textures->ken_victory,world->spriteTwo);
+
+        }
+        if(delai  >=0.3 && delai  <=0.6){
+            sprintf(world->text, "YOU LOOSE !");
+		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
+            apply_sprite(renderer, textures->ken_victory1,world->spriteTwo);
+                
+        }
+        if(delai  >=0.6 && delai  <=1.){
+            sprintf(world->text, "YOU LOOSE !");
+		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
+            apply_sprite(renderer, textures->ken_victory2,world->spriteTwo);
+            world->win = 1 ;
+        }
+    }
+}
+
+
 void refresh_animations_ken(world_t* world,SDL_Renderer *renderer,textures_t *textures){
     //KEN
     ken_hidle(renderer,world,textures);
@@ -200,4 +230,5 @@ void refresh_animations_ken(world_t* world,SDL_Renderer *renderer,textures_t *te
     ken_lpunch(renderer,world,textures);
     ken_lkick(renderer,world,textures);
     ken_crouch_lpunch(renderer,world,textures);
+    ken_victory(renderer,world,textures);
 }

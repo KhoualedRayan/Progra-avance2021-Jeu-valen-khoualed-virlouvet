@@ -86,6 +86,7 @@ struct world_s{
 	int state_ken;
 	int typeOfAttack;
 	int typeOfAttack2;
+	int win ;
 };
 
 /**

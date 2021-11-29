@@ -11,6 +11,7 @@ gcc -O3 `sdl2-config --cflags` -c ryu.c
 gcc -O3 `sdl2-config --cflags` -c ken.c
 gcc -O3 `sdl2-config --cflags` -c ryu_graphisme.c
 gcc -O3 `sdl2-config --cflags` -c ken_graphisme.c
-gcc -O3 `sdl2-config --cflags` main.o sdl2-light.o world.o graphisme.o sdl2-ttf-light.o eventsMain.o animations.o ryu.o ken.o ryu_graphisme.o ken_graphisme.o `sdl2-config --libs` -lSDL2_ttf -lm  -o jeu
+gcc -O3 `sdl2-config --cflags` -c ken_animations.c
+gcc -O3 `sdl2-config --cflags` main.o sdl2-light.o world.o graphisme.o sdl2-ttf-light.o eventsMain.o animations.o ryu.o ken.o ryu_graphisme.o ken_graphisme.o ken_animations.o `sdl2-config --libs` -lSDL2_ttf -lm  -o jeu
 make: Leaving directory '/home/virbek/Documents/programmation_avance/Progra-avance2021-Jeu-valen-khoualed-virlouvet'
  

@@ -110,6 +110,21 @@ void ken_crouch_lpunch_textures(SDL_Renderer *renderer,textures_t *textures){
     textures->ken_crouch_lpunch2 = load_image( "ressources/ken_attacks/crouch_l-punch/f2.bmp",renderer);
 }
 
+void ken_victory_clean(textures_t *textures){
+    clean_texture(textures->ken_victory);
+    clean_texture(textures->ken_victory1);
+    clean_texture(textures->ken_victory2);
+}
+
+void ken_victory_textures(SDL_Renderer *renderer,textures_t *textures){
+    //Ryu l-punch
+    textures->ken_victory = load_image( "ressources/ken_victory/ken_victory.bmp",renderer); 
+    textures->ken_victory1 = load_image( "ressources/ken_victory/ken_victory1.bmp",renderer);
+    textures->ken_victory2 = load_image( "ressources/ken_victory/ken_victory2.bmp",renderer);
+}
+
+
+
 void clean_textures_ken(textures_t *textures){
     ken_idle_clean(textures);
     ken_hit_clean(textures);
@@ -118,9 +133,11 @@ void clean_textures_ken(textures_t *textures){
     ken_crouch_lpunch_clean(textures);
     ken_lpunch_clean(textures);
     ken_lkick_clean(textures);
+    ken_victory_clean(textures);
     //Ken hp barre
     clean_texture(textures->ken_hp);
     clean_texture(textures->ken_hp_fill);
+
 }
 
 
@@ -133,6 +150,7 @@ void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
     ken_crouch_lpunch_textures(renderer,textures);
     ken_lkick_textures(renderer,textures);
     ken_lpunch_textures(renderer,textures);
+    ken_victory_textures(renderer, textures);
 
     //Ken_hp
     textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);

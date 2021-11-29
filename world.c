@@ -75,6 +75,7 @@ void init_valeurs(world_t* world){
 	world->state_ken = REST_KEN ;
 	world->typeOfAttack = REST;
 	world->typeOfAttack2 = REST;
+	world->win = 0 ;
 }
 
 void init_memoire(world_t * world){
