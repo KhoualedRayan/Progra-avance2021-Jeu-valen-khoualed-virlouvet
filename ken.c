@@ -61,7 +61,7 @@ void receive_damage_ken(world_t* world){
 	for (int i =0 ; i < 10 ; i++){
 		if(sprites_collide(world->spriteTwo,world->spriteAttack) || sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
 			world->stun = (float)(SDL_GetTicks()/1000.) ;
-			if((world->stun +0.5 > world->compteur)){
+			if((world->stun +1. > world->compteur)){
 				world->state_ken = ATTACKED;
 				world->mouvement2 = 10;
 			}

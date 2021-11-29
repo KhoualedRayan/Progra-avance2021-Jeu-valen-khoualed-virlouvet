@@ -62,20 +62,15 @@ void hadouken_ryu(world_t *world){
 
 void receive_damage_ryu(world_t* world){
 	for (int i =0 ; i < 10 ; i++){
-		if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+		if(sprites_collide(world->sprite,world->spriteAttackTwo) || sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
 			world->stun = (float)(SDL_GetTicks()/1000.) ;
 			if((world->stun +1. > world->compteur)){
 				world->state = ATTACKED;
-				world->mouvement =  13;
-			}
-
-			if(world->hitted == 1){
-				world->sprite->x -=10;
+				world->mouvement = 13;
 			}
 		}
 	}
 }
-
 
 void update_data_ryu(world_t* world){
     hadouken_ryu(world);

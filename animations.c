@@ -208,6 +208,7 @@ void ryu_falling(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 }
 
+
 void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //HP BARRE
     apply_sprite(renderer,textures->ryu_hp,world->ryu_hp_barre);
