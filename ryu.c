@@ -33,7 +33,7 @@ void gravity_ryu(world_t *world){
 void attack_ryu(world_t *world){
 	if(world->test == ATTACK && world->state != JUMP && world->state != FALL && world->state != CROUCH && world->state != HADOUKEN){
 		init_sprite(world->spriteAttack,world->sprite->x +world->addx, world->sprite->y +world->addy, HORIZONTAL_SIZE+world->addw, VERTICAL_SIZE + world->addh);
-		if((world->timerLastAttack +1 > SDL_GetTicks()/1000)){
+		if((world->timerLastAttack +1. >= world->compteur)){
 			world->state = ATTACK;
 		}else{
 			world->state = REST;
@@ -50,7 +50,7 @@ void attack_ryu(world_t *world){
 }
 void hadouken_ryu(world_t *world){
 	if(world->test == HADOUKEN && world->state != JUMP && world->state != FALL && world->state != CROUCH && world->state != ATTACK){
-		if((world->timerlastshoot +1 > SDL_GetTicks()/1000)){
+		if((world->timerlastshoot +1. > world->compteur)){
 			world->state = HADOUKEN;
 		}else{
 			world->state = REST;
@@ -62,20 +62,15 @@ void hadouken_ryu(world_t *world){
 
 void receive_damage_ryu(world_t* world){
 	for (int i =0 ; i < 10 ; i++){
-		if(sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
-			world->stun = SDL_GetTicks()/1000;
-			if((world->stun +1 > SDL_GetTicks()/1000)){
+		if(sprites_collide(world->sprite,world->spriteAttackTwo) || sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
+			world->stun = (float)(SDL_GetTicks()/1000.) ;
+			if((world->stun +1. > world->compteur)){
 				world->state = ATTACKED;
-				world->mouvement =  13;
-			}
-
-			if(world->hitted == 1){
-				world->sprite->x -=10;
+				world->mouvement = 13;
 			}
 		}
 	}
 }
-
 
 void update_data_ryu(world_t* world){
     hadouken_ryu(world);

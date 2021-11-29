@@ -141,7 +141,7 @@ void ryu_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float delai;
     if(world->state == HADOUKEN && world->mouvement ==0 ){
         temps = SDL_GetTicks()/1000;
-        delai = (float) ((world->compteur) - temps);
+        delai = (float) ((world->compteur) - world->timerlastshoot);
 
         if(delai  >=0.0 && delai  <=0.2){
             apply_sprite(renderer, textures->ryu_hadouken,world->sprite);
@@ -208,6 +208,7 @@ void ryu_falling(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 }
 
+
 void ryu_hp(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //HP BARRE
     apply_sprite(renderer,textures->ryu_hp,world->ryu_hp_barre);
@@ -222,13 +223,12 @@ void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->state == ATTACK && world->typeOfAttack == LPUNCH){
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - world->timerLastAttack);
-        if(delai  >=-0.0 && delai  <=0.3){
+        if(delai  >=0.0 && delai  <=0.3){
             apply_sprite(renderer, textures->ryu_lpunch,world->spriteAttack);
         }
         if(delai  >=0.3 && delai  <=1.){
             apply_sprite(renderer, textures->ryu_lpunch1,world->spriteAttack);
             damage_knockback(world->spriteTwo,world->spriteAttack,2,6,world);
-                
         }
     }
 }

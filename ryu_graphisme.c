@@ -22,10 +22,10 @@ void ryu_idle_textures(textures_t *textures, SDL_Renderer *renderer){
 }
 
 void ryu_hit_textures(textures_t *textures, SDL_Renderer *renderer){
-    textures->ryu_hit = load_image( "ressources/ryu_hit/ryu_hit.bmp", renderer);
-    textures->ryu_hit1 = load_image( "ressources/ryu_hit/ryu_hit1.bmp", renderer);
-    textures->ryu_hit2 = load_image( "ressources/ryu_hit/ryu_hit2.bmp", renderer);
-    textures->ryu_hit3 = load_image( "ressources/ryu_hit/ryu_hit3.bmp", renderer);
+    textures->ryu_hit = load_image( "ressources/ryu_hit/f1.bmp", renderer);
+    textures->ryu_hit1 = load_image( "ressources/ryu_hit/f1.bmp", renderer);
+    textures->ryu_hit2 = load_image( "ressources/ryu_hit/f2.bmp", renderer);
+    textures->ryu_hit3 = load_image( "ressources/ryu_hit/f3.bmp", renderer);
 }
 
 void ryu_hit_clean(textures_t *textures){

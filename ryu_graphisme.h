@@ -20,6 +20,10 @@ void ryu_hadouken_clean(textures_t *textures);
 
 void ryu_hadouken_textures(textures_t *textures, SDL_Renderer *renderer);
 
+void ryu_hit_clean(textures_t *textures);
+
+void ryu_hit_textures(textures_t *textures, SDL_Renderer *renderer);
+
 void ryu_jump_clean(textures_t *textures);
 
 void ryu_jump_textures(textures_t *textures, SDL_Renderer *renderer);

@@ -29,7 +29,7 @@ void gravity_ken(world_t *world){
 
 void hadouken_ken(world_t *world){
 	if(world->test == HADOUKEN_KEN && world->state_ken != JUMP && world->state_ken != FALL && world->state_ken != CROUCH){
-		if((world->timerlastshoot +1 > SDL_GetTicks()/1000)){
+		if((world->timerlastshoot +1. > world->compteur)){
 			world->state_ken = HADOUKEN_KEN;
 		}else{
 			world->state_ken = REST_KEN;
@@ -41,7 +41,7 @@ void hadouken_ken(world_t *world){
 void attack_ken(world_t *world){
 	if(world->test2 == ATTACK && world->state_ken != JUMP && world->state != FALL && world->state != CROUCH && world->state != HADOUKEN){
 		init_sprite(world->spriteAttackTwo,world->spriteTwo->x +world->addx2, world->spriteTwo->y +world->addy2, HORIZONTAL_SIZE+world->addw2, VERTICAL_SIZE + world->addh2);
-		if((world->timerLastAttack2 +1 > SDL_GetTicks()/1000)){
+		if((world->timerLastAttack2 +1. > world->compteur)){
 			world->state_ken = ATTACK;
 		}else{
 			world->state_ken = REST;
@@ -60,8 +60,8 @@ void attack_ken(world_t *world){
 void receive_damage_ken(world_t* world){
 	for (int i =0 ; i < 10 ; i++){
 		if(sprites_collide(world->spriteTwo,world->spriteAttack) || sprites_collide(world->spriteTwo, &(world->hadouken[i]))){
-			world->stun = SDL_GetTicks()/1000;
-			if((world->stun +1 > SDL_GetTicks()/1000)){
+			world->stun = (float)(SDL_GetTicks()/1000.) ;
+			if((world->stun +1. > world->compteur)){
 				world->state_ken = ATTACKED;
 				world->mouvement2 = 10;
 			}
