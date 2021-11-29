@@ -65,7 +65,7 @@ void ken_hadouken(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float delai;
     if(world->state_ken == HADOUKEN_KEN){
         temps = SDL_GetTicks()/1000;
-        delai = (float) ((world->compteur) - temps);
+        delai = (float) ((world->compteur) - world->timerlastshoot);
 
         if(delai  >=0.0 && delai  <=0.25){
             apply_sprite(renderer, textures->ken_hadouken,world->spriteTwo);
@@ -107,7 +107,7 @@ void ken_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->state_ken == ATTACKED && world->mouvement2 == 10){
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - temps);
-        if(delai  >=0.0 && delai  <=0.25){
+        if(delai  >=0. && delai  <=0.25){
             apply_sprite(renderer, textures->ken_hit,world->spriteTwo);
         }if(delai  >=0.25 && delai  <=0.5){
             apply_sprite(renderer,textures->ken_hit1,world->spriteTwo);

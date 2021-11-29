@@ -97,23 +97,24 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->typeOfAttack = CROUCH_LPUNCH;
                 world->addw = 23;
                 world->addy = 144;
-                world->timerLastAttack = SDL_GetTicks()/1000;
+                world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+                
             }
             if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LPUNCH;
                 world->addw = 23;
-                world->timerLastAttack = SDL_GetTicks()/1000;
+                world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
             }
             if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0  && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LKICK;
                 world->addw = 23;
-                world->timerLastAttack = SDL_GetTicks()/1000;
+                world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
             }
-            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state == REST){
+            if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < (float)(SDL_GetTicks()/1000.) && world->state == REST){
                 world->nbr_hadouken = world->nbr_hadouken + 1;
-                world->timerlastshoot = SDL_GetTicks()/1000;
+                world->timerlastshoot = (float)(SDL_GetTicks()/1000.) ;
                 if (world->nbr_hadouken == 10){
                     world->nbr_hadouken = 0;
                 }
@@ -166,9 +167,9 @@ void handle_events_ken(SDL_Event *event,world_t *world){
 			if(keystates[SDL_SCANCODE_UP]){ //si la touche appuyée est 'z'
                 
             }
-            if(keystates[SDL_SCANCODE_RSHIFT] && walk2 ==0 && world->timerlastshoot + world->firerate < SDL_GetTicks()/1000 && world->state_ken == REST_KEN){
+            if(keystates[SDL_SCANCODE_RSHIFT] && walk2 ==0 && world->timerlastshoot + world->firerate < (float)(SDL_GetTicks()/1000.) && world->state_ken == REST_KEN){
                 world->nbr_hadouken = world->nbr_hadouken + 1;
-                world->timerlastshoot = SDL_GetTicks()/1000;
+                world->timerlastshoot = (float)(SDL_GetTicks()/1000.) ;
                 if (world->nbr_hadouken == 10){
                     world->nbr_hadouken = 0;
                 }
@@ -179,13 +180,13 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                 world->test2 = ATTACK;
                 world->typeOfAttack2 = LPUNCH;
                 world->addx2 = -23;
-                world->timerLastAttack2 = SDL_GetTicks()/1000;
+                world->timerLastAttack2 = (float)(SDL_GetTicks()/1000.) ;
             }
             if(keystates[SDL_SCANCODE_M] && world->state_ken == REST && walk2 == 0  && world->addy2 == 0){
                 world->test2 = ATTACK;
                 world->typeOfAttack2 = LKICK;
                 world->addx2 = -23;
-                world->timerLastAttack2 = SDL_GetTicks()/1000;
+                world->timerLastAttack2 = (float)(SDL_GetTicks()/1000.) ;
             }
 
             break;
