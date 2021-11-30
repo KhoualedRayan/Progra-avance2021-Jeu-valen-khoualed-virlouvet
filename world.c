@@ -105,8 +105,8 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 
 int sprites_collide(sprite_t *sp1, sprite_t *sp2)
 {
-    int w1 = sp1->w;
-    int w2 = sp2->w;
+    int w1 = sp1->w -50;
+    int w2 = sp2->w ;
     int h1 = sp1->h;
     int h2 = sp2->h;
     int x1 = sp1->x + w1 / 2;

@@ -100,10 +100,20 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
                 
             }
+            //Low punch immobile
             if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LPUNCH;
                 world->addw = 23;
+                world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+            }
+            //Low punch en mouvement
+            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 1 && world->addy == 0){
+                world->test = ATTACK;
+                world->typeOfAttack = FORWARD_LPUNCH;
+                world->addw = 23;
+                //world->addy = 40;
+                world->addx= 40;
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
             }
             if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0  && world->addy == 0){

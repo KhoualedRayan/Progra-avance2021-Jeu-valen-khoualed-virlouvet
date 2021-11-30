@@ -70,6 +70,10 @@ struct textures_s{
     SDL_Texture* ryu_crouch_lpunch; /*!<Texture liée à l'image du perso. */
     SDL_Texture* ryu_crouch_lpunch2; /*!<Texture liée à l'image du perso. */
 
+    //Ryu_forward_lpunch
+    SDL_Texture* ryu_forward_lpunch; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ryu_forward_lpunch1; /*!<Texture liée à l'image du perso. */
+
     //Ryu hp barre
     SDL_Texture* ryu_hp;
     SDL_Texture* ryu_hp_fill;

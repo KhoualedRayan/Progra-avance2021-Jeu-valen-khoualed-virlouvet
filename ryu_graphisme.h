@@ -36,6 +36,10 @@ void ryu_crouch_lpunch_clean(textures_t *textures);
 
 void ryu_crouch_lpunch_textures(textures_t *textures, SDL_Renderer *renderer);
 
+void ryu_forward_lpunch_clean(textures_t *textures);
+
+void ryu_forward_lpunch_textures(textures_t *textures, SDL_Renderer *renderer);
+
 void ryu_lkick_clean(textures_t *textures);
 
 void ryu_lkick_textures(textures_t *textures, SDL_Renderer *renderer);
