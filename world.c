@@ -48,6 +48,7 @@ void init_valeurs(world_t* world){
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
 	world->test =0;
+	world->time = 99 ;
 	world->test2 = 0;
 	world->addx = 0;
 	world->addy = 0;

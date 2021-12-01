@@ -48,6 +48,7 @@ struct world_s{
 	sprite_t ryu_hp[20];
 	sprite_t ken_hp[20];
 	int ryu_pv;
+	int time;
 	int ken_pv;
 	int hitted;
 	int hitted_ryu ;
