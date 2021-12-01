@@ -80,6 +80,7 @@
 #define LKICK 51
 #define LPUNCH 52
 #define CROUCH_LPUNCH 53
+#define FORWARD_LPUNCH 54
 
 
 #endif

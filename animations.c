@@ -85,7 +85,7 @@ void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 }
 void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //WALK RIGHT    
-    if(world->mouvement == 1){
+    if(world->mouvement == 1 && world->state == REST){
         if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_walking,world->sprite);
         }else if((int)(world->compteur*5) %5 ==1){
@@ -102,7 +102,7 @@ void ryu_walking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     }
 
     //WALK LEFT
-	if(world->mouvement == 2){
+	if(world->mouvement == 2  && world->state == REST){
         if((int)(world->compteur*5) %5 ==0){
             apply_sprite(renderer, textures->ryu_walking,world->sprite);
         }else if((int)(world->compteur*5) %5 ==1){
@@ -266,6 +266,22 @@ void ryu_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textur
     }
 }
 
+void ryu_forward_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state == ATTACK && world->typeOfAttack == FORWARD_LPUNCH){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->timerLastAttack);
+        if(delai  >=-0.0 && delai  <=0.3){
+            apply_sprite(renderer, textures->ryu_forward_lpunch,world->spriteAttack);
+        }
+        if(delai  >=0.3 && delai  <=1.){
+            apply_sprite(renderer, textures->ryu_forward_lpunch1,world->spriteAttack);
+            damage_knockback(world->spriteTwo,world->spriteAttack,2,25,world);   
+        }
+    }
+}
+
 void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
@@ -340,6 +356,7 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
     ryu_lpunch(renderer,world,textures);
     ryu_lkick(renderer,world,textures);
     ryu_crouch_lpunch(renderer,world,textures);
+    ryu_forward_lpunch(renderer,world,textures);
     ryu_victory(renderer,world,textures) ;
 
     ryu_ko(renderer,world, textures);

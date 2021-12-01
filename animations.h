@@ -17,6 +17,8 @@ void ryu_hit(SDL_Renderer *renderer, world_t *world, textures_t *textures);
 void ryu_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_lkick(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 void ryu_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+void ryu_forward_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+
 
 
 

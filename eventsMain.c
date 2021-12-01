@@ -49,6 +49,9 @@ void handle_events_menu(SDL_Event *event,world_t *world){
                 world->etat_menu = 3;
                 world->gameover = 1; 
             }
+            if(keystates[SDL_SCANCODE_RETURN] && world->etat_menu == 1){
+                world->etat_menu = 4;
+            }
         break;
     }
 
@@ -100,10 +103,20 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
                 
             }
+            //Low punch immobile
             if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LPUNCH;
                 world->addw = 23;
+                world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+            }
+            //Low punch en mouvement
+            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 1 && world->addy == 0){
+                world->test = ATTACK;
+                world->typeOfAttack = FORWARD_LPUNCH;
+                world->addw = 23;
+                //world->addy = 40;
+                world->addx= 40;
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
             }
             if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0  && world->addy == 0){
@@ -230,7 +243,7 @@ void handle_events(SDL_Event *event,world_t *world){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
         }
-        if(world->etat_menu == 2){
+        if(world->etat_menu == 4){
             handle_events_ryu(event,world);
             handle_events_bot(event,world);
         }
