@@ -59,6 +59,25 @@ int main( int argc, char* args[] )
             }
         }
 
+        // while(world.etat_menu==4 || world.etat_menu==3){
+        
+        //     //gestion des évènements
+        //     handle_events(&event,&world);
+
+        //     if(world.etat_menu == 4 || world.etat_menu==3){
+        //     //mise à jour des données liée à la physique du monde
+        //     update_data(&world);
+
+        //     //affiche le menu
+        //     refresh_graphics_menu(renderer,&world,&textures);
+
+        //     // pause de 10 ms pour controler la vitesse de rafraichissement
+        //     pause(10);
+
+        //     world.compteur_menu = (float)(SDL_GetTicks()/1000.);
+        //     }
+        // }
+
         if(world.etat_menu==3 && world.gameover==0 || world.etat_menu==2 && world.gameover==0 || world.etat_menu==4 && world.gameover==0 ){
             world.compteur =(float)(SDL_GetTicks()/1000.);
 	        world.mouvement = 0;
