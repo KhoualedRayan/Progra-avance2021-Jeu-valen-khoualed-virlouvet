@@ -163,6 +163,19 @@ void ryu_victory_textures(SDL_Renderer *renderer,textures_t *textures){
     textures->ryu_victory2 = load_image( "ressources/ryu_victory/ryu_victory2.bmp",renderer);
 }
 
+void ryu_ko_clean(textures_t *textures){
+    clean_texture(textures->ryu_ko);
+    clean_texture(textures->ryu_ko1);
+    clean_texture(textures->ryu_ko2);
+}
+
+void ryu_ko_textures(textures_t *textures, SDL_Renderer *renderer){
+    //Ryu l-punch
+    textures->ryu_ko = load_image( "ressources/ryu_ko/ryu_ko.bmp",renderer); 
+    textures->ryu_ko1 = load_image( "ressources/ryu_ko/ryu_ko1.bmp",renderer);
+    textures->ryu_ko2 = load_image( "ressources/ryu_ko/ryu_ko2.bmp",renderer);  
+}
+
 void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     //Ryu_idle
 	ryu_idle_textures(textures,renderer);
@@ -182,6 +195,8 @@ void  init_textures_ryu(SDL_Renderer *renderer, textures_t *textures){
     ryu_lkick_textures(textures,renderer);
 
     ryu_victory_textures(renderer,textures) ;
+
+    ryu_ko_textures(textures,renderer);
     //Ryu crouching
     textures->ryu_crouching = load_image( "ressources/ryu_crouching/f1.bmp",renderer);
 
@@ -205,6 +220,8 @@ void clean_texture_ryu(textures_t *textures){
     clean_texture(textures->ryu_crouching);
 
     ryu_victory_clean(textures) ;
+
+    ryu_ko_clean(textures);
 
 
     //Ryu hp barre

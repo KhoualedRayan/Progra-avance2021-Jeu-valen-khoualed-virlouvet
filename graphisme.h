@@ -79,6 +79,12 @@ struct textures_s{
     SDL_Texture* ryu_victory1;
     SDL_Texture* ryu_victory2;
 
+    SDL_Texture* ryu_ko;
+    SDL_Texture* ryu_ko1;
+    SDL_Texture* ryu_ko2;
+
+
+
 
     //Ken
     SDL_Texture* characTwo ;
@@ -132,6 +138,11 @@ struct textures_s{
     SDL_Texture* ken_victory;
     SDL_Texture* ken_victory1;
     SDL_Texture* ken_victory2;
+
+    //ken qui perd
+    SDL_Texture* ken_Ko;
+    SDL_Texture* ken_Ko1;
+    SDL_Texture* ken_Ko2;
 
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
