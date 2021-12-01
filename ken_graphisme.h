@@ -43,6 +43,11 @@ void ken_victory_clean(textures_t *textures);
 
 void clean_textures_ken(textures_t *textures);
 
+void ryu_ko_textures(SDL_Renderer *renderer,textures_t *textures); 
+
+void ken_ko_clean(textures_t *textures);
+
+
 
 void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures);
 

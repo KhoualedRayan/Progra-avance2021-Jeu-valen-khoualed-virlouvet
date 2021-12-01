@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
- 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Nov 29 17:53:16 2021
+# Make data base, printed on Wed Dec  1 16:11:32 2021
 
 # Variables
 
@@ -55,7 +53,7 @@ SNAP_DATA = /var/snap/code/82
 # environment
 VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"2e2aa82e8d01527e087108cb63eee9b1.fr","_translationsConfigFile":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr/tcf.json","_cacheRoot":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr","_resolvedLanguagePackCoreLocation":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247","_corruptedFile":"/home/virbek/.config/Code/clp/2e2aa82e8d01527e087108cb63eee9b1.fr/corrupted.info","_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:54854
+JOURNAL_STREAM = 8:46777
 # makefile (from 'Makefile', line 1)
 CFLAGS = -O3 `sdl2-config --cflags`
 # environment
@@ -85,7 +83,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/82/usr/share/code/code
 # environment
-MANAGERPID = 2092
+MANAGERPID = 1442
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -101,7 +99,7 @@ PROG = jeu
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Virbek:@/tmp/.ICE-unix/2383,unix/Virbek:/tmp/.ICE-unix/2383
+SESSION_MANAGER = local/Virbek:@/tmp/.ICE-unix/1701,unix/Virbek:/tmp/.ICE-unix/1701
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -119,7 +117,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=690e1a7e-274d-495c-8437-9070543dedba&iid=690e1a7e-274d-495c-8437-9070543dedba&sid=690e1a7e-274d-495c-8437-9070543dedba","uploadToServer":true}
 # environment
-INVOCATION_ID = 4679f6e97591466e96db2a7a1e22c500
+INVOCATION_ID = 3bc38312cbb24b69a8610164f5930c1c
 # makefile (from 'Makefile', line 2)
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lm 
 # environment
@@ -133,7 +131,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 5265
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2689
 # automatic
 %F = $(notdir $%)
 # environment
@@ -147,7 +145,7 @@ PWD = /home/virbek/Documents/programmation_avance/Progra-avance2021-Jeu-valen-kh
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2312
+SSH_AGENT_PID = 1634
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -197,7 +195,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-2c69bc66-f152-4fc1-9990-f33251013df5.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-d0082082-3205-440b-83aa-c933187e0555.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -273,17 +271,19 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 5364
+VSCODE_PID = 2786
 # variable set hash-table stats:
 # Load=131/1024=13%, Rehash=0, Collisions=22/160=14%
 
 # Pattern-specific Variable Values
- 
 
 # No pattern-specific variable values.
 
 # Directories
 
+ 
+make: *** No rule to make target 'all'.  Stop.
+ 
 # . (device 66311, inode 265810): 47 files, no impossibilities.
 
 # 47 files, no impossibilities in 1 directories.
@@ -427,6 +427,6 @@ doc: jeu
 # strcache performance: lookups = 89 / hit rate = 37%
 # hash-table stats:
 # Load=56/8192=1%, Rehash=0, Collisions=1/89=1%
-# Finished Make data base on Mon Nov 29 17:53:16 2021
+# Finished Make data base on Wed Dec  1 16:11:34 2021
 
  

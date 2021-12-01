@@ -123,6 +123,19 @@ void ken_victory_textures(SDL_Renderer *renderer,textures_t *textures){
     textures->ken_victory2 = load_image( "ressources/ken_victory/ken_victory2.bmp",renderer);
 }
 
+void ken_Ko_clean(textures_t *textures){
+    clean_texture(textures->ken_Ko);
+    clean_texture(textures->ken_Ko1);
+    clean_texture(textures->ken_Ko2);
+}
+
+void ken_Ko_textures(SDL_Renderer *renderer,textures_t *textures){
+    //Ryu l-punch
+    textures->ken_Ko = load_image( "ressources/Ken_ko/Ken_Ko.bmp",renderer); 
+    textures->ken_Ko1 = load_image( "ressources/Ken_ko/Ken_Ko1.bmp",renderer); 
+    textures->ken_Ko2 = load_image( "ressources/Ken_ko/Ken_Ko2.bmp",renderer); 
+}
+
 
 
 void clean_textures_ken(textures_t *textures){
@@ -134,6 +147,7 @@ void clean_textures_ken(textures_t *textures){
     ken_lpunch_clean(textures);
     ken_lkick_clean(textures);
     ken_victory_clean(textures);
+    ken_Ko_clean(textures);
     //Ken hp barre
     clean_texture(textures->ken_hp);
     clean_texture(textures->ken_hp_fill);
@@ -151,6 +165,7 @@ void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
     ken_lkick_textures(renderer,textures);
     ken_lpunch_textures(renderer,textures);
     ken_victory_textures(renderer, textures);
+    ken_Ko_textures(renderer, textures);
 
     //Ken_hp
     textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);
