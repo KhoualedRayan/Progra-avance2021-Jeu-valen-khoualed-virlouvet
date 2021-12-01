@@ -143,15 +143,12 @@ struct textures_s{
     SDL_Texture* ken_victory1;
     SDL_Texture* ken_victory2;
 
-<<<<<<< HEAD
     //menu
-=======
     //ken qui perd
     SDL_Texture* ken_Ko;
     SDL_Texture* ken_Ko1;
     SDL_Texture* ken_Ko2;
 
->>>>>>> cef121cc3bc56a7f8c62f7a112c008be1046cb9f
     SDL_Texture* hadouken; /*!<Texture liée à l'image d'un tir de projectile' */
 	TTF_Font* font; /*!<Police utilisée pour l'affichage */
     SDL_Texture* menu_1; /*!<Texture liée à l'image du fond du menu principal */
