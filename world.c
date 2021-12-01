@@ -36,6 +36,9 @@ void init_environnement(world_t* world){
 	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
 	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
 	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
+	init_sprite(world->fleche_g,100,SCREEN_HEIGHT/2-120,240,240);
+	init_sprite(world->fleche_d,300,SCREEN_HEIGHT/2-120,240,240);
+
 }
 
 void init_valeurs(world_t* world){
@@ -95,6 +98,8 @@ void init_memoire(world_t * world){
 	world->playervsbot2 = (sprite_t*)malloc(sizeof(sprite_t));
 	world->ryu_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
 	world->ken_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
+	world->fleche_d = (sprite_t*)malloc(sizeof(sprite_t));
+	world->fleche_g = (sprite_t*)malloc(sizeof(sprite_t));
 }
 
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
@@ -158,6 +163,8 @@ void clean_data(world_t *world){
 	free(world->playervsbot2);
 	free(world->ryu_hp_barre);
 	free(world->ken_hp_barre);
+	free(world->fleche_d);
+	free(world->fleche_g);
 }
 
 int is_game_over(world_t *world){

@@ -25,6 +25,8 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->pvp_select);
     clean_texture(textures->pvb_normal);
     clean_texture(textures->pvb_select);
+    clean_texture(textures->flecheg);
+    clean_texture(textures->fleched);
 	clean_font(textures->font);
 }
 
@@ -48,6 +50,10 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->pvb_normal = load_image("ressources/playervsbot.bmp", renderer);
     textures->pvb_select = load_image("ressources/playervsbot_select.bmp", renderer);			
 	textures->font = load_font("times.ttf", 69);
+
+    //maps
+    textures->flecheg = load_image("ressources/fleche_gauche.bmp", renderer);
+    textures->fleched = load_image("ressources/fleche_droite.bmp", renderer);
 }
 
 
@@ -90,7 +96,11 @@ void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *te
         apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
         apply_sprite(renderer, textures->exit_select,world->exit2);
     }
-    
+    if(world->etat_menu==4){
+        apply_sprite(renderer, textures->menu_1,world->menu);
+        apply_sprite(renderer, textures->fleched,world->fleche_d);
+        apply_sprite(renderer, textures->flecheg,world->fleche_g);
+    }
 
     // on met à jour l'écran
     update_screen(renderer);
