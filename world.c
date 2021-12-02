@@ -4,8 +4,9 @@
 #include "sdl2-light.h"
 #include "ryu.h"
 #include "ken.h"
+#include "score.h"
 
-
+Liste *maList;
 
 void init_data(world_t * world){
     //on n'est pas à la fin du jeu
@@ -18,6 +19,8 @@ void init_data(world_t * world){
 
 	//initialisation des sprites
 	init_environnement(world) ;
+
+	maList = initialisation();
 
 }
 
@@ -53,6 +56,7 @@ void init_valeurs(world_t* world){
 	world->test =0;
 	world->time = 99 ;
 	world->test2 = 0;
+	world->mort = 0;
 	world->addx = 0;
 	world->addy = 0;
 	world->addh = 0;
@@ -67,7 +71,7 @@ void init_valeurs(world_t* world){
 	world->on2 = 0;
 	world->stun = 0.;
 	world->ryu_pv = 20;
-	world->ken_pv = 20;
+	world->ken_pv = 2;
 	world->timerlastshoot = (float)(SDL_GetTicks()/1000.) ;
 	world->firerate = 2.;
 	world->timerLastAttack = 0.;
@@ -100,6 +104,8 @@ void init_memoire(world_t * world){
 	world->ken_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
 	world->fleche_d = (sprite_t*)malloc(sizeof(sprite_t));
 	world->fleche_g = (sprite_t*)malloc(sizeof(sprite_t));
+	world->text = (char*)malloc(sizeof(char)* 100);	
+	world->text_score = (char*)malloc(sizeof(char)* 100);	
 }
 
 void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
@@ -155,6 +161,7 @@ void clean_data(world_t *world){
 	free(world->menu);
 	free(world->titre);
 	free(world->text);
+	free(world->text_score);
 	free(world->exit);
 	free(world->exit2);
 	free(world->playervsplayer);
@@ -165,6 +172,7 @@ void clean_data(world_t *world){
 	free(world->ken_hp_barre);
 	free(world->fleche_d);
 	free(world->fleche_g);
+	free(maList);
 }
 
 int is_game_over(world_t *world){
@@ -204,6 +212,11 @@ void update_data(world_t *world){
 		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
 		handle_sprites_collision_hadoken(world->sprite, &(world->hadouken_ken[i]),world);
 	}
+
+	if(world->win == 1){
+		scores(world,maList);
+	}
+
 }
 
 

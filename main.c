@@ -4,6 +4,7 @@
 #include "constante.h"
 #include "eventsMain.h"
 #include "animations.h"
+#include "score.h"
 
 
 
@@ -41,7 +42,10 @@ int main( int argc, char* args[] )
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
         while(world.etat_menu < 3 ){
-        
+            
+            //ICI
+            tableau_des_scores(renderer,&world,&textures);
+
             //gestion des évènements
             handle_events(&event,&world);
 
@@ -51,6 +55,7 @@ int main( int argc, char* args[] )
 
             //affiche le menu
             refresh_graphics_menu(renderer,&world,&textures);
+
 
             // pause de 10 ms pour controler la vitesse de rafraichissement
             pause(10);

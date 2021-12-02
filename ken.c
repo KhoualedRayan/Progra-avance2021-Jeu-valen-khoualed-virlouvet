@@ -65,6 +65,9 @@ void receive_damage_ken(world_t* world){
 				world->state_ken = ATTACKED;
 				world->mouvement2 = 10;
 			}
+			if(world->ken_pv <=0){
+				world->mort = (float)(SDL_GetTicks()/1000.) ;
+			}
 		}
 	}
 }

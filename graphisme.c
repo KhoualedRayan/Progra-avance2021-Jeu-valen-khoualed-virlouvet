@@ -6,6 +6,7 @@
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
 #include "animations.h"
+#include "score.h"
 
 
 void clean_textures(textures_t *textures){
@@ -101,6 +102,7 @@ void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *te
         apply_sprite(renderer, textures->fleched,world->fleche_d);
         apply_sprite(renderer, textures->flecheg,world->fleche_g);
     }
+    tableau_des_scores(renderer,world,textures);
 
     // on met à jour l'écran
     update_screen(renderer);

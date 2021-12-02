@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #include "score.h"
-#include "world.h"
 
 
 Liste *initialisation()
@@ -67,13 +66,31 @@ void afficherListe(Liste *liste)
         printf("%d -> ", actuel->nombre);
         actuel = actuel->suivant;
     }
+
+    
+    
+}
+
+void tableau_des_scores(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    sprintf(world->text_score, "SCORES :");
+    apply_text(renderer, 100 ,300,100,50,world->text_score,textures->font);
+    for(int i=1; i<5;i++){
+        sprintf(world->text_score, "%d",world->time);
+        apply_text(renderer, 100 ,300 + i*50,100,50,world->text_score,textures->font);
+    }
+
 }
 
 
-void scores(world_t *world){
-    Liste *maListe = initialisation();
-    insertion(maListe, world->time*100 + world->ryu_pv*100);
+void scores(world_t *world, Liste *maListe){
+
+    suppression(maListe);
+    if(world->ryu_pv > 0){
+        insertion(maListe, world->time*5 + world->ryu_pv*10);
+    }else{
+        insertion(maListe, 0);
+    }
     afficherListe(maListe);
-    //free(maListe);
+    
 }
 

@@ -5,6 +5,7 @@
 #include "constante.h"
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
+#include "score.h"
 
 int time = 99;
 
@@ -14,8 +15,6 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 		world->compteur = (float)(SDL_GetTicks()/1000.) ;
 	}
 
-
-	world->text = (char*)malloc(sizeof(char)* 100);	
 	if (world->defeat_or_win == 0) {
         world->time = time- (int)(world->compteur) + (int)(world->compteur_menu);
 	    sprintf(world->text, "KO");
@@ -24,11 +23,12 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 	}
 
-        if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
-            world->etat_menu = 0;
-            world->gameover = 1;
-        }
+    if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+        world->etat_menu = 0;
+        world->gameover = 1;
+    }
 }
+
 
 void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
@@ -353,11 +353,6 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
 
     //Ken
     refresh_animations_ken(world,renderer,textures);
-
-    if(world->win ==1){
-        scores(world);
-    }
-
 
 
 }

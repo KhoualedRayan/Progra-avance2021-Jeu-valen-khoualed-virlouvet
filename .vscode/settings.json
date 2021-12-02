@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "sdl2-light.h": "c",
-        "sdl2-ttf-light.h": "c"
+        "sdl2-ttf-light.h": "c",
+        "world.h": "c",
+        "graphisme.h": "c"
     }
 }

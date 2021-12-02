@@ -51,6 +51,7 @@ struct world_s{
 	sprite_t ken_hp[20];
 	int ryu_pv;
 	int time;
+	int mort;
 	int ken_pv;
 	int hitted;
 	int hitted_ryu ;
@@ -80,6 +81,7 @@ struct world_s{
 	float timerlastshoot ; //temps depuis le dernier hadouken 
 	float firerate ; //temps entre chaque hadouken
 	char* text;
+	char* text_score;
 	sprite_t hadouken[10] ;
 	sprite_t hadouken_ken[10];
 	int vy_ryu;
