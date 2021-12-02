@@ -41,7 +41,7 @@ int main( int argc, char* args[] )
     while(world.etat_menu == 0 && !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
-        while(world.etat_menu < 3 ){
+        while(world.etat_menu < 3 ){ //MENU PRINCIPAL
             
             //ICI
             tableau_des_scores(renderer,&world,&textures);
@@ -64,24 +64,23 @@ int main( int argc, char* args[] )
             }
         }
 
-        // while(world.etat_menu==4 || world.etat_menu==3){
-        
-        //     //gestion des évènements
-        //     handle_events(&event,&world);
+        while(world.choix_maps == 0){ //MENU CHOIX DES MAPS
+            //gestion des évènements
+            handle_events(&event,&world);
 
-        //     if(world.etat_menu == 4 || world.etat_menu==3){
-        //     //mise à jour des données liée à la physique du monde
-        //     update_data(&world);
+            if(world.choix_maps == 0){
+            //mise à jour des données liée à la physique du monde
+            update_data(&world);
 
-        //     //affiche le menu
-        //     refresh_graphics_menu(renderer,&world,&textures);
+            //affiche le menu
+            refresh_graphics_choix_maps(renderer,&world,&textures);
 
-        //     // pause de 10 ms pour controler la vitesse de rafraichissement
-        //     pause(10);
+            // pause de 10 ms pour controler la vitesse de rafraichissement
+            pause(10);
 
-        //     world.compteur_menu = (float)(SDL_GetTicks()/1000.);
-        //     }
-        // }
+            world.compteur_menu = (float)(SDL_GetTicks()/1000.);
+            }
+        }
 
         if(world.etat_menu==3 && world.gameover==0 || world.etat_menu==2 && world.gameover==0 || world.etat_menu==4 && world.gameover==0 ){
             world.compteur =(float)(SDL_GetTicks()/1000.);
@@ -93,7 +92,7 @@ int main( int argc, char* args[] )
 	        init_sprite(world.spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
         }
 
-        if(world.etat_menu==3){
+        if(world.etat_menu==3){  //PLAYER VS PLAYER
             while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
 
             //gestion des évènements
@@ -112,7 +111,7 @@ int main( int argc, char* args[] )
 	        pause(1000);
         }
 
-        if(world.etat_menu == 4){
+        if(world.etat_menu == 4){ //PLAYER VS BOT
             while(!is_game_over(&world)){ //tant que le jeu n'est pas fini
 
             //gestion des évènements
@@ -131,7 +130,7 @@ int main( int argc, char* args[] )
 	        pause(1000);
         }
 
-        if(world.etat_menu == 0){ // retour au menu
+        if(world.etat_menu == 0){ // retour au menu quand jeu fini
             world.gameover=0;
         }
         clean_sdl(renderer,window);

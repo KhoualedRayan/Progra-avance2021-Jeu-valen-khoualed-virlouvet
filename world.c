@@ -39,8 +39,11 @@ void init_environnement(world_t* world){
 	init_sprite(world->playervsplayer2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,350,BOUTON_WIDTH,BOUTON_HEIGHT);
 	init_sprite(world->playervsbot,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
 	init_sprite(world->playervsbot2,SCREEN_WIDTH/2-BOUTON_WIDTH/2-50,450,BOUTON_WIDTH,BOUTON_HEIGHT);
-	init_sprite(world->fleche_g,100,SCREEN_HEIGHT/2-120,240,240);
-	init_sprite(world->fleche_d,300,SCREEN_HEIGHT/2-120,240,240);
+	init_sprite(world->fleche_g,250,SCREEN_HEIGHT/2-120,240,240);
+	init_sprite(world->fleche_d,780,SCREEN_HEIGHT/2-120,240,240);
+	init_sprite(world->map1_min,SCREEN_WIDTH/2 - 200,SCREEN_HEIGHT/2 - 112,400,225);
+	init_sprite(world->map2_min,SCREEN_WIDTH/2 - 200,SCREEN_HEIGHT/2 - 112,400,225);
+	init_sprite(world->map3_min,SCREEN_WIDTH/2 - 200,SCREEN_HEIGHT/2 - 112,400,225);
 
 }
 
@@ -50,6 +53,8 @@ void init_valeurs(world_t* world){
 	world->compteur_menu;
 	world->gameover = 0;
 	world->etat_menu = 0;
+	world->etat_maps = 0;
+	world->choix_maps = 0;
 	world->mouvement = 0;
 	world->mouvement2 = 0;
 	world->defeat_or_win = 0;
@@ -104,6 +109,9 @@ void init_memoire(world_t * world){
 	world->ken_hp_barre = (sprite_t*)malloc(sizeof(sprite_t));
 	world->fleche_d = (sprite_t*)malloc(sizeof(sprite_t));
 	world->fleche_g = (sprite_t*)malloc(sizeof(sprite_t));
+	world->map1_min = (sprite_t*)malloc(sizeof(sprite_t));
+	world->map2_min = (sprite_t*)malloc(sizeof(sprite_t));
+	world->map3_min = (sprite_t*)malloc(sizeof(sprite_t));
 	world->text = (char*)malloc(sizeof(char)* 100);	
 	world->text_score = (char*)malloc(sizeof(char)* 100);	
 }
@@ -172,6 +180,9 @@ void clean_data(world_t *world){
 	free(world->ken_hp_barre);
 	free(world->fleche_d);
 	free(world->fleche_g);
+	free(world->map1_min);
+	free(world->map2_min);
+	free(world->map3_min);
 	free(maList);
 }
 

@@ -38,16 +38,17 @@ void handle_events_menu(SDL_Event *event,world_t *world){
                             //SDL_Log("Keycode fleche haut"); // Affiche un message
                             world->etat_menu--;
                         }
-                        }
                     }
                 }
+            }
 
             if(keystates[SDL_SCANCODE_RETURN] && world->etat_menu == 0){
                 world->etat_menu = 3;
             }
             if(keystates[SDL_SCANCODE_RETURN] && world->etat_menu == 2){
                 world->etat_menu = 3;
-                world->gameover = 1; 
+                world->gameover = 1;
+                world->choix_maps =1; 
             }
             if(keystates[SDL_SCANCODE_RETURN] && world->etat_menu == 1){
                 world->etat_menu = 4;
@@ -55,6 +56,46 @@ void handle_events_menu(SDL_Event *event,world_t *world){
         break;
     }
 
+}
+
+void handle_events_choix_maps(SDL_Event *event,world_t *world){
+    const Uint8 *keystates = SDL_GetKeyboardState(NULL);
+        switch (event->type)
+        {
+        case SDL_KEYDOWN:
+            //SDL_Log("+key");
+
+            if (keystates[SDL_SCANCODE_RIGHT] && world->etat_maps == 0){
+                //SDL_Log("Keycode fleche bas"); // Affiche un message
+                world->etat_maps++;
+            }else{
+                if (keystates[SDL_SCANCODE_RIGHT] && world->etat_maps == 1){
+                    //SDL_Log("Keycode fleche bas"); // Affiche un message
+                    world->etat_maps++;
+                }else{
+                    if (keystates[SDL_SCANCODE_LEFT] && world->etat_maps == 2){
+                        //SDL_Log("Keycode fleche haut"); // Affiche un message
+                        world->etat_maps--;
+                    }else{
+                        if (keystates[SDL_SCANCODE_LEFT] && world->etat_maps == 1){
+                            //SDL_Log("Keycode fleche haut"); // Affiche un message
+                            world->etat_maps--;
+                        }
+                    }
+                }
+            }
+
+            if(keystates[SDL_SCANCODE_RETURN] && world->etat_maps == 0){
+                world->choix_maps = 1;
+            }
+            if(keystates[SDL_SCANCODE_RETURN] && world->etat_maps == 2){
+                world->choix_maps = 1;
+            }
+            if(keystates[SDL_SCANCODE_RETURN] && world->etat_maps == 1){
+                world->choix_maps = 1;
+            }
+        break;
+    }
 }
 
 void handle_events_ryu(SDL_Event *event,world_t *world){
@@ -237,8 +278,13 @@ void handle_events(SDL_Event *event,world_t *world){
     const Uint8 *keystates;
 
     
-    while( SDL_PollEvent( event ) ) {
+    while( SDL_PollEvent( event ) ) {        
+        if(world->choix_maps == 0 && world->etat_menu >=3  ){
+            handle_events_choix_maps(event,world);
+        }
+
         handle_events_menu(event,world);
+
         if(world->etat_menu == 3){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
@@ -247,17 +293,20 @@ void handle_events(SDL_Event *event,world_t *world){
             handle_events_ryu(event,world);
             handle_events_bot(event,world);
         }
+
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {
             //On indique la fin du jeu
             world->etat_menu = 3;
-            world->gameover = 1; 
+            world->gameover = 1;
+            world->choix_maps =1;
         }
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
                 world->etat_menu = 3;
 				world->gameover = 1;
+                world->choix_maps =1;
             }
          }
     }

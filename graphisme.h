@@ -10,6 +10,9 @@
 
 struct textures_s{
     SDL_Texture* background; /*!< Texture liée à l'image du fond de l'écran. */
+    SDL_Texture* background2; /*!< Texture liée à l'image du fond de l'écran. */
+    SDL_Texture* background3; /*!< Texture liée à l'image du fond de l'écran. */
+
 
     //Ryu_idle
     SDL_Texture* ryu_idle; /*!<Texture liée à l'image du perso. */
@@ -163,7 +166,10 @@ struct textures_s{
     //menu des maps
     SDL_Texture* flecheg;
     SDL_Texture* fleched;
-    
+    SDL_Texture* map1min;
+    SDL_Texture* map2min;
+    SDL_Texture* map3min;
+
 };
 
 /**
@@ -218,6 +224,7 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
  */
 
 void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *textures);
+void refresh_graphics_choix_maps(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 
 /**
  * \brief La fonction applique la texture du fond sur le renderer lié à l'écran de jeu

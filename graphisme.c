@@ -11,6 +11,9 @@
 
 void clean_textures(textures_t *textures){
     clean_texture(textures->background);
+    clean_texture(textures->background2);
+    clean_texture(textures->background3);
+
     
     //clean ryu
     clean_texture_ryu(textures);
@@ -28,12 +31,19 @@ void clean_textures(textures_t *textures){
     clean_texture(textures->pvb_select);
     clean_texture(textures->flecheg);
     clean_texture(textures->fleched);
+    clean_texture(textures->map1min);
+    clean_texture(textures->map2min);
+    clean_texture(textures->map3min);
 	clean_font(textures->font);
 }
 
 
 void  init_textures(SDL_Renderer *renderer, textures_t *textures){
-    textures->background = load_image( "ressources/harbor.bmp",renderer);
+    textures->background = load_image( "ressources/map1.bmp",renderer);
+    textures->background2 = load_image( "ressources/harbor.bmp",renderer);
+    textures->background3 = load_image( "ressources/map3.bmp",renderer);
+
+
     //Ryu
 	init_textures_ryu(renderer,textures);
 
@@ -52,9 +62,14 @@ void  init_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->pvb_select = load_image("ressources/playervsbot_select.bmp", renderer);			
 	textures->font = load_font("times.ttf", 69);
 
-    //maps
+    //maps menu
     textures->flecheg = load_image("ressources/fleche_gauche.bmp", renderer);
     textures->fleched = load_image("ressources/fleche_droite.bmp", renderer);
+    textures->map1min = load_image("ressources/map1_min.bmp", renderer);
+    textures->map2min = load_image("ressources/harbor_min.bmp", renderer);
+    textures->map3min = load_image("ressources/map3_min.bmp", renderer);
+
+
 }
 
 
@@ -97,12 +112,33 @@ void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *te
         apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
         apply_sprite(renderer, textures->exit_select,world->exit2);
     }
-    if(world->etat_menu==4){
+
+    tableau_des_scores(renderer,world,textures);
+
+    // on met à jour l'écran
+    update_screen(renderer);
+}
+
+void refresh_graphics_choix_maps(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    //on vide le renderer
+    clear_renderer(renderer);
+    //application des textures dans le renderer
+    if(world->etat_maps == 0){
+        apply_sprite(renderer, textures->menu_1,world->menu);
+        apply_sprite(renderer, textures->fleched,world->fleche_d);
+        apply_sprite(renderer, textures->map1min,world->map1_min);
+    }
+    if(world->etat_maps == 1){
         apply_sprite(renderer, textures->menu_1,world->menu);
         apply_sprite(renderer, textures->fleched,world->fleche_d);
         apply_sprite(renderer, textures->flecheg,world->fleche_g);
+        apply_sprite(renderer, textures->map2min,world->map2_min);
     }
-    tableau_des_scores(renderer,world,textures);
+    if(world->etat_maps == 2){
+        apply_sprite(renderer, textures->menu_1,world->menu);
+        apply_sprite(renderer, textures->flecheg,world->fleche_g);
+        apply_sprite(renderer, textures->map3min,world->map3_min);
+    }    
 
     // on met à jour l'écran
     update_screen(renderer);
@@ -113,7 +149,17 @@ void refresh_graphics(SDL_Renderer *renderer, world_t *world,textures_t *texture
     clear_renderer(renderer);
 	
     //application des textures dans le renderer
-    apply_background(renderer, textures->background);
+
+    if(world->etat_maps ==0){
+        apply_background(renderer, textures->background);
+    }
+    if(world->etat_maps ==1){
+        apply_background(renderer, textures->background2);
+    }
+    if(world->etat_maps ==2){
+        apply_background(renderer, textures->background3);
+    }
+    
     refresh_animations(world,renderer,textures);
 
 
