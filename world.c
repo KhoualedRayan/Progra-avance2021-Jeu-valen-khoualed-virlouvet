@@ -6,8 +6,6 @@
 #include "ken.h"
 #include "score.h"
 
-Liste *maList;
-
 void init_data(world_t * world){
     //on n'est pas à la fin du jeu
 
@@ -20,7 +18,7 @@ void init_data(world_t * world){
 	//initialisation des sprites
 	init_environnement(world) ;
 
-	maList = initialisation();
+	world->maList = initialisation();
 
 }
 
@@ -183,7 +181,7 @@ void clean_data(world_t *world){
 	free(world->map1_min);
 	free(world->map2_min);
 	free(world->map3_min);
-	free(maList);
+	free(world->maList);
 }
 
 int is_game_over(world_t *world){
@@ -224,10 +222,6 @@ void update_data(world_t *world){
 		handle_sprites_collision_hadoken(world->sprite, &(world->hadouken_ken[i]),world);
 	}
 
-	if(world->win == 1){
-		scores(world,maList);
-	}
-
 }
 
 
@@ -253,6 +247,9 @@ void init_hadouken(world_t* world) {
 	for(int i = 0; i<10;i++){
 		init_sprite(&(world->hadouken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
 		init_sprite(&(world->hadouken_ken[i]),-9990,-9990,PROJECTILE_SIZE,PROJECTILE_SIZE);
+	}
+	for(int j = 0;j<100;j++){
+		world->tab[j] = 0;
 	}
 }
 

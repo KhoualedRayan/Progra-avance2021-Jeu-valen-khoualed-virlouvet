@@ -26,6 +26,10 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
         world->etat_menu = 0;
         world->gameover = 1;
+        scores(world,world->maList,renderer,textures);
+    }
+    if(world->etat_menu <3){
+        afficherListe(world->maList,renderer,world,textures);
     }
 }
 

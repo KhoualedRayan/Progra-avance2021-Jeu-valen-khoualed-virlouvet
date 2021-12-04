@@ -113,8 +113,6 @@ void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *te
         apply_sprite(renderer, textures->exit_select,world->exit2);
     }
 
-    tableau_des_scores(renderer,world,textures);
-
     // on met à jour l'écran
     update_screen(renderer);
 }

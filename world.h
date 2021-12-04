@@ -67,6 +67,7 @@ struct world_s{
 	sprite_t ryu_hp[20];
 	sprite_t ken_hp[20];
 	Liste *maList;
+	int tab[100];
 	int ryu_pv;
 	int time;
 	int mort;

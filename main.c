@@ -44,7 +44,7 @@ int main( int argc, char* args[] )
         while(world.etat_menu < 3 ){ //MENU PRINCIPAL
             
             //ICI
-            tableau_des_scores(renderer,&world,&textures);
+            //tableau_des_scores(renderer,&world,&textures);
 
             //gestion des évènements
             handle_events(&event,&world);
