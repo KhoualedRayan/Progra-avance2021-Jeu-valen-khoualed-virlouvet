@@ -10,6 +10,20 @@
 *\param h hauteur du sprite
 */
 
+typedef struct Element Element;
+struct Element
+{
+    int nombre;
+    Element *suivant;
+};
+
+typedef struct Liste Liste;
+struct Liste
+{
+    Element *premier;
+};
+Liste *initialisation();
+
 struct sprite_s { 
 	int x;	/*!<Abscisse du sprite */
 	int y;	/*!<Ordonnée du sprite */	
@@ -52,6 +66,7 @@ struct world_s{
 	sprite_t* ken_hp_barre;
 	sprite_t ryu_hp[20];
 	sprite_t ken_hp[20];
+	Liste *maList;
 	int ryu_pv;
 	int time;
 	int mort;
