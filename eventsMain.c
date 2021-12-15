@@ -311,6 +311,9 @@ void handle_events(SDL_Event *event,world_t *world){
         }
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
+             if(sprites_collide(world->spriteTwo, world->sprite) || sprites_collide(world->spriteTwo, world->hadouken)){
+                 world->timerLastHit = (float)(SDL_GetTicks()/1000.) ;
+             }
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
                 world->etat_menu = 3;
 				world->gameover = 1;

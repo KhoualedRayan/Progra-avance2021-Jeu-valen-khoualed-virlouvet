@@ -37,14 +37,15 @@ int main( int argc, char* args[] )
 	
     world.gameover = 0;
     world.etat_menu = 0;
+    for(int j = 0;j<100;j++){
+		world.tab[j] = 0;
+	}
 
     while(world.etat_menu == 0 && !is_game_over(&world)){
         //initialisation du jeu
         init(&window,&renderer,&textures,&world);
         while(world.etat_menu < 3 ){ //MENU PRINCIPAL
             
-            //ICI
-            //tableau_des_scores(renderer,&world,&textures);
 
             //gestion des évènements
             handle_events(&event,&world);

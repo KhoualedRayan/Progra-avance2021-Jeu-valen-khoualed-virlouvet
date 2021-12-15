@@ -100,6 +100,7 @@ struct world_s{
 	float timerLastAttack; // temps depuis la derniere attaque.
 	float timerLastAttack2; // temps depuis la derniere attaque.
 	float timerlastshoot ; //temps depuis le dernier hadouken 
+	float timerLastHit ; //temps depuis que le dernier sprite est touché
 	float firerate ; //temps entre chaque hadouken
 	char* text;
 	char* text_score;
@@ -114,6 +115,7 @@ struct world_s{
 	int typeOfAttack;
 	int typeOfAttack2;
 	int win ;
+	int defaite;
 };
 
 /**
