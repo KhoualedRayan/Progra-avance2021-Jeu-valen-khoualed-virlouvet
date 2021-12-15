@@ -79,6 +79,7 @@ void init_valeurs(world_t* world){
 	world->firerate = 2.;
 	world->timerLastAttack = 0.;
 	world->timerLastAttack2 = 0.;
+	world->timerLastHit = 0. ;
 	world->nbr_hadouken = 0;
 	world->vy_ryu = INITIAL_SPEED;
 	world->vy_ken = INITIAL_SPEED;
@@ -87,6 +88,7 @@ void init_valeurs(world_t* world){
 	world->typeOfAttack = REST;
 	world->typeOfAttack2 = REST;
 	world->win = 0 ;
+	world->defaite = 0;
 }
 
 void init_memoire(world_t * world){
