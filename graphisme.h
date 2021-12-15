@@ -105,6 +105,13 @@ struct textures_s{
     SDL_Texture* ken_idle1 ;
     SDL_Texture* ken_idle2 ;
     SDL_Texture* ken_idle3 ;
+
+    //Ken crouching
+    SDL_Texture* ken_crouching; /*!<Texture liée à l'image du perso. */
+
+    //Ken blocking
+    SDL_Texture* ken_blocking; /*!<Texture liée à l'image du perso. */
+    SDL_Texture* ken_blocking1; /*!<Texture liée à l'image du perso. */
     
     //ken_walking
     SDL_Texture* ken_walking;

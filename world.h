@@ -108,6 +108,7 @@ struct world_s{
 	int vy_ryu;
 	int vy_ken;
 	int crouch;
+	int crouch2;
 	int state;
 	int state_ken;
 	int typeOfAttack;

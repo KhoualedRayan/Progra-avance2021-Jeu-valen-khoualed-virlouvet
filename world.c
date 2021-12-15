@@ -82,6 +82,8 @@ void init_valeurs(world_t* world){
 	world->nbr_hadouken = 0;
 	world->vy_ryu = INITIAL_SPEED;
 	world->vy_ken = INITIAL_SPEED;
+	world->crouch = 0;
+	world->crouch2 = 0;
 	world->state = REST;
 	world->state_ken = REST_KEN ;
 	world->typeOfAttack = REST;
