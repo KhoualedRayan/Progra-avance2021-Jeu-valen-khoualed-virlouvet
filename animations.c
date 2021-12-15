@@ -29,7 +29,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         scores(world,world->maList,renderer,textures);
     }
     if(world->etat_menu <3){
-        afficherListe(world->maList,renderer,world,textures);
+        actualiserListe(world->maList,renderer,world,textures);
     }
 }
 

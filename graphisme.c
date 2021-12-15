@@ -112,6 +112,7 @@ void refresh_graphics_menu(SDL_Renderer *renderer, world_t *world,textures_t *te
         apply_sprite(renderer, textures->pvb_normal,world->playervsbot);
         apply_sprite(renderer, textures->exit_select,world->exit2);
     }
+    tableau_des_scores(renderer,world,textures);
 
     // on met à jour l'écran
     update_screen(renderer);
@@ -136,7 +137,8 @@ void refresh_graphics_choix_maps(SDL_Renderer *renderer, world_t *world,textures
         apply_sprite(renderer, textures->menu_1,world->menu);
         apply_sprite(renderer, textures->flecheg,world->fleche_g);
         apply_sprite(renderer, textures->map3min,world->map3_min);
-    }    
+    }  
+      
 
     // on met à jour l'écran
     update_screen(renderer);
