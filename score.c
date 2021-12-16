@@ -52,7 +52,7 @@ void suppression(Liste *liste)
         free(aSupprimer);
     }
 }
-void afficherListe(Liste *liste)
+void actualiserListe(Liste *liste, SDL_Renderer *renderer, world_t *world,textures_t *textures)
 {
     if (liste == NULL)
     {
@@ -60,37 +60,45 @@ void afficherListe(Liste *liste)
     }
 
     Element *actuel = liste->premier;
-
     while (actuel != NULL)
-    {
-        printf("%d -> ", actuel->nombre);
+    {   int a;
+        for(int i=0;i<5;i++){
+
+            if(actuel->nombre >= world->tab[i] ){
+                a=i;
+                i=6;
+            }
+        }
+        for(int y=4;y>a;y--){
+            world->tab[y]=world->tab[y-1];
+        }
+        world->tab[a]=actuel->nombre;
+
         actuel = actuel->suivant;
     }
 
-    
-    
 }
 
 void tableau_des_scores(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    
     sprintf(world->text_score, "SCORES :");
     apply_text(renderer, 100 ,300,100,50,world->text_score,textures->font);
-    for(int i=1; i<5;i++){
-        sprintf(world->text_score, "%d",world->time);
-        apply_text(renderer, 100 ,300 + i*50,100,50,world->text_score,textures->font);
+    for(int i=0; i<5; i++){
+        sprintf(world->text_score, "%d-     %d",i+1,world->tab[i]);
+        apply_text(renderer,100,360 + 60 *i, 100, 50, world->text_score,textures->font);
     }
+    
 
 }
 
 
-void scores(world_t *world, Liste *maListe){
+void scores(world_t *world, Liste *maListe, SDL_Renderer *renderer,textures_t *textures){
 
     suppression(maListe);
     if(world->ryu_pv > 0){
         insertion(maListe, world->time*5 + world->ryu_pv*10);
     }else{
-        insertion(maListe, 0);
     }
-    afficherListe(maListe);
     
 }
 

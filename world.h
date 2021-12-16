@@ -10,6 +10,20 @@
 *\param h hauteur du sprite
 */
 
+typedef struct Element Element;
+struct Element
+{
+    int nombre;
+    Element *suivant;
+};
+
+typedef struct Liste Liste;
+struct Liste
+{
+    Element *premier;
+};
+Liste *initialisation();
+
 struct sprite_s { 
 	int x;	/*!<Abscisse du sprite */
 	int y;	/*!<Ordonnée du sprite */	
@@ -52,6 +66,8 @@ struct world_s{
 	sprite_t* ken_hp_barre;
 	sprite_t ryu_hp[20];
 	sprite_t ken_hp[20];
+	Liste *maList;
+	int tab[100];
 	int ryu_pv;
 	int time;
 	int mort;
@@ -84,6 +100,7 @@ struct world_s{
 	float timerLastAttack; // temps depuis la derniere attaque.
 	float timerLastAttack2; // temps depuis la derniere attaque.
 	float timerlastshoot ; //temps depuis le dernier hadouken 
+	float timerLastHit ; //temps depuis que le dernier sprite est touché
 	float firerate ; //temps entre chaque hadouken
 	char* text;
 	char* text_score;
@@ -92,11 +109,13 @@ struct world_s{
 	int vy_ryu;
 	int vy_ken;
 	int crouch;
+	int crouch2;
 	int state;
 	int state_ken;
 	int typeOfAttack;
 	int typeOfAttack2;
 	int win ;
+	int defaite;
 };
 
 /**

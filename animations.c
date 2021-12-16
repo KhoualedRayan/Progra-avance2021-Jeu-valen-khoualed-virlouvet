@@ -23,9 +23,13 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 	}
 
-    if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+    if(world->win == 1 && world-> defaite == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
         world->etat_menu = 0;
         world->gameover = 1;
+        scores(world,world->maList,renderer,textures);
+    }
+    if(world->etat_menu <3){
+        actualiserListe(world->maList,renderer,world,textures);
     }
 }
 
@@ -250,7 +254,7 @@ void ryu_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textur
         }
         if(delai  >=0.3 && delai  <=1.){
             apply_sprite(renderer, textures->ryu_crouch_lpunch2,world->spriteAttack);
-            damage_knockback(world->spriteTwo,world->spriteAttack,1,5,world);
+            damage_knockback(world->spriteTwo,world->spriteAttack,2,5,world);
                 
         }
     }
@@ -277,7 +281,7 @@ void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float delai;
     if(world->ken_pv <=0 && world->state == REST){
         world->mouvement = 52 ;
-        temps = SDL_GetTicks()/1000;
+        temps = SDL_GetTicks()/1000 ;
         delai = (float) ((world->compteur) - temps);
         if(delai  >=-0.0 && delai  <=0.3){
             sprintf(world->text, "YOU WIN !");
@@ -289,7 +293,7 @@ void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
             sprintf(world->text, "YOU WIN !");
 		    apply_text(renderer, SCREEN_WIDTH/2 - 100 ,SCREEN_HEIGHT/2-200,200,100,world->text,textures->font);
             apply_sprite(renderer, textures->ryu_victory1,world->sprite);
-                
+                            
         }
         if(delai  >=0.6 && delai  <=1.){
             sprintf(world->text, "YOU WIN !");
@@ -298,31 +302,39 @@ void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }if(delai > 0.90){
             world->win = 1 ;
         }
+        if(delai > 3. ){
+            apply_sprite(renderer, textures->ryu_victory2,world->sprite); 
+        }
     }
 }
 
 void ryu_ko(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(world->ryu_pv <=0 && world->state == REST){
+    if(world->ryu_pv <=0){
         world->mouvement = 53 ;
         temps = SDL_GetTicks()/1000;
-        delai = (float) ((world->compteur) - temps);
+        delai = (float) ((world->compteur) - world->timerLastHit);
         if(delai  >=-0.0 && delai  <=0.3){
             apply_sprite(renderer, textures->ryu_ko,world->sprite);
-            world->sprite->x = world->sprite-> x - 2; 
-
         }
         if(delai  >=0.3 && delai  <=0.6){
             apply_sprite(renderer, textures->ryu_ko1,world->sprite);
-            world->sprite->y = world->sprite-> y + 4;
-            world->sprite->x = world->sprite-> x - 2;  
+            world->sprite->y = world->sprite-> y + 3;
+            world->sprite->x = world->sprite-> x - 3;  
                 
         }
         if(delai  >=0.6 && delai  <=1.){
             apply_sprite(renderer, textures->ryu_ko2,world->sprite);
             world->sprite->y = world->sprite-> y + 3; 
             world->sprite->x = world->sprite-> x - 2; 
+        }
+        if(delai > 0.90){
+            world->defaite = 1 ;
+        }
+        if(delai > 1. && delai < 3. ){
+             apply_sprite(renderer, textures->ryu_ko2,world->sprite);
+            
         }
     }
 }

@@ -6,8 +6,6 @@
 #include "ken.h"
 #include "score.h"
 
-Liste *maList;
-
 void init_data(world_t * world){
     //on n'est pas à la fin du jeu
 
@@ -20,13 +18,13 @@ void init_data(world_t * world){
 	//initialisation des sprites
 	init_environnement(world) ;
 
-	maList = initialisation();
+	world->maList = initialisation();
 
 }
 
 void init_environnement(world_t* world){
 	//initialisation des sprites
-	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
+	init_sprite(world->sprite,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, (SCREEN_HEIGHT - VERTICAL_SIZE - 120), HORIZONTAL_SIZE, VERTICAL_SIZE);
 	init_sprite(world->spriteTwo,SCREEN_WIDTH/2 - HORIZONTAL_SIZE/2, SCREEN_HEIGHT - VERTICAL_SIZE - 120, HORIZONTAL_SIZE, VERTICAL_SIZE);
 	
 	init_sprite(world->menu,0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
@@ -81,14 +79,18 @@ void init_valeurs(world_t* world){
 	world->firerate = 2.;
 	world->timerLastAttack = 0.;
 	world->timerLastAttack2 = 0.;
+	world->timerLastHit = 0. ;
 	world->nbr_hadouken = 0;
 	world->vy_ryu = INITIAL_SPEED;
 	world->vy_ken = INITIAL_SPEED;
+	world->crouch = 0;
+	world->crouch2 = 0;
 	world->state = REST;
 	world->state_ken = REST_KEN ;
 	world->typeOfAttack = REST;
 	world->typeOfAttack2 = REST;
 	world->win = 0 ;
+	world->defaite = 0;
 }
 
 void init_memoire(world_t * world){
@@ -125,16 +127,18 @@ void init_sprite(sprite_t* sprite, int x, int y, int w, int h) {
 
 int sprites_collide(sprite_t *sp1, sprite_t *sp2)
 {
-    int w1 = sp1->w -50;
+    int w1 = sp1->w ;
     int w2 = sp2->w ;
     int h1 = sp1->h;
     int h2 = sp2->h;
-    int x1 = sp1->x + w1 / 2;
-    int x2 = sp2->x + w2 / 2;
-    int y1 = sp1->y + h1 / 2;
-    int y2 = sp2->y + h2 / 2;
+    int x1 = sp1->x ;
+    int x2 = sp2->x ;
+    int y1 = sp1->y ;
+    int y2 = sp2->y ;
 
-    return (abs(x1 - x2) <= (w1 + w2) / 2) && (abs(y1 - y2) <= (h1 + h2) / 2);
+
+	return x1 +w1 > x2 && x1 < x2 + w2 && y1 +h1 >y2 && y1 <y2 +h2;
+    //return (abs(x1 - x2) <= (w1 + w2) / 2) && (abs(y1 - y2) <= (h1 + h2) / 2);
 }
 
 void handle_sprites_collision(sprite_t *sp1, sprite_t *sp2, world_t *world)
@@ -183,7 +187,7 @@ void clean_data(world_t *world){
 	free(world->map1_min);
 	free(world->map2_min);
 	free(world->map3_min);
-	free(maList);
+	free(world->maList);
 }
 
 int is_game_over(world_t *world){
@@ -222,10 +226,6 @@ void update_data(world_t *world){
 		update_hadouken_opposite(&(world->hadouken_ken[i]), world);
 		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
 		handle_sprites_collision_hadoken(world->sprite, &(world->hadouken_ken[i]),world);
-	}
-
-	if(world->win == 1){
-		scores(world,maList);
 	}
 
 }

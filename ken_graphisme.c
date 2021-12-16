@@ -28,6 +28,9 @@ void ken_walking_clean(textures_t *textures){
     clean_texture(textures->ken_walking2);
     clean_texture(textures->ken_walking3);
     clean_texture(textures->ken_walking4);
+    //Ken blocking
+    clean_texture(textures->ken_blocking);
+    clean_texture(textures->ken_blocking1);
 }
 
 void ken_walking_textures(SDL_Renderer *renderer, textures_t *textures){
@@ -36,6 +39,9 @@ void ken_walking_textures(SDL_Renderer *renderer, textures_t *textures){
     textures->ken_walking2 = load_image( "ressources/ken_walking/ken_walking3.bmp", renderer);
     textures->ken_walking3 = load_image( "ressources/ken_walking/ken_walking4.bmp", renderer);
     textures->ken_walking4 = load_image( "ressources/ken_walking/ken_walking5.bmp", renderer);
+    //Ken blocking
+    textures->ken_blocking = load_image( "ressources/ken_blocking/f1.bmp",renderer); 
+    textures->ken_blocking1 = load_image( "ressources/ken_blocking/f2.bmp",renderer);
 }
 
 //ken hit
@@ -151,6 +157,7 @@ void clean_textures_ken(textures_t *textures){
     //Ken hp barre
     clean_texture(textures->ken_hp);
     clean_texture(textures->ken_hp_fill);
+    clean_texture(textures->ken_crouching);
 
 }
 
@@ -170,5 +177,8 @@ void  init_textures_ken(SDL_Renderer *renderer, textures_t *textures){
     //Ken_hp
     textures->ken_hp = load_image("ressources/ken_hp/hp.bmp",renderer);
     textures->ken_hp_fill = load_image("ressources/ken_hp/hp_fill.bmp",renderer);
+
+    //Ken crouching
+    textures->ken_crouching = load_image( "ressources/ken_crouching/f1.bmp",renderer);
 
 }

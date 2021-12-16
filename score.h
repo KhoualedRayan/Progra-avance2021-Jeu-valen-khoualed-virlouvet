@@ -8,24 +8,25 @@
 #include "constante.h"
 
 
-typedef struct Element Element;
-struct Element
-{
-    int nombre;
-    Element *suivant;
-};
+// typedef struct Element Element;
+// struct Element
+// {
+//     int nombre;
+//     Element *suivant;
+// };
 
-typedef struct Liste Liste;
-struct Liste
-{
-    Element *premier;
-};
-Liste *initialisation();
+// typedef struct Liste Liste;
+// struct Liste
+// {
+//     Element *premier;
+// };
+// Liste *initialisation();
+
 
 void insertion(Liste *liste, int nvNombre);
 void suppression(Liste *liste);
-void afficherListe(Liste *liste);
-void scores(world_t *world, Liste *maListe);
+void actualiserListe(Liste *liste, SDL_Renderer *renderer, world_t *world,textures_t *textures);
+void scores(world_t *world, Liste *maListe, SDL_Renderer *renderer,textures_t *textures);
 void tableau_des_scores(SDL_Renderer *renderer, world_t *world,textures_t *textures);
 
 #endif

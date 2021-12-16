@@ -216,7 +216,9 @@ void handle_events_ken(SDL_Event *event,world_t *world){
             }
 			if(keystates[SDL_SCANCODE_DOWN] && walk2 == 0){ //si la touche appuyée est 's'
                 world->mouvement2 = 3;
-
+                world->state_ken = CROUCH;
+                world->spriteTwo->y = world->spriteTwo->y + 144;
+                world->crouch2 = 1;
             }
 			if(keystates[SDL_SCANCODE_UP]){ //si la touche appuyée est 'z'
                 
@@ -251,6 +253,12 @@ void handle_events_ken(SDL_Event *event,world_t *world){
             world->mouvement =0;
             if(world->state_ken != ATTACKED){
                 world->mouvement2 =0;
+            }
+            if(world->crouch2 == 1){
+                world->spriteTwo->y = world->spriteTwo->y - 144;
+                world->crouch2 = 0;
+                world->spriteAttackTwo->y -= 144;
+                world->state_ken = REST;
             }
             break;
         
@@ -303,6 +311,9 @@ void handle_events(SDL_Event *event,world_t *world){
         }
          //si une touche est appuyée
          if(event->type == SDL_KEYDOWN){
+             if(sprites_collide(world->spriteTwo, world->sprite) || sprites_collide(world->spriteTwo, world->hadouken)){
+                 world->timerLastHit = (float)(SDL_GetTicks()/1000.) ;
+             }
 			if(event->key.keysym.sym == SDLK_ESCAPE){ //si la touche appuyée est 'Echap'
                 world->etat_menu = 3;
 				world->gameover = 1;
