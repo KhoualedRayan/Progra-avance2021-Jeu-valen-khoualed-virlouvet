@@ -52,8 +52,7 @@ void suppression(Liste *liste)
         free(aSupprimer);
     }
 }
-int count = 0;
-void afficherListe(Liste *liste, SDL_Renderer *renderer, world_t *world,textures_t *textures)
+void actualiserListe(Liste *liste, SDL_Renderer *renderer, world_t *world,textures_t *textures)
 {
     if (liste == NULL)
     {
@@ -61,43 +60,34 @@ void afficherListe(Liste *liste, SDL_Renderer *renderer, world_t *world,textures
     }
 
     Element *actuel = liste->premier;
-    sprintf(world->text_score, "SCORES :");
-    apply_text(renderer, 100 ,300,100,50,world->text_score,textures->font);
     while (actuel != NULL)
-    {
-        printf("%d -> ", actuel->nombre);
-        count++;
-        for(int i = 0; i< count; i++){
-            if(actuel->nombre > world->tab[i]){
-                for(int j = 5; j >0; j--){
-                    if(world->tab[j]< world->tab[j-1]){
-                        world->tab[j] = world->tab[j-1];
-                    }
-                }
-                world->tab[i] = actuel->nombre;
+    {   int a;
+        for(int i=0;i<5;i++){
+
+            if(actuel->nombre >= world->tab[i] ){
+                a=i;
+                i=6;
             }
         }
-        
-        for(int i=0; i<5; i++){
-            sprintf(world->text_score, "%d-     %d",i+1,world->tab[i]);
-            apply_text(renderer,100,360 + 60 *i, 100, 50, world->text_score,textures->font);
+        for(int y=4;y>a;y--){
+            world->tab[y]=world->tab[y-1];
         }
-
+        world->tab[a]=actuel->nombre;
 
         actuel = actuel->suivant;
     }
 
-    
-    
 }
 
 void tableau_des_scores(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    
     sprintf(world->text_score, "SCORES :");
     apply_text(renderer, 100 ,300,100,50,world->text_score,textures->font);
-    for(int i=1; i<5;i++){
-        sprintf(world->text_score, "%d",world->time);
-        apply_text(renderer, 100 ,300 + i*50,100,50,world->text_score,textures->font);
+    for(int i=0; i<5; i++){
+        sprintf(world->text_score, "%d-     %d",i+1,world->tab[i]);
+        apply_text(renderer,100,360 + 60 *i, 100, 50, world->text_score,textures->font);
     }
+    
 
 }
 
@@ -108,9 +98,7 @@ void scores(world_t *world, Liste *maListe, SDL_Renderer *renderer,textures_t *t
     if(world->ryu_pv > 0){
         insertion(maListe, world->time*5 + world->ryu_pv*10);
     }else{
-        //insertion(maListe, 0);
     }
-    //afficherListe(maListe,renderer,world,textures);
     
 }
 
