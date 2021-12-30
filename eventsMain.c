@@ -3,6 +3,7 @@
 #include "constante.h"
 #include "sdl2-light.h"
 #include "sdl2-ttf-light.h"
+#include <stdlib.h>
 
 int walk = 0;
 int walk2 = 0;
@@ -267,17 +268,25 @@ void handle_events_ken(SDL_Event *event,world_t *world){
 
 }
 void handle_events_bot(SDL_Event *event,world_t *world){
-    if(world->sprite->x + 250 > world->spriteTwo->x){ //si la touche appuyée est 'd'
+    
+    
+    if(world->sprite->x + 250 >= world->spriteTwo->x){ //si la touche appuyée est 'd'
 
         world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
         world->mouvement2 = 1; 
         walk2 = 1;
         
     }
-    if(world->sprite->x + 250 < world->spriteTwo->x){
+    if(world->sprite->x + 250 <= world->spriteTwo->x){
         world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
         world->mouvement2 = 2;
         walk2 = 1 ;
+    }
+    if(world->spriteTwo->x == world->sprite->x + 250){
+        world->test2 = ATTACK;
+        world->typeOfAttack2 = LPUNCH;
+        world->addx2 = -23;
+        world->timerLastAttack2 = (float)(SDL_GetTicks()/1000.) ;
     }
 }	   
 
