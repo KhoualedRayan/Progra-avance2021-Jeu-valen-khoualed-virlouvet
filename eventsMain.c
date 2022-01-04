@@ -122,6 +122,18 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->mouvement=3;
                 world->sprite->y = 419 + 144;
                 world->crouch = 1;
+                if(keystates[SDL_SCANCODE_J]){
+                    world->test = ATTACK;
+                    world->typeOfAttack = CROUCH_LPUNCH;
+                    world->sprite->y = 419 + 144;
+                    world->spriteAttack->y = 419 + 144;
+                    world->addw = 23;
+                    world->addy = 144;
+                    world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+                    //return;
+                
+                }
+
                 return;
             }
             if (keystates[SDL_SCANCODE_W] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
@@ -129,15 +141,13 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->state = JUMP;
                 return;
             }
-            if(keystates[SDL_SCANCODE_LSHIFT] && walk==0 &&world->state == REST&&world->state <=0){ //si la touche appuyée est 'Lshift'
+            if(keystates[SDL_SCANCODE_LSHIFT] && walk==0 &&world->state == REST&&world->state <=0 ){ //si la touche appuyée est 'Lshift'
                 world->mouvement = 5;
+                world->damageBlocked = true;
                 return;
             }
-            if(keystates[SDL_SCANCODE_LSHIFT] && keystates[SDL_SCANCODE_S] && walk ==0 && world->state == CROUCH ){
-                world->mouvement = 8;
-                return;
-            }
-            if(keystates[SDL_SCANCODE_S] && keystates[SDL_SCANCODE_J] && walk ==0 && world->state == CROUCH){
+
+            if(keystates[SDL_SCANCODE_S] && keystates[SDL_SCANCODE_J] && walk ==0 ){
                 world->test = ATTACK;
                 world->typeOfAttack = CROUCH_LPUNCH;
                 world->spriteAttack->y = 419 + 144;
@@ -184,7 +194,6 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
             }
 
             walk = 0;
-            //world->mouvement =0;
             if(world->state != ATTACKED){
                 world->mouvement =0;
             }
@@ -192,6 +201,9 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->crouch = 0;
                 world->sprite->y = 419 ;
                 world->spriteAttack->y = 419;
+            }
+            if(world->damageBlocked == true){
+                world->damageBlocked = false;
             }
 
 }
@@ -248,14 +260,12 @@ void handle_events_ken(SDL_Event *event,world_t *world){
             }
 
             walk2 = 0;
-            //world->mouvement2 =0;
             if(world->state_ken != ATTACKED){
                 world->mouvement2 =0;
             }
             if(world->crouch2 == 1){
                 world->spriteTwo->y = 419;
                 world->crouch2 = 0;
-                //world->spriteAttackTwo->y = 419;
                 world->state_ken = REST;
             }
 

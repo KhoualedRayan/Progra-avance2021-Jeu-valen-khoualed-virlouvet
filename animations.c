@@ -49,11 +49,34 @@ void ryu_hidle(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
     }
 }
+void ryu_hit_block(SDL_Renderer *renderer, world_t *world,textures_t *textures){
+    float temps;
+    float delai;
+    if(world->state == BLOCKED && world->mouvement == 13 && world->ken_pv > 1){
+        temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - temps);
+        if(delai  >=0.0 && delai  <=0.1){
+            apply_sprite(renderer, textures->ryu_hit,world->sprite);
+        }if(delai  >=0.1 && delai  <=0.2){
+            apply_sprite(renderer,textures->ryu_hit1,world->sprite);
+        }
+        if(delai  >=0.3 && delai  <=0.4){
+            apply_sprite(renderer,textures->ryu_hit2,world->sprite);
+        }if(delai  >=0.4 && delai  <= 0.48){
+            apply_sprite(renderer, textures->ryu_hit3,world->sprite) ;
+        }
+        if(delai >= 0.48){
+            world->state = REST;
+            world->mouvement = REST;
+        }
+    }
+}
 void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
     if(world->state == ATTACKED && world->mouvement == 13 && world->ken_pv > 1){
         temps = SDL_GetTicks()/1000;
+        delai = (float) ((world->compteur) - world->stun);
         delai = (float) ((world->compteur) - temps);
         if(delai  >=0.0 && delai  <=0.25){
             apply_sprite(renderer, textures->ryu_hit,world->sprite);
@@ -71,7 +94,11 @@ void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
         for(int i=0;i<10;i++){
             if(sprites_collide(world->sprite,&(world->hadouken_ken[i])) && world->hitted_ryu == 0){
-                world->ryu_pv -= 5;
+                if(world->damageBlocked){
+                    world->ryu_pv -=1;
+                }else{
+                    world->ryu_pv -= 5 ;
+                }
                 world->hitted_ryu = 1;
             }
         }
@@ -347,6 +374,7 @@ void refresh_animations(world_t* world,SDL_Renderer *renderer,textures_t *textur
 
     //RYU
     ryu_hidle(renderer,world,textures);
+    ryu_hit_block(renderer,world,textures);
     ryu_hit(renderer,world,textures);
 	ryu_walking(renderer,world,textures);
 	ryu_blocking(renderer,world,textures);

@@ -71,6 +71,8 @@ void init_valeurs(world_t* world){
 	world->hitted_ryu = 0 ;
 	world->on = 0;
 	world->on2 = 0;
+	world->reductiondps=0;
+	world->damageBlocked = false; 
 	world->stun = 0.;
 	world->ryu_pv = 20;
 	world->ken_pv = 20;
@@ -205,12 +207,15 @@ void damage_knockback(sprite_t *sptank,sprite_t* spdamage, int damage,int kb, wo
 		if(spdamage == world->spriteAttack){
         	world->ken_pv -= damage;
 		}
-		if(spdamage == world->spriteAttackTwo){
+		if(spdamage == world->spriteAttackTwo && world->reductiondps == 1){
+			world->ryu_pv -= 1;
+		}else if(spdamage == world->spriteAttackTwo){
 			world->ryu_pv -= damage;
 		}
 
         sptank->x += kb;
         world->hitted = 1;
+		world->reductiondps=0;
     }
 }
 
