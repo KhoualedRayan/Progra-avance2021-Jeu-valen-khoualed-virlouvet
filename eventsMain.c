@@ -215,19 +215,20 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                 world->spriteTwo->x = world->spriteTwo->x + MOVING_STEP/2;
                 world->mouvement2 = 1; 
                 walk2 = 1;
-                
+                return;
             }
 			if(keystates[SDL_SCANCODE_LEFT] && world->state_ken == REST_KEN){ //si la touche appuyée est 'a'
                 world->spriteTwo->x = world->spriteTwo->x - MOVING_STEP;
                 world->mouvement2 = 2;
                 walk2=1;
-                
+                return;
             }
 			if(keystates[SDL_SCANCODE_DOWN] && walk2 == 0 && world->state_ken == REST_KEN){ //si la touche appuyée est 's'
                 world->mouvement2 = 3;
                 world->state_ken = CROUCH;
                 world->spriteTwo->y = world->spriteTwo->y + 144;
                 world->crouch2 = 1;
+                return;
             }
 			if(keystates[SDL_SCANCODE_UP]){ //si la touche appuyée est 'z'
                 
@@ -239,6 +240,7 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN_KEN;
+                return;
             }
 
             if(keystates[SDL_SCANCODE_L] && world->state_ken == REST && walk2 == 0 && world->addy2 == 0){
@@ -246,23 +248,24 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                 world->typeOfAttack2 = LPUNCH;
                 world->addx2 = -23;
                 world->timerLastAttack2 = (float)(SDL_GetTicks()/1000.) ;
+                return;
             }
             if(keystates[SDL_SCANCODE_M] && world->state_ken == REST && walk2 == 0  && world->addy2 == 0){
                 world->test2 = ATTACK;
                 world->typeOfAttack2 = LKICK;
                 world->addx2 = -23;
                 world->timerLastAttack2 = (float)(SDL_GetTicks()/1000.) ;
+                return;
             }
-        switch (event->type)
-        {
-        case SDL_KEYDOWN:
+        // switch (event->type)
+        // {
+        // case SDL_KEYDOWN:
 
-            break;
+        //     break;
         
-        case SDL_KEYUP:// Un événement de type touche relâchée
-            //SDL_Log("-key");
+        // case SDL_KEYUP:// Un événement de type touche relâchée
+        //     //SDL_Log("-key");
             walk2 = 0;
-            world->mouvement =0;
             if(world->state_ken != ATTACKED){
                 world->mouvement2 =0;
             }
@@ -272,11 +275,6 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                 world->spriteAttackTwo->y -= 144;
                 world->state_ken = REST;
             }
-            break;
-        
-        
-    } 
-
 }
 void handle_events_bot(SDL_Event *event,world_t *world){
     if(world->sprite->x + 250 > world->spriteTwo->x){ //si la touche appuyée est 'd'

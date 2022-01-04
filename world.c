@@ -59,7 +59,6 @@ void init_valeurs(world_t* world){
 	world->test =0;
 	world->time = 99 ;
 	world->test2 = 0;
-	world->mort = 0;
 	world->addx = 0;
 	world->addy = 0;
 	world->addh = 0;
@@ -226,6 +225,15 @@ void update_data(world_t *world){
 		update_hadouken_opposite(&(world->hadouken_ken[i]), world);
 		handle_sprites_collision_hadoken(world->spriteTwo, &(world->hadouken[i]),world);
 		handle_sprites_collision_hadoken(world->sprite, &(world->hadouken_ken[i]),world);
+	}
+	if(world->ken_pv <= 0){
+		world->state = 50 ;
+		world->state_ken = 50 ;
+	}
+	
+	if(world->ryu_pv <= 0){
+		world->state_ken = 52 ;
+		world->state = 50 ;
 	}
 	
 

@@ -62,7 +62,7 @@ void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
         if(delai  >=0.5 && delai  <=0.75){
             apply_sprite(renderer,textures->ryu_hit2,world->sprite);
-        }if(delai  >=0.75 && delai  < 0.98){
+        }if(delai  >=0.75 && delai  <= 0.98){
             apply_sprite(renderer, textures->ryu_hit3,world->sprite) ;
         }
         if(delai >= 0.98){
@@ -279,7 +279,7 @@ void ryu_forward_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textu
 void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(world->ken_pv <=0 && world->state == REST){
+    if(world->ken_pv <=0 && world->state == 50){
         world->mouvement = 52 ;
         temps = SDL_GetTicks()/1000 ;
         delai = (float) ((world->compteur) - temps);
@@ -311,7 +311,7 @@ void ryu_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ryu_ko(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(world->ryu_pv <=0){
+    if(world->ryu_pv <=0 && world->state == 52){
         world->mouvement = 53 ;
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - world->timerLastHit);
