@@ -100,15 +100,14 @@ void handle_events_choix_maps(SDL_Event *event,world_t *world){
 
 void handle_events_ryu(SDL_Event *event,world_t *world){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
-        switch (event->type)
-        {
-        case SDL_KEYDOWN:
+ //       case SDL_KEYDOWN:
             //SDL_Log("+key");
             if (keystates[SDL_SCANCODE_D] && world->state == REST){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
                 //SDL_Log("Scancode fleche droite"); // Affiche un message
                 world->sprite->x = world->sprite->x + MOVING_STEP;
                 world->mouvement = 1;
                 walk = 1;
+                return;
             }
 
             if (keystates[SDL_SCANCODE_A]&& world->state == REST){ // Regarde si le keycode w est enfoncé (la touche W sous un azerty)
@@ -116,6 +115,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->sprite->x = world->sprite->x - MOVING_STEP/2;
                 world->mouvement = 2;
                 walk=1;
+                return;
 
             }
 
@@ -123,18 +123,23 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->state = CROUCH;
                 world->mouvement=3;
-                world->sprite->y = world->sprite->y + 144;
-                world->crouch = 1;
+                //world->sprite->y = world->sprite->y + 144;
+                world->sprite->y = 419 + 144;
+                //world->crouch = 1;
+                return;
             }
             if (keystates[SDL_SCANCODE_W] && world->state == REST){ // Regarde si on appuyer sur la touche Z (la touche Z sous un azerty)
                 //SDL_Log("Keycode fleche bas"); // Affiche un message
                 world->state = JUMP;
+                return;
             }
             if(keystates[SDL_SCANCODE_LSHIFT] && walk==0 &&world->state == REST&&world->state <=0){ //si la touche appuyée est 'Lshift'
                 world->mouvement = 5;
+                return;
             }
             if(keystates[SDL_SCANCODE_LSHIFT] && keystates[SDL_SCANCODE_S] && walk ==0 && world->state == CROUCH ){
                 world->mouvement = 8;
+                return;
             }
             if(keystates[SDL_SCANCODE_S] && keystates[SDL_SCANCODE_J] && walk ==0 && world->state == CROUCH){
                 world->test = ATTACK;
@@ -142,6 +147,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->addw = 23;
                 world->addy = 144;
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+                return;
                 
             }
             //Low punch immobile
@@ -150,6 +156,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->typeOfAttack = LPUNCH;
                 world->addw = 23;
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+                return;
             }
             //Low punch en mouvement
             if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 1 && world->addy == 0){
@@ -159,12 +166,14 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 //world->addy = 40;
                 world->addx= 40;
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+                return;
             }
             if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0  && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LKICK;
                 world->addw = 23;
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
+                return;
             }
             if(keystates[SDL_SCANCODE_SPACE] && walk ==0 && world->timerlastshoot + world->firerate < (float)(SDL_GetTicks()/1000.) && world->state == REST){
                 world->nbr_hadouken = world->nbr_hadouken + 1;
@@ -173,11 +182,14 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                     world->nbr_hadouken = 0;
                 }
                 world->test = HADOUKEN;
+                return;
 
             }
-            break;
+ //           break;
         
-        case SDL_KEYUP:// Un événement de type touche relâchée
+//        switch (event->type)
+ //       {
+  //      case SDL_KEYUP:// Un événement de type touche relâchée
             //SDL_Log("-key");
             walk = 0;
             world->mouvement =0;
@@ -190,16 +202,13 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->spriteAttack->y -= 144;
                 world->state = REST;
             }
-            break;
-    }
+   //         break;
+  //  }
 
 }
 
 void handle_events_ken(SDL_Event *event,world_t *world){
     const Uint8 *keystates = SDL_GetKeyboardState(NULL);
-        switch (event->type)
-        {
-        case SDL_KEYDOWN:
             //SDL_Log("+key");
             if(keystates[SDL_SCANCODE_RIGHT] && world->state_ken == REST_KEN){ //si la touche appuyée est 'd'
 
@@ -244,6 +253,9 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                 world->addx2 = -23;
                 world->timerLastAttack2 = (float)(SDL_GetTicks()/1000.) ;
             }
+        switch (event->type)
+        {
+        case SDL_KEYDOWN:
 
             break;
         
@@ -285,14 +297,6 @@ void handle_events_bot(SDL_Event *event,world_t *world){
 void handle_events(SDL_Event *event,world_t *world){
     const Uint8 *keystates;
 
-    
-    while( SDL_PollEvent( event ) ) {        
-        if(world->choix_maps == 0 && world->etat_menu >=3  ){
-            handle_events_choix_maps(event,world);
-        }
-
-        handle_events_menu(event,world);
-
         if(world->etat_menu == 3){
             handle_events_ryu(event,world);
             handle_events_ken(event,world);
@@ -301,6 +305,14 @@ void handle_events(SDL_Event *event,world_t *world){
             handle_events_ryu(event,world);
             handle_events_bot(event,world);
         }
+    
+    while( SDL_PollEvent( event ) ) {        
+        if(world->choix_maps == 0 && world->etat_menu >=3  ){
+            handle_events_choix_maps(event,world);
+        }
+
+        handle_events_menu(event,world);
+
 
         //Si l'utilisateur a cliqué sur le X de la fenêtre 
         if( event->type == SDL_QUIT ) {

@@ -55,7 +55,7 @@
  * \brief Pas de déplacement horizontal 
 */
 
-#define MOVING_STEP 10
+#define MOVING_STEP 4
 
 
 /**
