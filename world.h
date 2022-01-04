@@ -70,7 +70,6 @@ struct world_s{
 	int tab[100];
 	int ryu_pv;
 	int time;
-	int mort;
 	int ken_pv;
 	int hitted;
 	int hitted_ryu ;
