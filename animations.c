@@ -69,6 +69,12 @@ void ryu_hit_block(SDL_Renderer *renderer, world_t *world,textures_t *textures){
             world->state = REST;
             world->mouvement = REST;
         }
+        for(int i=0;i<10;i++){
+            if(sprites_collide(world->sprite,&(world->hadouken_ken[i])) && world->hitted_ryu == 0){
+                world->ryu_pv -=1;
+                world->hitted_ryu = 1;
+            }
+        }
     }
 }
 void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
@@ -94,11 +100,7 @@ void ryu_hit(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         }
         for(int i=0;i<10;i++){
             if(sprites_collide(world->sprite,&(world->hadouken_ken[i])) && world->hitted_ryu == 0){
-                if(world->damageBlocked){
-                    world->ryu_pv -=1;
-                }else{
-                    world->ryu_pv -= 5 ;
-                }
+                world->ryu_pv -= 5 ;
                 world->hitted_ryu = 1;
             }
         }
