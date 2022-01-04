@@ -121,8 +121,9 @@ void ryu_blocking(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ryu_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
-    if(world->mouvement  == 3 && world->state == CROUCH){
+    if(world->mouvement  == 3 ){
         apply_sprite(renderer, textures->ryu_crouching,world->sprite);
+        printf("zizi");
     }
     if(world->mouvement == 8){
         apply_sprite(renderer,textures->ryu_blocking1,world->sprite);
