@@ -240,6 +240,9 @@ void update_data(world_t *world){
 		world->state_ken = 52 ;
 		world->state = 50 ;
 	}
+	if(world->etat_menu == 4){
+		world->ken_pv = 20;
+	}
 	
 
 }
