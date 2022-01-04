@@ -23,7 +23,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 	}
 
-    if(world->win == 1 && world-> defaite == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+    if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
         world->etat_menu = 0;
         world->gameover = 1;
         scores(world,world->maList,renderer,textures);
@@ -355,9 +355,6 @@ void ryu_ko(SDL_Renderer *renderer, world_t *world,textures_t *textures){
             apply_sprite(renderer, textures->ryu_ko2,world->sprite);
             world->sprite->y = world->sprite-> y + 3; 
             world->sprite->x = world->sprite-> x - 2; 
-        }
-        if(delai > 0.90){
-            world->defaite = 1 ;
         }
         if(delai > 1. && delai < 3. ){
              apply_sprite(renderer, textures->ryu_ko2,world->sprite);
