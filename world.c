@@ -74,7 +74,7 @@ void init_valeurs(world_t* world){
 	world->on2 = 0;
 	world->stun = 0.;
 	world->ryu_pv = 20;
-	world->ken_pv = 2;
+	world->ken_pv = 20;
 	world->timerlastshoot = (float)(SDL_GetTicks()/1000.) ;
 	world->firerate = 2.;
 	world->timerLastAttack = 0.;
