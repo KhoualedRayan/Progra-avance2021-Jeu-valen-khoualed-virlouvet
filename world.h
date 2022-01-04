@@ -1,6 +1,7 @@
 #ifndef __WORLD__H__
 #define __WORLD__H__
-
+#include <stdio.h>
+#include <stdbool.h>
 
 /**
 * \brief Représentation des sprites .
@@ -70,7 +71,6 @@ struct world_s{
 	int tab[100];
 	int ryu_pv;
 	int time;
-	int mort;
 	int ken_pv;
 	int hitted;
 	int hitted_ryu ;
@@ -109,9 +109,11 @@ struct world_s{
 	int vy_ryu;
 	int vy_ken;
 	int crouch;
+	int reductiondps;
 	int crouch2;
 	int state;
 	int state_ken;
+	bool damageBlocked;
 	int typeOfAttack;
 	int typeOfAttack2;
 	int win ;

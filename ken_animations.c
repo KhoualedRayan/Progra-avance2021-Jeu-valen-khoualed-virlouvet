@@ -175,7 +175,7 @@ void ken_lkick(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 
 void ken_crouching(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     //Animations
-    if(world->mouvement2  == 3 && world->state_ken == CROUCH){
+    if(world->mouvement2  == 3 && world->state_ken == REST){
         apply_sprite(renderer, textures->ken_crouching,world->spriteTwo);
     }
     if(world->mouvement2 == 8){
@@ -203,7 +203,7 @@ void ken_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textur
 void ken_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(99 - (int)(world->compteur) + (int)(world->compteur_menu) <= 0 || world->ryu_pv <=0 && world->state_ken == REST_KEN){
+    if(world->ryu_pv <=0 && world->state_ken == 52){
         world->mouvement2 = 52 ;
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - temps);
@@ -236,7 +236,7 @@ void ken_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
 void ken_Ko(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(world->ken_pv <=0){
+    if(world->ken_pv <=0 && world->state_ken == 50 ){
         world->mouvement2 = 53 ;
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - world->timerLastHit);

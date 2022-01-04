@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
- 
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Dec 30 16:02:03 2021
+# Make data base, printed on Tue Jan  4 18:20:44 2022
 
 # Variables
 
@@ -55,7 +53,7 @@ SNAP_DATA = /var/snap/code/85
 # environment
 VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePackId":"9fdd4736c50ab5d00bf618b3d10bedcc.fr","_translationsConfigFile":"/home/virbek/.config/Code/clp/9fdd4736c50ab5d00bf618b3d10bedcc.fr/tcf.json","_cacheRoot":"/home/virbek/.config/Code/clp/9fdd4736c50ab5d00bf618b3d10bedcc.fr","_resolvedLanguagePackCoreLocation":"/home/virbek/.config/Code/clp/9fdd4736c50ab5d00bf618b3d10bedcc.fr/899d46d82c4c95423fb7e10e68eba52050e30ba3","_corruptedFile":"/home/virbek/.config/Code/clp/9fdd4736c50ab5d00bf618b3d10bedcc.fr/corrupted.info","_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:46010
+JOURNAL_STREAM = 8:52333
 # makefile (from 'Makefile', line 1)
 CFLAGS = -O3 `sdl2-config --cflags`
 # environment
@@ -85,7 +83,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/85/usr/share/code/code
 # environment
-MANAGERPID = 1472
+MANAGERPID = 1487
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -101,7 +99,7 @@ PROG = jeu
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/Virbek:@/tmp/.ICE-unix/1728,unix/Virbek:/tmp/.ICE-unix/1728
+SESSION_MANAGER = local/Virbek:@/tmp/.ICE-unix/1743,unix/Virbek:/tmp/.ICE-unix/1743
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -119,7 +117,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=690e1a7e-274d-495c-8437-9070543dedba&iid=690e1a7e-274d-495c-8437-9070543dedba&sid=690e1a7e-274d-495c-8437-9070543dedba","uploadToServer":true}
 # environment
-INVOCATION_ID = 11ce10f3a51d47428ec95897e2c7f72d
+INVOCATION_ID = d8ad79c860184964b1b924b565d73fd9
 # makefile (from 'Makefile', line 2)
 LDFLAGS = `sdl2-config --libs` -lSDL2_ttf -lm 
 # environment
@@ -133,7 +131,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6568
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7092
 # automatic
 %F = $(notdir $%)
 # environment
@@ -147,7 +145,7 @@ PWD = /home/virbek/Documents/programmation_avance/Progra-avance2021-Jeu-valen-kh
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1662
+SSH_AGENT_PID = 1677
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -197,7 +195,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8a719e94-8cae-4035-b6db-e966ba6a6f26.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0577bc16-9d2b-4140-bba6-8d99640c91e2.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -273,7 +271,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6618
+VSCODE_PID = 7467
 # variable set hash-table stats:
 # Load=131/1024=13%, Rehash=0, Collisions=22/160=14%
 
@@ -291,7 +289,6 @@ VSCODE_PID = 6618
 
 %.o: %.c sdl2-light.h constante.h world.h graphisme.h sdl2-ttf-light.h eventsMain.h animations.h ken.h ryu.h ryu_graphisme.h ken_graphisme.h ken_animations.h score.h
 #  recipe to execute (from 'Makefile', line 11):
- 
 	gcc $(CFLAGS) -c $<
 
 # 1 implicit rules, 0 (0.0%) terminal.
@@ -338,6 +335,9 @@ ken_graphisme.o:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
+ 
+make: *** No rule to make target 'all'.  Stop.
+ 
 #  Last modified 2021-12-02 19:57:14.909572758
 #  File has been updated.
 #  Successfully updated.
@@ -433,6 +433,6 @@ doc: jeu
 # strcache performance: lookups = 95 / hit rate = 36%
 # hash-table stats:
 # Load=60/8192=1%, Rehash=0, Collisions=1/95=1%
-# Finished Make data base on Thu Dec 30 16:02:03 2021
+# Finished Make data base on Tue Jan  4 18:20:44 2022
 
  

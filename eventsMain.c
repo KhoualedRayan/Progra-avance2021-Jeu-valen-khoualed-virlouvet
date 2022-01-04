@@ -215,7 +215,7 @@ void handle_events_ken(SDL_Event *event,world_t *world){
                 walk2=1;
                 
             }
-			if(keystates[SDL_SCANCODE_DOWN] && walk2 == 0 && world->state_ken == REST_KEN){ //si la touche appuyée est 's'
+			if(keystates[SDL_SCANCODE_DOWN] && walk2 == 0){ //si la touche appuyée est 's'
                 world->mouvement2 = 3;
                 world->state_ken = CROUCH;
                 world->spriteTwo->y = world->spriteTwo->y + 144;
@@ -268,7 +268,6 @@ void handle_events_ken(SDL_Event *event,world_t *world){
 
 }
 void handle_events_bot(SDL_Event *event,world_t *world){
-    
     
     if(world->sprite->x + 250 >= world->spriteTwo->x){ //si la touche appuyée est 'd'
 

@@ -65,8 +65,14 @@ void receive_damage_ryu(world_t* world){
 		if(sprites_collide(world->sprite,world->spriteAttackTwo) || sprites_collide(world->sprite, &(world->hadouken_ken[i]))){
 			world->stun = (float)(SDL_GetTicks()/1000.) ;
 			if((world->stun +1. > world->compteur)){
-				world->state = ATTACKED;
-				world->mouvement = 13;
+				if(world->damageBlocked == true){
+					world->reductiondps = 1;
+					world->state = BLOCKED;
+					world->mouvement = 13;
+				}else{
+					world->state = ATTACKED;
+					world->mouvement = 13;
+				}
 			}
 		}
 	}
