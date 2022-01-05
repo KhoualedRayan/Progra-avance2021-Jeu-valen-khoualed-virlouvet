@@ -203,7 +203,7 @@ void ken_crouch_lpunch(SDL_Renderer *renderer, world_t *world,textures_t *textur
 void ken_victory(SDL_Renderer *renderer, world_t *world,textures_t *textures){
     float temps;
     float delai;
-    if(world->ryu_pv <=0 && world->state_ken == 52){
+    if(world->ryu_pv <=0 && world->state_ken == 52 || 99 - (int)(world->compteur) + (int)(world->compteur_menu) <= 0){
         world->mouvement2 = 52 ;
         temps = SDL_GetTicks()/1000;
         delai = (float) ((world->compteur) - temps);

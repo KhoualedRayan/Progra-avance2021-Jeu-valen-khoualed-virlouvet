@@ -122,7 +122,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->mouvement=3;
                 world->sprite->y = 419 + 144;
                 world->crouch = 1;
-                if(keystates[SDL_SCANCODE_J]){
+                if(keystates[SDL_SCANCODE_G]){
                     world->test = ATTACK;
                     world->typeOfAttack = CROUCH_LPUNCH;
                     world->sprite->y = 419 + 144;
@@ -158,7 +158,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 
             }
             //Low punch immobile
-            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 0 && world->addy == 0){
+            if(keystates[SDL_SCANCODE_G] && world->state == REST && walk == 0 && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LPUNCH;
                 world->addw = 23;
@@ -166,7 +166,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 return;
             }
             //Low punch en mouvement
-            if(keystates[SDL_SCANCODE_J] && world->state == REST && walk == 1 && world->addy == 0){
+            if(keystates[SDL_SCANCODE_G] && world->state == REST && walk == 1 && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = FORWARD_LPUNCH;
                 world->addw = 23;
@@ -175,7 +175,7 @@ void handle_events_ryu(SDL_Event *event,world_t *world){
                 world->timerLastAttack = (float)(SDL_GetTicks()/1000.) ;
                 return;
             }
-            if(keystates[SDL_SCANCODE_K] && world->state == REST && walk == 0  && world->addy == 0){
+            if(keystates[SDL_SCANCODE_H] && world->state == REST && walk == 0  && world->addy == 0){
                 world->test = ATTACK;
                 world->typeOfAttack = LKICK;
                 world->addw = 23;

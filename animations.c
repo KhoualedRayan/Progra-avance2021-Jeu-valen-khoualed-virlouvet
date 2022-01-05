@@ -23,7 +23,7 @@ void timer(SDL_Renderer *renderer, world_t *world,textures_t *textures){
         apply_text(renderer, SCREEN_WIDTH/2 - 25,70,100,50,world->text,textures->font);
 	}
 
-    if(world->win == 1){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
+    if(world->win == 1 || world->etat_menu == 0){ // quand le compteur est à zero ou que les hp sont à zero le menu réapparait
         world->etat_menu = 0;
         world->gameover = 1;
         scores(world,world->maList,renderer,textures);
